@@ -10,40 +10,59 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Cuenta {
-	@Id @GeneratedValue
+	@Id
 	private Long id;
 	private String nombre;
-	private String isbn;
-	@ElementCollection
-	private Set<String> etiquetas;
+	private String direccionFiscal;
+	private String NIF;
+	@Temporal(TemporalType.DATE)
+	private Date fechaAlta;
+
+	//Getters y Setters
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getIsbn() {
-		return isbn;
+
+	public String getDireccionFiscal() {
+		return direccionFiscal;
 	}
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
+
+	public void setDireccionFiscal(String direccionFiscal) {
+		this.direccionFiscal = direccionFiscal;
 	}
-	public Set<String> getEtiquetas() {
-		return etiquetas;
+
+	public String getNIF() {
+		return NIF;
 	}
-	public void setEtiquetas(Set<String> etiquetas) {
-		this.etiquetas = etiquetas;
+
+	public void setNIF(String NIF) {
+		this.NIF = NIF;
 	}
+
+	// Métodos adicionales
 	@Override
-	public int hashCode() {
-		return Objects.hash(id);
+	public String toString() {
+		return "Cuenta{" +
+				"id=" + id +
+				", nombre='" + nombre + '\'' +
+				", direccionFiscal='" + direccionFiscal + '\'' +
+				", NIF='" + NIF + '\'' +
+				", fechaAlta=" + fechaAlta +
+				'}';
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -55,12 +74,12 @@ public class Cuenta {
 		Cuenta other = (Cuenta) obj;
 		return Objects.equals(id, other.id);
 	}
+
 	@Override
-	public String toString() {
-		return "Book [id=" + id + ", nombre=" + nombre + ", isbn=" + isbn + "]";
+	public int hashCode() {
+		return Objects.hash(id);
 	}
-	
-	
-	
+
 
 }
+
