@@ -8,8 +8,8 @@ import es.uma.informatica.sii.plytix.pana.repositories.BookRepository;
 
 @Component
 public class CommandLineRunner implements org.springframework.boot.CommandLineRunner {
-	private BookRepository repository;
-	public CommandLineRunner(BookRepository repository) {
+	private CuentaRepository repository;
+	public CommandLineRunner(CuentaRepository repository) {
 		this.repository = repository;
 	}
 
@@ -21,11 +21,7 @@ public class CommandLineRunner implements org.springframework.boot.CommandLineRu
 			System.out.println(s);
 		}
 
-		if (args.length > 0) {
-			for (Cuenta b: repository.findByNombre(args[0])) {
-				System.out.println(b);
-			}
-		}
+
 	}
 
 }
