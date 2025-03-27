@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>es.uma.informatica.sii</groupId>
-	<artifactId>plytix.pana</artifactId>
+	<artifactId>spring.jpa.demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>plytix.pana</name>
+	<name>spring.jpa.demo</name>
 	<description>Aplicación de consola con Spring Data JPA</description>
 	<properties>
 		<java.version>17</java.version>

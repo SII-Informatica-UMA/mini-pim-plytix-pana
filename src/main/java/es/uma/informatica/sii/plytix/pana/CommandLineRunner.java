@@ -3,12 +3,13 @@ package es.uma.informatica.sii.plytix.pana;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.uma.informatica.sii.plytix.pana.repositories.UsuarioRepository;
+import es.uma.informatica.sii.plytix.pana.entities.Cuenta;
+import es.uma.informatica.sii.plytix.pana.repositories.BookRepository;
 
 @Component
 public class CommandLineRunner implements org.springframework.boot.CommandLineRunner {
-	private UsuarioRepository repository;
-	public CommandLineRunner(UsuarioRepository repository) {
+	private BookRepository repository;
+	public CommandLineRunner(BookRepository repository) {
 		this.repository = repository;
 	}
 
@@ -19,8 +20,6 @@ public class CommandLineRunner implements org.springframework.boot.CommandLineRu
 		for (String s: args) {
 			System.out.println(s);
 		}
-
-		}
 	}
 
-
+}
