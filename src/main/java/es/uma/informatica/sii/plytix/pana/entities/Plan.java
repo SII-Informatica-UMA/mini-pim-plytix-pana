@@ -28,6 +28,9 @@ public class Plan {
 
     private Double precio;
 
+    @OneToMany (mappedBy = "plan")
+    private List<Cuenta> cuentas;
+
 
     // Constructores
     public Plan() {}
