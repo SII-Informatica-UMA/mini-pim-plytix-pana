@@ -14,11 +14,16 @@ public class Cuenta {
     @Temporal(TemporalType.DATE)
     @Column(name = "FECHA_ALTA")
     private Date fechaAlta;
-    @OneToOne
-    @JoinColumn(name = "plan")
+
+    @ManyToOne
+    @JoinColumn(name = "plan", foreignKey = @ForeignKey(name = "fk_cuenta_plan"))
     private Plan plan;
+
     @OneToMany(mappedBy = "cuenta")
     private List<Usuario> usuarios;
+
+    @OneToOne
+    private Usuario dueno;
 
     //Getters y Setters
     public Long getId() {
