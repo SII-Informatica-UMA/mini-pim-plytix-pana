@@ -16,8 +16,12 @@ public class Usuario {
 	private String apellido2;
 	@Enumerated(EnumType.STRING)
 	private Role role;
+	
+	@OneToOne
+	private Cuenta cuentaComoDueno;
+
 	@ManyToOne
-	@JoinColumn(name = "cuenta")
+	@JoinColumn(name = "cuenta",  foreignKey = @ForeignKey(name = "fk_usuario_cuenta"))
 	private Cuenta cuenta;
 
 
