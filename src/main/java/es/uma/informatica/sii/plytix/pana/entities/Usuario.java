@@ -2,27 +2,30 @@ package es.uma.informatica.sii.plytix.pana.entities;
 
 import java.util.Objects;
 import java.util.Set;
-
 import jakarta.persistence.*;
 
 @Entity
 public class Usuario {
 	@Id
-	private int id;
-	@Column(name="EMAIL")
+	private Long id;
 	private String email;
-	@Column(name="NOMBRE")
 	private String nombre;
-	@Column(name="APELLIDO1")
+
 	private String apellido1;
-	@Column(name="APELLIDO2")
+
 	private String apellido2;
-	@Column(name="ROLE")
 	@Enumerated(EnumType.STRING)
 	private Role role;
+	
+	@OneToOne
+	private Cuenta cuentaComoDueno;
+
+	@ManyToOne
+	@JoinColumn(name = "cuenta",  foreignKey = @ForeignKey(name = "fk_usuario_cuenta"))
+	private Cuenta cuenta;
 
 
-	public int getID(){
+	public Long getID(){
 		return id;
 	}
 
@@ -38,7 +41,7 @@ public class Usuario {
 		return apellido2;
 	}
 
-	public void setId(int id){
+	public void setId(Long id){
 		this.id=id;
 	}
 

@@ -1,22 +1,11 @@
 package es.uma.informatica.sii.plytix.pana.entities;
 
 import jakarta.persistence.*;
-import java.util.Set;
 
-/**
- * Ejemplo de la entidad Plan con anotaciones JPA.
- * Ajusta los tipos de datos y relaciones según tus necesidades reales.
- */
 @Entity
-@Table(name = "PLAN")
 public class Plan {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
     private Long id;
-
-    @Column(name = "NOMBRE")
     private String nombre;
 
     @Column(name = "MAX_PRODUCTOS")
@@ -37,8 +26,10 @@ public class Plan {
     @Column(name = "MAX_RELACIONES")
     private Long maxRelaciones;
 
-    @Column(name = "PRECIO")
     private Double precio;
+
+    @OneToMany (mappedBy = "plan")
+    private List<Cuenta> cuentas;
 
 
     // Constructores
@@ -131,4 +122,3 @@ public class Plan {
         return (id == null) ? 0 : id.hashCode();
     }
 }
-
