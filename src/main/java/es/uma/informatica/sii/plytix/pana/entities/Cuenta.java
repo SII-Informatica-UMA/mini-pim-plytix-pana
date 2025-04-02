@@ -3,86 +3,98 @@ package es.uma.informatica.sii.plytix.pana.entities;
 import java.util.*;
 import jakarta.persistence.*;
 
+/**
+ * Entidad que representa una cuenta de usuario en el sistema.
+ * Contiene información fiscal y de suscripción del cliente.
+ */
 @Entity
 public class Cuenta {
-    @Id
-    private Long id;
-    private String nombre;
-    @Column(name = "DIR_FISCAL")
-    private String direccionFiscal;
-    private String NIF;
-    @Temporal(TemporalType.DATE)
-    @Column(name = "FECHA_ALTA")
-    private Date fechaAlta;
+	@Id  // Clave primaria de la entidad
+	private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "plan", foreignKey = @ForeignKey(name = "fk_cuenta_plan"))
-    private Plan plan;
+	private String nombre;  // Nombre de la cuenta
 
-    private List<Long> usuarios;
+	@Column(name = "DIR_FISCAL")  // Nombre personalizado en BD
+	private String direccionFiscal;  // Dirección fiscal para facturación
 
-    @OneToOne
-    private Long duenoId;
+	private String NIF;  // Número de identificación fiscal
 
-    //Getters y Setters
-    public Long getId() {
-        return id;
-    }
+	@Temporal(TemporalType.DATE)  // Indica que solo se almacena la fecha (sin hora)
+	@Column(name = "FECHA_ALTA")
+	private Date fechaAlta;  // Fecha de alta en el sistema
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	// Relación muchos-a-uno con Plan. Muchas cuentas pueden tener el mismo plan
+	@ManyToOne
+	@JoinColumn(name = "plan", foreignKey = @ForeignKey(name = "fk_cuenta_plan"))
+	private Plan plan;  // Plan asociado a esta cuenta
 
-    public String getNombre() {
-        return nombre;
-    }
+	// Lista de IDs de usuarios asociados a esta cuenta
+	private List<Long> usuarios;
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+	// Relación propietario de la cuenta
+	private Long duenoId;
 
-    public String getDireccionFiscal() {
-        return direccionFiscal;
-    }
+	// === GETTERS Y SETTERS ===
+	public Long getId() {
+		return id;
+	}
 
-    public void setDireccionFiscal(String direccionFiscal) {
-        this.direccionFiscal = direccionFiscal;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getNIF() {
-        return NIF;
-    }
+	public String getNombre() {
+		return nombre;
+	}
 
-    public void setNIF(String NIF) {
-        this.NIF = NIF;
-    }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-    // Métodos adicionales
-    @Override
-    public String toString() {
-        return "Cuenta{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", direccionFiscal='" + direccionFiscal + '\'' +
-                ", NIF='" + NIF + '\'' +
-                ", fechaAlta=" + fechaAlta +
-                '}';
-    }
+	public String getDireccionFiscal() {
+		return direccionFiscal;
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Cuenta other = (Cuenta) obj;
-        return Objects.equals(id, other.id);
-    }
+	public void setDireccionFiscal(String direccionFiscal) {
+		this.direccionFiscal = direccionFiscal;
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
+	public String getNIF() {
+		return NIF;
+	}
+
+	public void setNIF(String NIF) {
+		this.NIF = NIF;
+	}
+
+	// Representación textual de la cuenta
+	@Override
+	public String toString() {
+		return "Cuenta{" +
+				"id=" + id +
+				", nombre='" + nombre + '\'' +
+				", direccionFiscal='" + direccionFiscal + '\'' +
+				", NIF='" + NIF + '\'' +
+				", fechaAlta=" + fechaAlta +
+				'}';
+	}
+
+	// Comparación por ID
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cuenta other = (Cuenta) obj;
+		return Objects.equals(id, other.id);
+	}
+
+	// HashCode basado en ID
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
 }
