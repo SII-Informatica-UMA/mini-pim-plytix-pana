@@ -2,6 +2,8 @@ package es.uma.informatica.sii.plytix.pana.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Plan {
     @Id
