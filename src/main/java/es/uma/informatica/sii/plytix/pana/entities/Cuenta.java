@@ -19,11 +19,10 @@ public class Cuenta {
     @JoinColumn(name = "plan", foreignKey = @ForeignKey(name = "fk_cuenta_plan"))
     private Plan plan;
 
-    @OneToMany(mappedBy = "cuenta")
-    private List<Usuario> usuarios;
+    private List<Long> usuarios;
 
     @OneToOne
-    private Usuario dueno;
+    private Long duenoId;
 
     //Getters y Setters
     public Long getId() {
