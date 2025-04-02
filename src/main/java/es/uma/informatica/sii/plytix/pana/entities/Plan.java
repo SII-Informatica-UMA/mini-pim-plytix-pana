@@ -129,4 +129,20 @@ public class Plan {
     public int hashCode() {
         return (id == null) ? 0 : id.hashCode();
     }
+
+    @Override
+    public String toString() {
+    return "Plan{" +
+            "id=" + id +
+            ", nombre='" + nombre + '\'' +
+            ", maxProductos=" + maxProductos +
+            ", maxActivos=" + maxActivos +
+            ", maxAlmacenamiento=" + maxAlmacenamiento +
+            ", maxCategoriasProductos=" + maxCategoriasProductos +
+            ", maxCategoriasActivos=" + maxCategoriasActivos +
+            ", maxRelaciones=" + maxRelaciones +
+            ", precio=" + precio +
+            '}';
+}
+
 }
