@@ -67,6 +67,22 @@ public class Cuenta {
 		this.NIF = NIF;
 	}
 
+	public long getDuenoId(){
+		return duenoId;
+	}
+
+	public void setDuenoId(long duenoId){
+		this.duenoId=duenoId;
+	}
+
+	public List<Long> getUsuarios(){
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Long> usuarios){
+		this.usuarios=usuarios;
+	}
+
 	// Representación textual de la cuenta
 	@Override
 	public String toString() {
