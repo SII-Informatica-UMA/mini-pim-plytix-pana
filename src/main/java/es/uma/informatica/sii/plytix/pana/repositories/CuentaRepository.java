@@ -6,7 +6,7 @@ import java.util.*;
 
 public interface CuentaRepository extends JpaRepository<Cuenta, Long> {
 
-    List<Cuenta> findByNombre(String title);
+    List<Cuenta> findByNombre(String nombre);
     List<Cuenta> findByIdUsuario(Long id);
     List<Cuenta> findByIdPlan(Long id);
 
