@@ -29,6 +29,7 @@ public class Cuenta {
 	private Plan plan;  // Plan asociado a esta cuenta
 
 	// Lista de IDs de usuarios asociados a esta cuenta
+	@ElementCollection
 	private List<Long> usuarios;
 
 	// Relación propietario de la cuenta
