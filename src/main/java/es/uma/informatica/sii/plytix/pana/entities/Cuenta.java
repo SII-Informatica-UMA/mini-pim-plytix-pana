@@ -1,3 +1,4 @@
+
 package es.uma.informatica.sii.plytix.pana.entities;
 
 import java.util.*;
@@ -68,7 +69,7 @@ public class Cuenta {
 		this.NIF = NIF;
 	}
 
-	public long getDuenoId(){
+	public Long getDuenoId(){
 		return duenoId;
 	}
 
@@ -82,6 +83,22 @@ public class Cuenta {
 
 	public void setUsuarios(List<Long> usuarios){
 		this.usuarios=usuarios;
+	}
+
+	public Plan getPlan() {
+		return this.plan;
+	}
+
+	public void setPlan(Plan plan) {
+		this.plan = plan;
+	}
+
+	public Date getFechaAlta() {
+		return this.fechaAlta;
+	}
+
+	public void setFechaAlta(Date fechaAlta){
+		this.fechaAlta=fechaAlta;
 	}
 
 	// Representación textual de la cuenta
