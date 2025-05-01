@@ -29,6 +29,7 @@ public class Cuenta {
 	private Plan plan;  // Plan asociado a esta cuenta
 
 	// Lista de IDs de usuarios asociados a esta cuenta
+	@ElementCollection
 	private List<Long> usuarios;
 
 	// Relación propietario de la cuenta
@@ -67,7 +68,7 @@ public class Cuenta {
 		this.NIF = NIF;
 	}
 
-	public long getDuenoId(){
+	public Long getDuenoId(){
 		return duenoId;
 	}
 
@@ -81,6 +82,22 @@ public class Cuenta {
 
 	public void setUsuarios(List<Long> usuarios){
 		this.usuarios=usuarios;
+	}
+
+	public Plan getPlan() {
+		return this.plan;
+	}
+
+	public void setPlan(Plan plan) {
+		this.plan = plan;
+	}
+
+	public Date getFechaAlta() {
+		return this.fechaAlta;
+	}
+
+	public void setFechaAlta(Date fechaAlta){
+		this.fechaAlta=fechaAlta;
 	}
 
 	// Representación textual de la cuenta
@@ -108,9 +125,13 @@ public class Cuenta {
 		return Objects.equals(id, other.id);
 	}
 
+
+
 	// HashCode basado en ID
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
+
+
 }
