@@ -9,5 +9,5 @@ public interface CuentaRepository extends JpaRepository<Cuenta, Long> {
     List<Cuenta> findByNombre(String nombre);
     List<Cuenta> findByIdUsuario(Long id);
     List<Cuenta> findByIdPlan(Long id);
-
+    boolean existsByPlanId(Long planId);
 }
