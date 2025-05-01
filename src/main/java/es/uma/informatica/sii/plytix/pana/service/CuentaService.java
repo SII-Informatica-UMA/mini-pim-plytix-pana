@@ -1,22 +1,29 @@
 package es.uma.informatica.sii.plytix.pana.service;
 
+import es.uma.informatica.sii.plytix.pana.dto.CuentaDTO;
 import es.uma.informatica.sii.plytix.pana.dto.PropietarioDTO;
 import es.uma.informatica.sii.plytix.pana.entities.Cuenta;
-import es.uma.informatica.sii.plytix.pana.service.AccesoDenegadoException;
-import es.uma.informatica.sii.plytix.pana.service.CuentaNotFoundException;
 import es.uma.informatica.sii.plytix.pana.repositories.CuentaRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class CuentaService {
     private final CuentaRepository cuentaRepository;
     private final UsuarioServiceClient usuarioServiceClient;
+
+    @Autowired
+    public CuentaService (CuentaRepository cuentaRepository, UsuarioServiceClient usuarioServiceClient){
+        this.cuentaRepository = cuentaRepository;
+        this.usuarioServiceClient = usuarioServiceClient;
+    }
 
     @Transactional(readOnly = true)
     @PreAuthorize("hasRole('ADMIN') or @cuentaService.tieneAcceso(#cuentaId, authentication.principal.id)")
@@ -74,4 +81,21 @@ public class CuentaService {
     public List<Cuenta> obtenerTodasLasCuentas() {
         return cuentaRepository.findAll();
     }
+
+    //put
+    public void modificarCuenta (CuentaDTO cuenta, Long id){
+
+        Optional<Cuenta> c = cuentaRepository.findById(id);
+        if(!c.isPresent()){
+            throw new CuentaNotFoundException(id);
+        }
+        Cuenta cu = c.get();
+        cu.setNombre(cuenta.getNombre());
+        cu.setDireccionFiscal(cuenta.getDireccionFiscal());
+        cu.setNIF(cuenta.getnif());
+        cu.setFechaAlta(cuenta.getFechaAlta());
+        cu.setPlan(cuenta.getPlan());
+    }
+
+
 }

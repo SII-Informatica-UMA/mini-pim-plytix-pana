@@ -1,9 +1,12 @@
 package es.uma.informatica.sii.plytix.pana.controller;
 
+import es.uma.informatica.sii.plytix.pana.dto.CuentaDTO;
 import es.uma.informatica.sii.plytix.pana.dto.PropietarioDTO;
 import es.uma.informatica.sii.plytix.pana.entities.Cuenta;
+import es.uma.informatica.sii.plytix.pana.service.CuentaNotFoundException;
 import es.uma.informatica.sii.plytix.pana.service.CuentaService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -13,9 +16,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/cuenta")
-@RequiredArgsConstructor
 public class CuentaController {
     private final CuentaService cuentaService;
+
+    public CuentaController(CuentaService cuentaService) {
+        this.cuentaService = cuentaService;
+    }
 
     @GetMapping
     public ResponseEntity<List<Cuenta>> obtenerCuentas(
@@ -63,4 +69,17 @@ public class CuentaController {
         PropietarioDTO propietario = cuentaService.obtenerPropietarioCuenta(idCuenta);
         return ResponseEntity.ok(propietario);
     }
+    @PutMapping("{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> modificarCuenta(@PathVariable(name = "id")Long id, @RequestBody CuentaDTO cuenta) {
+
+        cuentaService.modificarCuenta(cuenta, id);
+        return ResponseEntity.ok(cuenta);
+    }
+
+
+    @ExceptionHandler(CuentaNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public void noEncontrado(){}
+
 }
