@@ -19,6 +19,19 @@ public class UsuarioServiceClient {
         this.restTemplate = restTemplateBuilder.build();
     }
 
+    public boolean isAdmin(Long usuarioId) {
+        String url = UriComponentsBuilder.fromHttpUrl(usuarioServiceUrl)
+                .path("/usuarios/{id}/isAdmin")
+                .buildAndExpand(usuarioId)
+                .toUriString();
+
+        ResponseEntity<Boolean> response = restTemplate.getForEntity(
+                url,
+                Boolean.class
+        );
+
+        return response.getStatusCode().is2xxSuccessful() && Boolean.TRUE.equals(response.getBody());
+    }
     public PropietarioDTO obtenerUsuarioPorId(Long usuarioId) {
         String url = UriComponentsBuilder.fromHttpUrl(usuarioServiceUrl)
                 .path("/usuarios/{id}")
