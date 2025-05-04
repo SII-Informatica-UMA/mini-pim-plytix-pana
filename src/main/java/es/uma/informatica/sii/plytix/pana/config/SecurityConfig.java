@@ -17,9 +17,11 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/plan/**").authenticated()
                         .requestMatchers("/cuenta/**").authenticated()
                         .anyRequest().permitAll()
                 )
+
                 .exceptionHandling(ex -> ex
                         .authenticationEntryPoint((request, response, authException) -> {
                             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "No autorizado");

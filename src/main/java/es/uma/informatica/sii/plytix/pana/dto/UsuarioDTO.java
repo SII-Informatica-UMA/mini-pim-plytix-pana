@@ -3,10 +3,8 @@ package es.uma.informatica.sii.plytix.pana.dto;
 import lombok.Data;
 
 @Data
-public class PropietarioDTO {
+public class UsuarioDTO {
     private Long id;
     private String email;
-    private String nombre;
-    private String apellido1;
-    private String apellido2;
+
 }

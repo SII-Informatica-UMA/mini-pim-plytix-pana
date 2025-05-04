@@ -1,6 +1,6 @@
 package es.uma.informatica.sii.plytix.pana.service;
 
-import es.uma.informatica.sii.plytix.pana.dto.PropietarioDTO;
+import es.uma.informatica.sii.plytix.pana.dto.UsuarioDTO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;
@@ -32,15 +32,15 @@ public class UsuarioServiceClient {
 
         return response.getStatusCode().is2xxSuccessful() && Boolean.TRUE.equals(response.getBody());
     }
-    public PropietarioDTO obtenerUsuarioPorId(Long usuarioId) {
+    public UsuarioDTO obtenerUsuarioPorId(Long usuarioId) {
         String url = UriComponentsBuilder.fromHttpUrl(usuarioServiceUrl)
                 .path("/usuarios/{id}")
                 .buildAndExpand(usuarioId)
                 .toUriString();
 
-        ResponseEntity<PropietarioDTO> response = restTemplate.getForEntity(
+        ResponseEntity<UsuarioDTO> response = restTemplate.getForEntity(
                 url,
-                PropietarioDTO.class
+                UsuarioDTO.class
         );
 
         if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
@@ -49,4 +49,5 @@ public class UsuarioServiceClient {
             throw new RuntimeException("Error al obtener usuario del servicio");
         }
     }
+
 }
