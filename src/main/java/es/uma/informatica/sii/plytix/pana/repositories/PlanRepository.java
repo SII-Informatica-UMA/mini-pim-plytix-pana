@@ -1,11 +1,15 @@
 package es.uma.informatica.sii.plytix.pana.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import es.uma.informatica.sii.plytix.pana.entities.Plan;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PlanRepository extends JpaRepository<Plan, Long> {
-    List<Plan> findByIdPlan(Long id);
+    Optional<Plan> findById(Long id);
+
+    List<Plan> findAllById(Long id);
+
     List<Plan> findByNombre(String nombre);
 }
