@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/cuenta")
 public class CuentaController {
 
     private CuentaService cuentaService;
@@ -63,7 +63,7 @@ public class CuentaController {
         return ResponseEntity.ok(cuentas);
     }
 
-    @GetMapping("/{idCuenta}/{idUsuario}")
+    @GetMapping("/{idCuenta}/usuarios")
     @PreAuthorize("hasRole('ADMIN') or #idUsuario == authentication.principal.id")
     public ResponseEntity<Boolean> usuarioTieneAccesoACuenta(
             @PathVariable Long idCuenta,
@@ -94,7 +94,7 @@ public class CuentaController {
      *  - 403 FORBIDDEN   → Sin permisos o con recursos asociados.
      *  - 404 Not Found   → Cuenta no encontrada.
      */
-    @DeleteMapping("/cuenta/{idCuenta}")
+    @DeleteMapping("/{idCuenta}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> eliminarCuenta(
             @PathVariable("idCuenta") Long idCuenta,
