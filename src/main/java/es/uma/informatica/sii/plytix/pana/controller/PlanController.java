@@ -37,7 +37,7 @@ public class PlanController {
      * @param nombre  (opcional) Nombre del plan.
      * @return Lista de planes que cumplen con los criterios de búsqueda.
      */
-    @GetMapping("/plan")
+    @GetMapping
     public ResponseEntity<List<Plan>> listarPlanes(
             @RequestParam(name = "idPlan", required = false) Long idPlan,
             @RequestParam(name = "nombre", required = false) String nombre) {
@@ -60,7 +60,7 @@ public class PlanController {
      * @param idPlan Identificador del plan (vía PathVariable).
      * @return Mensaje de éxito o de error según el caso.
      */
-    @DeleteMapping("/plan/{idPlan}")
+    @DeleteMapping("/{idPlan}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> eliminarPlan(@PathVariable("idPlan") Long idPlan) {
         // Ejemplo de validación básica de idPlan
@@ -114,7 +114,7 @@ public class PlanController {
         return ResponseEntity.created(uri).build();
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{idPlan}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> modificarPlan(@PathVariable(name = "id")Long id, @RequestBody PlanDTO plan) {
 
