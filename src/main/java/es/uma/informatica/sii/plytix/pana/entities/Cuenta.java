@@ -35,6 +35,20 @@ public class Cuenta {
 	// Relación propietario de la cuenta
 	private Long duenoId;
 
+	//Constructor
+	public Cuenta(Long id, String nombre, String direccionFiscal, String NIF, Date fechaAlta, Plan plan, List<Long> usuarios, Long duenoId) {
+		this.id = id;
+		this.nombre = nombre;
+		this.direccionFiscal = direccionFiscal;
+		this.NIF = NIF;
+		this.fechaAlta = fechaAlta;
+		this.plan = plan;
+		this.usuarios = usuarios;
+		this.duenoId = duenoId;
+	}
+
+	public Cuenta() {}
+
 	// === GETTERS Y SETTERS ===
 	public Long getId() {
 		return id;
