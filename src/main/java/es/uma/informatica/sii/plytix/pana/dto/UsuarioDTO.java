@@ -10,11 +10,20 @@ public class UsuarioDTO {
     private String email;
 
     public UsuarioDTO(){
+        Random rand = new Random();
+        id = ThreadLocalRandom.current().nextLong(100);
     }
-    public UsuarioDTO(Long id){this.id=id;}
+    public UsuarioDTO(Long id){
+        this.id=id;
+    }
     public UsuarioDTO(String email){
         Random rand = new Random();
         id = ThreadLocalRandom.current().nextLong(100);
+        this.email=email;
+    }
+
+    public UsuarioDTO(Long id, String email){
+        this.id = id;
         this.email=email;
     }
 
