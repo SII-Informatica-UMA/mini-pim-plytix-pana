@@ -1,6 +1,8 @@
 package es.uma.informatica.sii.plytix.pana.dto;
 
 import lombok.Data;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Data
 public class UsuarioDTO {
