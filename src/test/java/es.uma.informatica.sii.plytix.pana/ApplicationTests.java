@@ -640,6 +640,26 @@ public class ApplicationTests {//headers.setBearerAuth("token");
             assertThat(cuentas).extracting("id").containsExactlyInAnyOrder(2L, 3L);
         }
 
+        @Test
+        @DisplayName("GET /cuenta?nombre=Inexistente devuelve lista vacía")
+        public void getCuentaInexistentePorNombre() {
+            URI uri = UriComponentsBuilder.fromUriString("http://localhost:" + port + "/cuenta")
+                    .queryParam("nombre", "Inexistente")
+                    .build()
+                    .toUri();
+
+            ResponseEntity<List<Cuenta>> respuesta = restTemplate.exchange(
+                    uri,
+                    HttpMethod.GET,
+                    null,
+                    new ParameterizedTypeReference<List<Cuenta>>() {}
+            );
+
+            assertThat(respuesta.getStatusCode()).isEqualTo(HttpStatus.OK);
+            List<Cuenta> cuentas = respuesta.getBody();
+            assertNotNull(cuentas);
+            assertThat(cuentas).isEmpty();
+        }
     }
 }
 

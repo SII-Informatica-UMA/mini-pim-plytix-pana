@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 import java.util.ArrayList;
@@ -42,26 +43,23 @@ public class CuentaController {
             @RequestParam(required = false) Long idPlan,
             @AuthenticationPrincipal Long userId) {
 
-        List<Cuenta> cuentas;
-
-        if (idCuenta != null) {
-            // Single account by ID - admin or associated user
-            cuentas = cuentaService.obtenerCuentaPorId(idCuenta, userId);
-        } else if (nombre != null) {
-            // Accounts by name - admin only
-            cuentas = cuentaService.obtenerCuentasPorNombre(nombre, userId);
-        } else if (idPlan != null) {
-            // Accounts by plan - admin only
-            cuentas = cuentaService.obtenerCuentasPorPlan(idPlan, userId);
-        } else if (idUsuario != null) {
-            // Accounts accessible by specific user
-            cuentas = cuentaService.obtenerCuentasPorUsuario(idUsuario, userId);
-        } else {
-            // Default case - accounts accessible by current user
-            cuentas = cuentaService.obtenerCuentasPorUsuario(userId, userId);
+        try {
+            List<Cuenta> cuentas;
+            if (idCuenta != null) {
+                cuentas = cuentaService.obtenerCuentaPorId(idCuenta, userId);
+            } else if (nombre != null) {
+                cuentas = cuentaService.obtenerCuentasPorNombre(nombre, userId);
+            } else if (idPlan != null) {
+                cuentas = cuentaService.obtenerCuentasPorPlan(idPlan, userId);
+            } else if (idUsuario != null) {
+                cuentas = cuentaService.obtenerCuentasPorUsuario(idUsuario, userId);
+            } else {
+                cuentas = cuentaService.obtenerCuentasPorUsuario(userId, userId);
+            }
+            return ResponseEntity.ok(cuentas);
+        } catch (CuentaNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage()); // Lanza 404
         }
-
-        return ResponseEntity.ok(cuentas);
     }
 
     @GetMapping("/{idCuenta}/usuarios")
