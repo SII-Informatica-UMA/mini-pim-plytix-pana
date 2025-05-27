@@ -1,6 +1,7 @@
 package es.uma.informatica.sii.plytix.pana.controller;
 
 import es.uma.informatica.sii.plytix.pana.dto.PlanDTO;
+import es.uma.informatica.sii.plytix.pana.entities.Cuenta;
 import es.uma.informatica.sii.plytix.pana.excepciones.PermisosInsuficientesException;
 import es.uma.informatica.sii.plytix.pana.excepciones.CredencialesInvalidasException;
 import es.uma.informatica.sii.plytix.pana.excepciones.PlanNoEncontrado;
@@ -92,31 +93,32 @@ public class PlanController {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> anadirProyecto(@RequestBody PlanDTO plan, UriComponentsBuilder builder) {
         Plan pl = new Plan();
 
         pl.setNombre(plan.getNombre());
         pl.setMaxActivos(plan.getMaxActivos());
         pl.setPrecio(plan.getPrecio());
-        pl.setMaxAlmacenamiento(pl.getMaxAlmacenamiento());
-        pl.setMaxCategoriasActivos(pl.getMaxCategoriasActivos());
+        pl.setMaxAlmacenamiento(plan.getMaxAlmacenamiento());
+        pl.setMaxCategoriasActivos(plan.getMaxCategoriasActivos());
         pl.setMaxCategoriasProductos(plan.getMaxCategoriasProductos());
         pl.setMaxRelaciones(plan.getMaxRelaciones());
         pl.setMaxProductos(plan.getMaxProductos());
+        List<Cuenta> c = new ArrayList<>();
+        pl.setCuentas(c);
 
-        Long id = servicio.aniadirPlan(pl);
+        Plan p = servicio.aniadirPlan(pl);
         URI uri = builder
                 .path("/plan")
-                .path(String.format("/%d", pl.getId()))
+                .path(String.format("/%d", p.getId()))
                 .build()
                 .toUri();
         return ResponseEntity.created(uri).build();
     }
 
+
     @PutMapping("/{idPlan}")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> modificarPlan(@PathVariable(name = "id")Long id, @RequestBody PlanDTO plan) {
+    public ResponseEntity<?> modificarPlan(@PathVariable(name = "idPlan")Long id, @RequestBody PlanDTO plan) {
 
         servicio.modificarPlan(plan, id);
         return ResponseEntity.ok(plan);
