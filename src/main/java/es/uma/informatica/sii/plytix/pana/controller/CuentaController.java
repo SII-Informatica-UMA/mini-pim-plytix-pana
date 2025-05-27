@@ -111,35 +111,53 @@ public class CuentaController {
     }
 
 
-    @PostMapping
-    public ResponseEntity<CuentaDTO> anadirCuenta(@RequestBody CuentaDTO cuentaDTO, UriComponentsBuilder uriBuilder){
+   @PostMapping
+    public ResponseEntity<?> anadirCuenta(@RequestBody Cuenta cuenta, UriComponentsBuilder builder){
 
-        System.out.println("Anyadir cuenta: "+cuentaDTO);
 
-        Cuenta cuentaEntity = CuentaMapper.toEntity(cuentaDTO);
-        Long idUsuario = cuentaEntity.getId();
+        Long idUsuario = cuenta.getId();
         if (idUsuario == null) {
             throw new RuntimeException("ID de usuario no disponible en el token.");
         }
-        cuentaEntity = cuentaService.anadirCuenta(cuentaEntity, idUsuario);
-        return ResponseEntity.created(uriBuilder
-                        .path("/cuenta/{id}")
-                        .buildAndExpand(cuentaEntity.getId())
-                        .toUri())
-                .body(CuentaMapper.toDTO(cuentaEntity));
+
+        try {
+            cuenta = cuentaService.anadirCuenta(cuenta, idUsuario);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+
+        URI uri = builder
+                .path("/cuenta/{id}")
+                .buildAndExpand(cuenta.getId())
+                .toUri();
+
+        return ResponseEntity.created(uri).build();
 
     }
 
     @PostMapping("/{idCuenta}/propietario")
-    public ResponseEntity<?> actualizarPropietario( @PathVariable Long idCuenta, @RequestBody UsuarioDTO dto) {
+    public ResponseEntity<?> actualizarPropietario( @PathVariable Long idCuenta,
+                                                    @RequestParam(required = false) Long nuevoPropietarioId,
+                                                    @RequestParam(required = false) String email,
+                                                    UriComponentsBuilder  builder) {
 
-        cuentaService.actualizarPropietario(idCuenta, dto.getId());
+        if ((nuevoPropietarioId == null && email == null) ||
+                (nuevoPropietarioId != null && email != null)) {
+            return ResponseEntity.badRequest().body("Debe proporcionar el ID o el email del nuevo propietario.");
+        }
 
-        return ResponseEntity.ok().body(dto);
+        cuentaService.actualizarPropietario(idCuenta, nuevoPropietarioId, email);
+        URI uri = builder
+                .path("/cuenta/{idCuenta}/propietario")
+                .buildAndExpand(idCuenta)
+                .toUri();
+        return ResponseEntity.ok().location(uri).build();
+
+
     }
 
     @PostMapping("/{idCuenta}/usuarios")
-    @PreAuthorize("hasRole('ADMIN') or @cuentaService.esPropietarioCuenta(#idCuenta, authentication.principal.id)")
     public ResponseEntity<Void> gestionarUsuariosCuenta(
             @PathVariable Long idCuenta,
             @RequestBody List<UsuarioDTO> usuariosDTO) {
