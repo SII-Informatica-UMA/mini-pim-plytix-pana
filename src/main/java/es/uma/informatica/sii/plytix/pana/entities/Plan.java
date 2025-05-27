@@ -45,7 +45,22 @@ public class Plan {
         this.id = id;
     }
 
+    public Plan(Long id, String nombre, Long maxProductos, Long maxActivos, Long maxAlmacenamiento, Long maxCategoriasProductos, Long maxCategoriasActivos, Long maxRelaciones, Double precio, List<Cuenta> cuentas) {
+        this.id = id;
+        this.nombre = nombre;
+        this.maxProductos = maxProductos;
+        this.maxActivos = maxActivos;
+        this.maxAlmacenamiento = maxAlmacenamiento;
+        this.maxCategoriasProductos = maxCategoriasProductos;
+        this.maxCategoriasActivos = maxCategoriasActivos;
+        this.maxRelaciones = maxRelaciones;
+        this.precio = precio;
+        this.cuentas = cuentas;
+    }
+
     // === GETTERS Y SETTERS ===
+
+    public void setCuentas(List<Cuenta> cuentas){this.cuentas = cuentas;}
 
     public Long getId() {
         return id;
