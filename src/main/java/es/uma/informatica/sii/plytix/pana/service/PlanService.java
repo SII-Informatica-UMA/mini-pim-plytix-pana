@@ -3,6 +3,7 @@ package es.uma.informatica.sii.plytix.pana.service;
 import es.uma.informatica.sii.plytix.pana.dto.PlanDTO;
 import es.uma.informatica.sii.plytix.pana.entities.Plan;
 import es.uma.informatica.sii.plytix.pana.excepciones.CuentasAsociadasException;
+import es.uma.informatica.sii.plytix.pana.excepciones.PlanNoEncontrado;
 import es.uma.informatica.sii.plytix.pana.excepciones.PlanNoExisteException;
 import es.uma.informatica.sii.plytix.pana.repositories.CuentaRepository;
 import es.uma.informatica.sii.plytix.pana.repositories.PlanRepository;
@@ -27,20 +28,22 @@ public class PlanService {
     }
 
     //Post
-    public Long aniadirPlan (Plan p){
+    public Plan aniadirPlan (Plan p){
         p.setId(null);
         repo.save(p);
-        return p.getId();
+        return p;
     }
 
     //Put
     public void modificarPlan(PlanDTO plan, Long id){
         Optional<Plan> p = repo.findById(id);
         if(!p.isPresent()){
-            throw new PlanNoExisteException();
+            throw new PlanNoEncontrado("Plan no encontrado");
         }
         Plan pl = p.get();
         pl.setNombre(plan.getNombre());
+
+        repo.save(pl);
     }
 
     /*
