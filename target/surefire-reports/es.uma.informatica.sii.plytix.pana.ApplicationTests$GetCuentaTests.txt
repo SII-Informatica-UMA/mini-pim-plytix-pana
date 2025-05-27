@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: es.uma.informatica.sii.plytix.pana.ApplicationTests$GetCuentaTests
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.789 s - in es.uma.informatica.sii.plytix.pana.ApplicationTests$GetCuentaTests
+es.uma.informatica.sii.plytix.pana.ApplicationTests$GetCuentaTests.getCuentasPorNombre  Time elapsed: 0.485 s
+es.uma.informatica.sii.plytix.pana.ApplicationTests$GetCuentaTests.getCuentasPorPlan  Time elapsed: 0.087 s
+es.uma.informatica.sii.plytix.pana.ApplicationTests$GetCuentaTests.getCuentaInexistentePorNombre  Time elapsed: 0.079 s
