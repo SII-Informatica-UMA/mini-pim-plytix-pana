@@ -29,13 +29,10 @@ public class CuentaService {
     private final UsuarioServiceClient usuarioServiceClient;
 
 
+   
     //POST /cuenta
     public Cuenta anadirCuenta(Cuenta cuenta, Long idAdmin){
 
-        // Validación básica del NIF (ejemplo)
-        if (cuenta.getNIF() == null || cuenta.getNIF().isBlank()) {
-            throw new IllegalArgumentException("NIF es requerido");
-        }
 
         // Obtener la lista actual
         List<Long> usuariosActuales = cuenta.getUsuarios();
@@ -49,41 +46,47 @@ public class CuentaService {
 
         cuenta.setDuenoId(idAdmin);
 
-        // Validamos solo la existencia del plan
-        if (cuenta.getPlan() != null && cuenta.getPlan().getId() != null) {
-            Plan plan = planRepository.findById(cuenta.getPlan().getId())
-                    .orElseThrow(() -> new PlanNoExisteException("Plan no encontrado"));
-            cuenta.setPlan(plan); // Asocia el plan completo
-        }
 
         return cuentaRepository.save(cuenta);
     }
 
     // POST /cuenta/{idCuenta}/propietario
-    public void actualizarPropietario(Long idCuenta, Long nuevoPropietarioId) {
-        // Buscar la cuenta por su ID
-        Optional<Cuenta> cuentaOpt = cuentaRepository.findById(idCuenta);
-        if (cuentaOpt.isEmpty()) {
-            throw new IllegalArgumentException("No se encontró ninguna cuenta con ID: " + idCuenta);
+    public void actualizarPropietario(Long idCuenta, Long nuevoPropietarioId, String email) {
+
+        if (idCuenta == null || (nuevoPropietarioId == null && (email == null || email.isBlank()))) {
+            throw new IllegalArgumentException("Parámetros inválidos");
         }
 
-        Cuenta cuenta = cuentaOpt.get();
+        System.out.println("Llamada a cuentaService con email: "+email);
 
-        // Actualizar el propietario
-        cuenta.setDuenoId(nuevoPropietarioId); // Suponiendo que el campo propietario se llama "duenoId"
 
-        // Verificar si el nuevo propietario ya es usuario de la cuenta
+        // Buscar cuenta; lanza 404 si no se encuentra
+        Cuenta cuenta = cuentaRepository.findById(idCuenta)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cuenta no encontrada con ID: " + idCuenta));
+
         List<Long> usuarios = cuenta.getUsuarios();
+
         if (usuarios == null) {
             usuarios = new ArrayList<>();
             cuenta.setUsuarios(usuarios);
         }
 
+        if(nuevoPropietarioId==null){
+            UsuarioDTO user;
+            do {
+                user = new UsuarioDTO(email);
+            } while (usuarios.contains(user.getId()));
+
+            nuevoPropietarioId = user.getId();
+        }
+
+
         if (!usuarios.contains(nuevoPropietarioId)) {
             usuarios.add(nuevoPropietarioId);
         }
 
-        // Guardar los cambios
+        cuenta.setDuenoId(nuevoPropietarioId);
+
         cuentaRepository.save(cuenta);
     }
 
