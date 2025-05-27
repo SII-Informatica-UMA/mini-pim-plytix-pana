@@ -9,6 +9,10 @@ import java.util.List;
  */
 @Entity
 public class Plan {
+
+    public Plan(Long id){
+        this.id = id;
+    }
     @Id  // Indica que este campo es la clave primaria de la entidad
     private Long id;
 
@@ -132,17 +136,17 @@ public class Plan {
 
     @Override
     public String toString() {
-    return "Plan{" +
-            "id=" + id +
-            ", nombre='" + nombre + '\'' +
-            ", maxProductos=" + maxProductos +
-            ", maxActivos=" + maxActivos +
-            ", maxAlmacenamiento=" + maxAlmacenamiento +
-            ", maxCategoriasProductos=" + maxCategoriasProductos +
-            ", maxCategoriasActivos=" + maxCategoriasActivos +
-            ", maxRelaciones=" + maxRelaciones +
-            ", precio=" + precio +
-            '}';
-}
+        return "Plan{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", maxProductos=" + maxProductos +
+                ", maxActivos=" + maxActivos +
+                ", maxAlmacenamiento=" + maxAlmacenamiento +
+                ", maxCategoriasProductos=" + maxCategoriasProductos +
+                ", maxCategoriasActivos=" + maxCategoriasActivos +
+                ", maxRelaciones=" + maxRelaciones +
+                ", precio=" + precio +
+                '}';
+    }
 
 }
