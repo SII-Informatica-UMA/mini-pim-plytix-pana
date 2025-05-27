@@ -1,0 +1,6 @@
+-------------------------------------------------------------------------------
+Test set: es.uma.informatica.sii.plytix.pana.ApplicationTests$ListaConDatos$ModificarCuentas
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.133 s - in es.uma.informatica.sii.plytix.pana.ApplicationTests$ListaConDatos$ModificarCuentas
+es.uma.informatica.sii.plytix.pana.ApplicationTests$ListaConDatos$ModificarCuentas.modificarCuentaInexistente  Time elapsed: 0.049 s
+es.uma.informatica.sii.plytix.pana.ApplicationTests$ListaConDatos$ModificarCuentas.modificaCuenta  Time elapsed: 0.07 s

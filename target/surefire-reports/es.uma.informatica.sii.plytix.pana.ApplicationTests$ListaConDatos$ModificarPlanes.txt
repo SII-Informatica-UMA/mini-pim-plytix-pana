@@ -1,0 +1,6 @@
+-------------------------------------------------------------------------------
+Test set: es.uma.informatica.sii.plytix.pana.ApplicationTests$ListaConDatos$ModificarPlanes
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.323 s - in es.uma.informatica.sii.plytix.pana.ApplicationTests$ListaConDatos$ModificarPlanes
+es.uma.informatica.sii.plytix.pana.ApplicationTests$ListaConDatos$ModificarPlanes.modificaPlan  Time elapsed: 0.254 s
+es.uma.informatica.sii.plytix.pana.ApplicationTests$ListaConDatos$ModificarPlanes.modificarPlanInexistente  Time elapsed: 0.059 s
