@@ -661,5 +661,210 @@ public class ApplicationTests {//headers.setBearerAuth("token");
             assertThat(cuentas).isEmpty();
         }
     }
+
+    @Nested
+    @DisplayName("cuando no hay planes (lista vacía)")
+    public class PlanListaVacia {
+
+        @Test
+        @DisplayName("devuelve lista vacía al GET /plan")
+        public void listaVacia() {
+            var peticion = get("http","localhost", port, "/plan");
+            var resp = restTemplate.exchange((RequestEntity<?>) peticion, Plan[].class);
+
+            assertThat(resp.getStatusCodeValue()).isEqualTo(200);
+            assertNotNull(resp.getBody());
+            List<Plan> planes = Arrays.asList(resp.getBody());
+            assertThat(planes).isEmpty();
+        }
+    }
+
+    @Nested
+    @DisplayName("cuando hay planes (lista no vacía)")
+    public class PlanConDatos {
+
+        private Plan p1, p2;
+
+        @BeforeEach
+        public void setup() {
+            p1 = new Plan();
+            p1.setId(1L);
+            p1.setNombre("A");
+            p1.setMaxProductos(0L);
+            p1.setMaxRelaciones(0L);
+
+            p2 = new Plan();
+            p2.setId(2L);
+            p2.setNombre("B");
+            p2.setMaxProductos(5L);
+            p2.setMaxRelaciones(1L);
+
+            planRepository.save(p1);
+            planRepository.save(p2);
+
+        }
+
+        @Nested
+        @DisplayName("al consultar un plan concreto")
+        public class ObtenerPlan {
+            @Test
+            @DisplayName("devuelve 200 y el plan existente")
+            public void existe() {
+                Long planId = p1.getId();
+                URI uri = URI.create("http://localhost/:" + port + "/plan/" + planId);
+                RequestEntity<Void> peticion = get(uri)
+                        .build();
+
+                ResponseEntity<List<Plan>> respuesta = restTemplate.exchange(
+                        peticion,
+                        new ParameterizedTypeReference<List<Plan>>() {}
+                );
+
+                assertThat(respuesta.getStatusCodeValue()).isEqualTo(200);
+                List<Plan> planes = respuesta.getBody();
+                assertThat(planes).isNotNull();
+                assertThat(planes).hasSize(1);
+
+            }
+
+            @Test
+            @DisplayName("devuelve 404 al GET /plan/IdPlan")
+            public void noExiste() {
+                URI uri = URI.create("http://localhost/:" + port + "/plan/9999");
+
+                RequestEntity<Void> peticion = get(uri)
+                        .build();
+
+                ResponseEntity<Void> respuesta = restTemplate.exchange(peticion, Void.class);
+
+
+                assertEquals(HttpStatus.NOT_FOUND, respuesta.getStatusCode());
+            }
+        }
+    }
+
+    @Nested
+    @DisplayName("al eliminar un plan")
+    public class EliminarPlan {
+        @Test
+        @DisplayName("elimina plan existente con DELETE /plan/{idPlan}")
+        public void eliminaExistente() {
+            System.out.println("Antes del delete, existen: " + planRepository.findAll().size());
+
+            RequestEntity<Void> peticion = RequestEntity
+                    .delete(URI.create("http://localhost/:" + port + "/plan/1"))
+                    .build();
+
+            ResponseEntity<Void> resp = restTemplate.exchange(peticion, Void.class);
+
+            assertThat(resp.getStatusCodeValue()).isEqualTo(200);
+
+            assertThat(planRepository.existsById(1L)).isFalse();
+        }
+        @Test
+        @DisplayName("404 al eliminar plan inexistente")
+        public void eliminaNoExiste() {
+            var peticion = delete("http","localhost", port, "/plan/9999");
+            var r = restTemplate.exchange((RequestEntity<?>) peticion, Void.class);
+
+            assertThat(r.getStatusCodeValue()).isEqualTo(404);
+        }
+    }
+
+    // —————— Pruebas de Cuenta ——————
+
+    @Nested
+    @DisplayName("cuando hay cuentas (lista no vacía)")
+    public class CuentaConDatos {
+
+        private Plan planX;
+        private Cuenta c1, c2;
+
+        @BeforeEach
+        public void introduceDatos() {
+
+            cuentaRepository.save(new Cuenta(1L, "Plytix", null,
+                    "123456789A", null, null, new ArrayList<>(), 1L));
+
+            cuentaRepository.save(new Cuenta(2L, "UMA", null,
+                    "999999999B", null, null, new ArrayList<>(), 2L));
+
+
+        }
+
+
+        @Nested
+        @DisplayName("al eliminar una cuenta")
+        public class EliminarCuenta {
+            @Test
+            @DisplayName("DELETE /cuenta/{idCuenta} elimina cuenta existente")
+            public void eliminaExistente() {
+
+                System.out.println("Antes del delete, existen: " + cuentaRepository.findAll().size());
+
+                RequestEntity<Void> peticion = RequestEntity
+                        .delete(URI.create("http://localhost/:" + port + "/cuenta/1"))
+                        .build();
+
+                ResponseEntity<Void> resp = restTemplate.exchange(peticion, Void.class);
+
+                assertThat(resp.getStatusCodeValue()).isEqualTo(200);
+
+                assertThat(cuentaRepository.existsById(1L)).isFalse();
+            }
+
+            @Test
+            @DisplayName("404 al eliminar cuenta inexistente")
+            public void eliminaNoExiste() {
+                var peticion = delete("http","localhost", port, "/cuenta/9999");
+                var resp = restTemplate.exchange((RequestEntity<?>) peticion, Void.class);
+
+                assertThat(resp.getStatusCodeValue()).isEqualTo(404);
+            }
+        }
+    }
+
+    /**
+     * Comprueba que dos objetos Plan son equivalentes en todos sus campos.
+     */
+    private void assertPlanEquals(Plan expected, Plan actual) {
+        assertNotNull(actual, "El Plan real no debe ser nulo");
+        assertEquals(expected.getId(), actual.getId(), "ID de Plan");
+        assertEquals(expected.getNombre(), actual.getNombre(), "Nombre de Plan");
+        assertEquals(expected.getMaxProductos(), actual.getMaxProductos(), "maxProductos");
+        assertEquals(expected.getMaxRelaciones(), actual.getMaxRelaciones(), "maxRelaciones");
+        assertEquals(expected.getMaxActivos(), actual.getMaxActivos(), "maxActivos");
+        assertEquals(expected.getMaxCategoriasActivos(), actual.getMaxCategoriasActivos(), "maxCategoriasActivos");
+        assertEquals(expected.getMaxCategoriasProductos(), actual.getMaxCategoriasProductos(), "maxCategoriasProductos");
+        assertEquals(expected.getMaxAlmacenamiento(), actual.getMaxAlmacenamiento(), "maxAlmacenamiento");
+        assertEquals(expected.getPrecio(), actual.getPrecio(), "precio");
+    }
+
+    /**
+     * Comprueba que dos objetos Cuenta son equivalentes en todos sus campos.
+     */
+    private void assertCuentaEquals(Cuenta expected, Cuenta actual) {
+        assertNotNull(actual, "La Cuenta real no debe ser nula");
+        assertEquals(expected.getId(), actual.getId(), "ID de Cuenta");
+        assertEquals(expected.getNombre(), actual.getNombre(), "Nombre de Cuenta");
+        assertEquals(expected.getDireccionFiscal(), actual.getDireccionFiscal(), "Dirección Fiscal");
+        assertEquals(expected.getNIF(), actual.getNIF(), "NIF");
+        assertEquals(expected.getDuenoId(), actual.getDuenoId(), "duenoId");
+        // FechaAlta puede ser null:
+        if (expected.getFechaAlta() != null) {
+            assertEquals(expected.getFechaAlta(), actual.getFechaAlta(), "fechaAlta");
+        } else {
+            assertNull(actual.getFechaAlta(), "fechaAlta debe ser nulo");
+        }
+        // Usuarios:
+        assertNotNull(actual.getUsuarios(), "Lista de usuarios no debe ser nula");
+        assertIterableEquals(expected.getUsuarios(), actual.getUsuarios(), "usuarios");
+        // Plan:
+        if (expected.getPlan() != null) {
+            assertPlanEquals(expected.getPlan(), actual.getPlan());
+        } else {
+            assertNull(actual.getPlan(), "Plan debe ser nulo");
+        }
+    }
 }
 

@@ -27,5 +27,9 @@ public class UsuarioDTO {
         this.email=email;
     }
 
+    public String getEmail() { return this.email; }
 
+    public Long getId() { return this.id; }
+
+    public void setId(long id) { this.id = id; }
 }
