@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -94,9 +95,21 @@ public class CuentaService {
     }
 
     // POST /cuenta/{idCuenta}/usuarios
-    public List<Cuenta> esPropietarioCuenta(Long idCuenta, Long idUsuario) {
-        return cuentaRepository.findByDuenoId(idUsuario);
+    public void actualizarUsuariosCuenta(Long idCuenta, List<UsuarioDTO> nuevosUsuariosIds) {
+
+        Cuenta cuenta = cuentaRepository.findById(idCuenta)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cuenta no encontrada con ID: " + idCuenta));
+
+        List<Long> nuevosIds = nuevosUsuariosIds.stream()
+                .map(UsuarioDTO::getId)
+                .collect(Collectors.toList());
+
+        cuenta.setUsuarios(nuevosIds);
+
+        // Guardar la cuenta actualizada
+        cuentaRepository.save(cuenta);
     }
+
 
 
     @Autowired
@@ -209,17 +222,6 @@ public class CuentaService {
         // 4) si todo es correcto, eliminar la cuenta
         cuentaRepository.deleteById(cuentaId);
     }
-
-    @Transactional
-    public void actualizarUsuariosCuenta(Long idCuenta, List<Long> nuevosUsuariosIds) {
-        Cuenta cuenta = cuentaRepository.findById(idCuenta)
-                .orElseThrow(() -> new EntityNotFoundException("Cuenta no encontrada"));
-
-        // Reemplazamos la lista completa de usuarios
-        cuenta.setUsuarios(nuevosUsuariosIds);
-        cuentaRepository.save(cuenta);
-    }
-
 
 
 }
