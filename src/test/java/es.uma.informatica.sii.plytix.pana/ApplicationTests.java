@@ -475,8 +475,8 @@ public class ApplicationTests {//headers.setBearerAuth("token");
 
 
     @Nested
-    @DisplayName("Pruebas de GET")
-    public class CuentaGetTests {
+    @DisplayName("Pruebas de GET /cuenta/{idCuenta}/propietario")
+    public class GetCuentaPropietarioTests {
 
         private Plan plan;
         private Cuenta cuenta1;
@@ -549,6 +549,95 @@ public class ApplicationTests {//headers.setBearerAuth("token");
 
             assertThat(respuesta.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
             assertThat(respuesta.hasBody()).isEqualTo(false);
+        }
+
+    }
+
+    @Nested
+    @DisplayName("Pruebas GET /cuenta")
+    public class GetCuentaTests {
+
+        private Plan plan1;
+        private Plan plan2;
+        private Cuenta cuenta1;
+        private Cuenta cuenta2;
+        private Cuenta cuenta3;
+
+        @BeforeEach
+        public void setup() {
+            // Limpieza previa
+            cuentaRepository.deleteAll();
+            planRepository.deleteAll();
+
+            // Crear planes
+            plan1 = new Plan(1L);
+            plan1.setNombre("Plan Básico");
+            planRepository.save(plan1);
+
+            plan2 = new Plan(2L);
+            plan2.setNombre("Plan Premium");
+            planRepository.save(plan2);
+
+            // Crear cuentas con distintos datos
+            cuenta1 = new Cuenta(1L, "Cuenta Uno", "Dir Uno", "NIF1", new Date(),
+                    plan1, Arrays.asList(10L, 20L), 100L);
+
+            cuenta2 = new Cuenta(2L, "Cuenta Dos", "Dir Dos", "NIF2", new Date(),
+                    plan2, Arrays.asList(30L, 40L), 200L);
+
+            cuenta3 = new Cuenta(3L, "Cuenta Tres", "Dir Tres", "NIF3", new Date(),
+                    plan2, Arrays.asList(10L, 50L), 100L);
+
+            cuentaRepository.saveAll(Arrays.asList(cuenta1, cuenta2, cuenta3));
+
+            // Mock usuarioServiceClient para los permisos si es necesario (según tu lógica)
+            when(usuarioServiceClient.isAdmin(100L)).thenReturn(true);
+            when(usuarioServiceClient.isAdmin(200L)).thenReturn(false);
+            when(usuarioServiceClient.isAdmin(anyLong())).thenReturn(false);
+        }
+
+        @Test
+        @DisplayName("GET /cuenta?nombre=Cuenta Dos devuelve cuentas con ese nombre")
+        public void getCuentasPorNombre() {
+            URI uri = UriComponentsBuilder.fromUriString("http://localhost:" + port + "/cuenta")
+                    .queryParam("nombre", "Cuenta Dos")
+                    .build()
+                    .toUri();
+
+            ResponseEntity<List<Cuenta>> respuesta = restTemplate.exchange(
+                    uri,
+                    HttpMethod.GET,
+                    null,
+                    new ParameterizedTypeReference<List<Cuenta>>() {}
+            );
+
+            assertThat(respuesta.getStatusCode()).isEqualTo(HttpStatus.OK);
+            List<Cuenta> cuentas = respuesta.getBody();
+            assertNotNull(cuentas);
+            assertThat(cuentas).hasSize(1);
+            assertThat(cuentas.get(0).getNombre()).isEqualTo("Cuenta Dos");
+        }
+
+        @Test
+        @DisplayName("GET /cuenta?idPlan=2 devuelve cuentas del plan 2")
+        public void getCuentasPorPlan() {
+            URI uri = UriComponentsBuilder.fromUriString("http://localhost:" + port + "/cuenta")
+                    .queryParam("idPlan", 2L)
+                    .build()
+                    .toUri();
+
+            ResponseEntity<List<Cuenta>> respuesta = restTemplate.exchange(
+                    uri,
+                    HttpMethod.GET,
+                    null,
+                    new ParameterizedTypeReference<List<Cuenta>>() {}
+            );
+
+            assertThat(respuesta.getStatusCode()).isEqualTo(HttpStatus.OK);
+            List<Cuenta> cuentas = respuesta.getBody();
+            assertNotNull(cuentas);
+            // cuentas con plan 2 son cuenta2 y cuenta3
+            assertThat(cuentas).extracting("id").containsExactlyInAnyOrder(2L, 3L);
         }
 
     }
