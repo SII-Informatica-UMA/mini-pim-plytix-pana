@@ -1,6 +1,7 @@
 package es.uma.informatica.sii.plytix.pana.repositories;
 
 import es.uma.informatica.sii.plytix.pana.entities.Cuenta;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -9,6 +10,8 @@ import java.util.*;
 
 public interface CuentaRepository extends JpaRepository<Cuenta, Long> {
 
+    @EntityGraph(attributePaths = {"usuarios"})
+    Optional<Cuenta> findById(Long id);
     List<Cuenta> findByNombre(String nombre);
     List<Cuenta> findByPlanId(Long planId);
     List<Cuenta> findByUsuariosContaining(Long usuarioId);
