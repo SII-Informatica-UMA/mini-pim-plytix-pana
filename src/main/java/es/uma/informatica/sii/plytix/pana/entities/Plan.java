@@ -41,6 +41,10 @@ public class Plan {
 
     public Plan() {}
 
+    public Plan(Long id){
+        this.id = id;
+    }
+
     // === GETTERS Y SETTERS ===
 
     public Long getId() {
