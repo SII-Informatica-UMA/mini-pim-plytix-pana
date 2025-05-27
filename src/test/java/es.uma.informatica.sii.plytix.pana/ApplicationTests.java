@@ -1,6 +1,8 @@
 package es.uma.informatica.sii.plytix.pana;
 
+import es.uma.informatica.sii.plytix.pana.Mapper.PlanMapper;
 import es.uma.informatica.sii.plytix.pana.dto.CuentaDTO;
+import es.uma.informatica.sii.plytix.pana.dto.PlanDTO;
 import es.uma.informatica.sii.plytix.pana.dto.UsuarioDTO;
 import es.uma.informatica.sii.plytix.pana.entities.Cuenta;
 import es.uma.informatica.sii.plytix.pana.entities.Plan;
@@ -65,6 +67,7 @@ public class ApplicationTests {//headers.setBearerAuth("token");
 
     @BeforeEach
     public void initializeDatabase() {
+        planRepository.deleteAll();
         cuentaRepository.deleteAll();
     }
 
@@ -97,8 +100,9 @@ public class ApplicationTests {//headers.setBearerAuth("token");
                     .isEqualTo("http://localhost:"+port+"/cuenta/" + cuentas.get(0).getId());
         }
     }
+
     @Nested
-    @DisplayName("cuando hay cuentas (la lista no está vacia)")
+    @DisplayName("cuando hay cuentas y planes(la lista no está vacia)")
     public class ListaConDatos {
         @BeforeEach
         public void introduceDatos() {
@@ -112,8 +116,10 @@ public class ApplicationTests {//headers.setBearerAuth("token");
 
         }
 
+
+
         @Test
-        @DisplayName("modifica el propietario de una cuenta dado su id")
+        @DisplayName("anyadir el propietario de una cuenta dado su id")
         public void modificarPropietarioCuentaconId() {
             Long cuentaId = 1L;
             Long nuevoPropietarioId = 5L;
@@ -138,7 +144,7 @@ public class ApplicationTests {//headers.setBearerAuth("token");
 
         }
         @Test
-        @DisplayName("modifica el propietario de una cuenta dado su email")
+        @DisplayName("anyadir el propietario de una cuenta dado su email")
         public void modificarPropietarioCuentaconEmail() {
             Long cuentaId = 1L;
             String nuevoPropietarioEmail = "jose@uma.es";
@@ -163,7 +169,7 @@ public class ApplicationTests {//headers.setBearerAuth("token");
 
         }
         @Test
-        @DisplayName("falla al modificar propietario de cuenta inexistente")
+        @DisplayName("falla al anyadir propietario de cuenta inexistente")
         public void modificarPropietarioCuenta_cuentaNoExiste() {
 
             Long cuentaId = 99L;
@@ -181,7 +187,7 @@ public class ApplicationTests {//headers.setBearerAuth("token");
             assertThat(respuesta.hasBody()).isEqualTo(false);
         }
         @Test
-        @DisplayName("modifica la lista de usuarios de una cuenta dado su id")
+        @DisplayName("anyade a la lista de usuarios de una cuenta dado su id")
         public void modificarUsuarios() {
             Long cuentaId = 1L;
             List<UsuarioDTO> listaUsuarios = new ArrayList<>();
@@ -220,7 +226,7 @@ public class ApplicationTests {//headers.setBearerAuth("token");
         }
 
         @Test
-        @DisplayName("falla al modificar la lista de usuarios de una cuenta inexistente")
+        @DisplayName("falla al anyadir a la lista de usuarios de una cuenta inexistente")
         public void modificarUsuarios_CuentaNoExiste() {
             Long cuentaId = 99L;
             List<UsuarioDTO> listaUsuarios = new ArrayList<>();
@@ -253,6 +259,220 @@ public class ApplicationTests {//headers.setBearerAuth("token");
         }
 
     }
+
+    @Nested
+    @DisplayName("cuando hay proyectos (la lista no está vacia)")
+    public class ListaConDatos2 {
+        @BeforeEach
+        public void introduceDatos() {
+            List<Cuenta> cuentas = new ArrayList<>();
+            Plan p = new Plan(
+                    13L,                      // id
+                    "Plan Premium",          // nombre
+                    100L,                    // maxProductos
+                    50L,                     // maxActivos
+                    1024L,                   // maxAlmacenamiento (en MB, por ejemplo)
+                    10L,                     // maxCategoriasProductos
+                    5L,                      // maxCategoriasActivos
+                    20L,                     // maxRelaciones
+                    29.99,                   // precio
+                    cuentas                  // lista de cuentas
+            );
+            planRepository.save(p);
+            cuentaRepository.save(new Cuenta(
+                    124L,                           // id
+                    "Cuenta2",              // nombre
+                    "Calle 43",     // dirección fiscal
+                    "B12342278",                    // NIF
+                    new Date(),                     // fechaAlta (fecha actual)
+                    p, // plan
+                    Arrays.asList(101L, 103L, 103L), // lista de IDs de usuarios
+                    10L                           // ID del dueño
+            ));
+            cuentaRepository.save(new Cuenta(
+                    123456789L,                           // id
+                    "Cuenta3",              // nombre
+                    "Calle 40",     // dirección fiscal
+                    "B1678",                    // NIF
+                    new Date(),                     // fechaAlta (fecha actual)
+                    p, // plan
+                    Arrays.asList(101L, 102L, 108L), // lista de IDs de usuarios
+                    2001L                           // ID del dueño
+            ));
+        }
+
+        @Nested
+        @DisplayName("al modificar una cuenta")
+        public class ModificarCuentas {
+
+            @Test
+            @DisplayName("modifica los datos de una cuenta existente")
+            public void modificaCuenta() {
+                Cuenta original = cuentaRepository.findAll().get(0);
+                CuentaDTO cuentaDTO = CuentaMapper.toDTO(original);
+                cuentaDTO.setNombre("Cuenta Actualizada");
+
+                HttpEntity<CuentaDTO> requestEntity = new HttpEntity<>(cuentaDTO);
+
+                ResponseEntity<Void> respuesta = restTemplate.exchange(
+                        "http://localhost:" + port + "/cuenta/" + original.getId(),
+                        HttpMethod.PUT,
+                        requestEntity,
+                        Void.class
+                );
+                assertThat(respuesta.getStatusCode().value()).isEqualTo(200);
+
+
+                Optional<Cuenta> cuentaBD = cuentaRepository.findById(original.getId());
+                Cuenta pr = cuentaBD.get();
+                assertThat(pr.getNombre()).isEqualTo("Cuenta Actualizada");//cambiar por comprueba campos
+            }
+
+            @Test
+            @DisplayName("devuelve error al modificar una cuenta que no existe")
+            public void modificarCuentaInexistente() {
+                Cuenta c = new Cuenta(
+                        123L,                           // id
+                        "Cuenta1",              // nombre
+                        "Calle 45",     // dirección fiscal
+                        "B12345678",                    // NIF
+                        new Date(),                     // fechaAlta (fecha actual)
+                        new Plan(), // plan
+                        Arrays.asList(101L, 102L, 103L), // lista de IDs de usuarios
+                        1001L                           // ID del dueño
+                );
+                CuentaDTO cuentaDTO = CuentaMapper.toDTO(c);
+
+                HttpEntity<CuentaDTO> requestEntity = new HttpEntity<>(cuentaDTO);
+
+                ResponseEntity<Void> respuesta = restTemplate.exchange(
+                        "http://localhost:" + port + "/cuenta/",
+                        HttpMethod.PUT,
+                        requestEntity,
+                        Void.class
+                );
+                assertThat(respuesta.getStatusCode().value()).isEqualTo(404);
+
+
+
+            }
+        }
+
+        @Nested
+        @DisplayName("al modificar un plan")
+        public class ModificarPlanes {
+
+            @Test
+            @DisplayName("modifica los datos de un plan existente")
+            public void modificaPlan() {
+
+                Plan p = planRepository.findAll().get(0);
+                PlanDTO planDTO = PlanMapper.toDTO(p);
+                planDTO.setNombre("Plan Actualizado");
+
+                HttpEntity<PlanDTO> requestEntity = new HttpEntity<>(planDTO);
+
+                ResponseEntity<Void> respuesta = restTemplate.exchange(
+                        "http://localhost:" + port + "/plan/" + p.getId(),
+                        HttpMethod.PUT,
+                        requestEntity,
+                        Void.class
+                );
+                assertThat(respuesta.getStatusCode().value()).isEqualTo(200);
+
+
+                Optional<Plan> planBD = planRepository.findById(p.getId());
+                Plan pr = planBD.get();
+                assertThat(pr.getNombre()).isEqualTo("Plan Actualizado");
+            }
+
+            @Test
+            @DisplayName("devuelve error al modificar un plan que no existe")
+            public void modificarPlanInexistente() {
+
+                List<Cuenta> cuentas = new ArrayList<>();
+
+                Plan p = new Plan(
+                        14L,                      // id
+                        "Plan Básico",           // nombre
+                        10L,                     // maxProductos
+                        5L,                      // maxActivos
+                        256L,                    // maxAlmacenamiento (por ejemplo en MB)
+                        2L,                      // maxCategoriasProductos
+                        1L,                      // maxCategoriasActivos
+                        3L,                      // maxRelaciones
+                        4.99,                    // precio
+                        cuentas                  // lista de cuentas asociadas
+                );
+
+                PlanDTO planDTO = PlanMapper.toDTO(p);
+
+
+                HttpEntity<PlanDTO> requestEntity = new HttpEntity<>(planDTO);
+
+                ResponseEntity<Void> respuesta = restTemplate.exchange(
+                        "http://localhost:" + port + "/plan/",
+                        HttpMethod.PUT,
+                        requestEntity,
+                        Void.class
+                );
+
+                assertThat(respuesta.getStatusCode().value()).isEqualTo(404);
+
+
+            }
+        }
+    }
+
+    @Nested
+    @DisplayName("cuando no hay planes (la lista está vacía)")
+    public class ListaVacia2 {
+
+        @Test
+        @DisplayName("inserta un plan en una lista vacía")
+        public void insertaPlan() {
+
+            List<Cuenta> cuentas = new ArrayList<>();
+
+            var p = new Plan(
+                    1L,                      // id
+                    "Plan Básico",           // nombre
+                    10L,                     // maxProductos
+                    5L,                      // maxActivos
+                    256L,                    // maxAlmacenamiento (por ejemplo en MB)
+                    2L,                      // maxCategoriasProductos
+                    1L,                      // maxCategoriasActivos
+                    3L,                      // maxRelaciones
+                    4.99,                    // precio
+                    cuentas                  // lista de cuentas asociadas
+            );
+
+
+            PlanDTO planDTO = PlanMapper.toDTO(p);
+
+
+            RequestEntity<PlanDTO> peticion =
+                    post(URI.create("http://localhost:" + port + "/plan"))
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(planDTO);
+
+
+            var respuesta = restTemplate.exchange(peticion, Void.class);
+
+            assertThat(respuesta.getStatusCode().value()).isEqualTo(201);
+
+            List<Plan> planes = planRepository.findAll();
+            assertThat(planes).hasSize(1);
+
+            assertThat(respuesta.getHeaders().getLocation().toString())
+                    .isEqualTo("http://localhost:" + port + "/plan/" + planes.get(0).getId());
+
+
+        }
+    }
+
+
+
 
     @Nested
     @DisplayName("Pruebas de GET")
@@ -333,3 +553,4 @@ public class ApplicationTests {//headers.setBearerAuth("token");
 
     }
 }
+
