@@ -80,23 +80,14 @@ public class CuentaController {
         UsuarioDTO propietario = cuentaService.obtenerPropietarioCuenta(idCuenta);
         return ResponseEntity.ok(propietario);
     }
-    @PutMapping("{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/{id}")
     public ResponseEntity<?> modificarCuenta(@PathVariable(name = "id")Long id, @RequestBody CuentaDTO cuenta) {
 
         cuentaService.modificarCuenta(cuenta, id);
         return ResponseEntity.ok(cuenta);
     }
 
-    /**
-     * DELETE /api/cuenta/{idCuenta}
-     *  - 200 OK          → Se elimina la cuenta correctamente.
-     *  - 401 UNATHORIZED → Credenciales no válidas o faltantes.
-     *  - 403 FORBIDDEN   → Sin permisos o con recursos asociados.
-     *  - 404 Not Found   → Cuenta no encontrada.
-     */
     @DeleteMapping("/{idCuenta}")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> eliminarCuenta(
             @PathVariable("idCuenta") Long idCuenta,
             @RequestHeader("Authorization") String authHeader
