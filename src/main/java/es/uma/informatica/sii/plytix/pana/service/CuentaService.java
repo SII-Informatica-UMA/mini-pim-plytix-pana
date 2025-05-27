@@ -193,6 +193,7 @@ public class CuentaService {
             throw new PlanNoExisteException();
         }
         cu.setPlan(pl.get());
+        cuentaRepository.save(cu);
     }
 
     /**
