@@ -17,6 +17,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -158,21 +159,27 @@ public class CuentaController {
     }
 
     @PostMapping("/{idCuenta}/usuarios")
-    public ResponseEntity<Void> gestionarUsuariosCuenta(
-            @PathVariable Long idCuenta,
-            @RequestBody List<UsuarioDTO> usuariosDTO) {
+    public ResponseEntity<Void> gestionarUsuariosCuenta(@PathVariable Long idCuenta,
+                                                        @RequestBody List<UsuarioDTO> nuevosUsuarios,
+                                                        UriComponentsBuilder builder) {
+        List<UsuarioDTO> usuariosProcesados = new ArrayList<>();
 
-        List<Long> usuariosIds = usuariosDTO.stream()
-                .map(dto -> {
-                    if (dto.getId() == null) {
-                        throw new IllegalArgumentException("Se requiere el ID del usuario");
-                    }
-                    return dto.getId();
-                })
-                .collect(Collectors.toList());
+        for (UsuarioDTO user : nuevosUsuarios) {
+            if (user.getId() == null) {
 
-        cuentaService.actualizarUsuariosCuenta(idCuenta, usuariosIds);
-        return ResponseEntity.ok().build();
+                usuariosProcesados.add(new UsuarioDTO(user.getEmail()));
+            } else {
+                usuariosProcesados.add(user);
+            }
+        }
+
+        URI uri = builder
+                .path("/cuenta/{idCuenta}/usuarios")
+                .buildAndExpand(idCuenta)
+                .toUri();
+
+        cuentaService.actualizarUsuariosCuenta(idCuenta, usuariosProcesados);
+        return ResponseEntity.ok().location(uri).build();
     }
 
     @ExceptionHandler(CuentaNotFoundException.class)
