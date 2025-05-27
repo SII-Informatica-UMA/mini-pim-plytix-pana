@@ -37,6 +37,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -108,6 +109,7 @@ public class ApplicationTests {//headers.setBearerAuth("token");
             cuentaRepository.save(new Cuenta(2L, "UMA", null,
                     "999999999B", null, null, new ArrayList<>(), 2L));
 
+
         }
 
         @Test
@@ -177,6 +179,77 @@ public class ApplicationTests {//headers.setBearerAuth("token");
 
             assertEquals(HttpStatus.NOT_FOUND, respuesta.getStatusCode());
             assertThat(respuesta.hasBody()).isEqualTo(false);
+        }
+        @Test
+        @DisplayName("modifica la lista de usuarios de una cuenta dado su id")
+        public void modificarUsuarios() {
+            Long cuentaId = 1L;
+            List<UsuarioDTO> listaUsuarios = new ArrayList<>();
+
+            listaUsuarios.add(new UsuarioDTO(1L, null));
+            listaUsuarios.add(new UsuarioDTO(null, "ana@example.com"));
+            listaUsuarios.add(new UsuarioDTO(2L, "carlos@example.com"));
+            listaUsuarios.add(new UsuarioDTO(null, null));
+
+            URI uri = URI.create("http://localhost:" + port + "/cuenta/" + cuentaId + "/usuarios");
+
+            RequestEntity<List<UsuarioDTO>> peticion = RequestEntity
+                    .post(uri)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(listaUsuarios);
+
+            ResponseEntity<Void> respuesta = restTemplate.exchange(peticion, Void.class);
+
+            assertThat(respuesta.getStatusCode().value()).isEqualTo(200);
+            assertEquals(HttpStatus.OK, respuesta.getStatusCode());
+
+            // Verificar en base de datos
+            Optional<Cuenta> cuentaActualizada = cuentaRepository.findById(cuentaId);
+            assertTrue(cuentaActualizada.isPresent());
+
+            // Obtener los IDs que deberían haberse guardado (ignorando los usuarios sin ID)
+            List<Long> idsEsperados = listaUsuarios.stream()
+                    .map(UsuarioDTO::getId)
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList());
+
+            // Verificar que los IDs están en la cuenta
+            List<Long> idsEnCuenta = cuentaActualizada.get().getUsuarios();
+            assertNotNull(idsEnCuenta);
+            assertTrue(idsEnCuenta.containsAll(idsEsperados));
+        }
+
+        @Test
+        @DisplayName("falla al modificar la lista de usuarios de una cuenta inexistente")
+        public void modificarUsuarios_CuentaNoExiste() {
+            Long cuentaId = 99L;
+            List<UsuarioDTO> listaUsuarios = new ArrayList<>();
+
+            listaUsuarios.add(new UsuarioDTO(1L, null));
+            listaUsuarios.add(new UsuarioDTO(null, "ana@example.com"));
+            listaUsuarios.add(new UsuarioDTO(2L, "carlos@example.com"));
+            listaUsuarios.add(new UsuarioDTO(null, null));
+
+            URI uri = URI.create("http://localhost:" + port + "/cuenta/" + cuentaId + "/usuarios");
+
+            RequestEntity<List<UsuarioDTO>> peticion = RequestEntity
+                    .post(uri)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(listaUsuarios);
+
+            ResponseEntity<Void> respuesta = restTemplate.exchange(peticion, Void.class);
+
+            assertEquals(HttpStatus.NOT_FOUND, respuesta.getStatusCode());
+            assertFalse(respuesta.hasBody());
+
+            List<Long> idsEsperados = listaUsuarios.stream()
+                    .map(UsuarioDTO::getId)
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList());
+
+            Optional<Cuenta> cuentaOpt = cuentaRepository.findById(cuentaId);
+            assertTrue(cuentaOpt.isEmpty());
+
         }
 
     }
