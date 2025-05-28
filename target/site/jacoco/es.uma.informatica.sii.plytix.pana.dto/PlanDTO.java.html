@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlanDTO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">plytix.pana</a> &gt; <a href="index.source.html" class="el_package">es.uma.informatica.sii.plytix.pana.dto</a> &gt; <span class="el_source">PlanDTO.java</span></div><h1>PlanDTO.java</h1><pre class="source lang-java linenums">package es.uma.informatica.sii.plytix.pana.dto;
+
+
+import es.uma.informatica.sii.plytix.pana.entities.Cuenta;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class PlanDTO {
+
+
+    private String nombre;  // Nombre del plan
+    private Long maxProductos;  // Máximo número de productos permitidos
+    private Long maxActivos;  // Máximo número de activos permitidos
+    private Long maxAlmacenamiento;  // Límite de almacenamiento que ofrece el plan para una cuenta
+    private Long maxCategoriasProductos;  // Máximo categorías de productos
+    private Long maxCategoriasActivos;  // Máximo categorías de activos
+    private Long maxRelaciones;  // Máximo relaciones entre entidades
+    private Double precio;  // Precio del plan
+
+<span class="fc" id="L21">    public PlanDTO(String nombre, Long maxProductos, Long maxActivos, Long maxAlmacenamiento, Long maxCategoriasProductos, Long maxCategoriasActivos, Long maxRelaciones, Double precio) {</span>
+<span class="fc" id="L22">        this.nombre = nombre;</span>
+<span class="fc" id="L23">        this.maxProductos = maxProductos;</span>
+<span class="fc" id="L24">        this.maxActivos = maxActivos;</span>
+<span class="fc" id="L25">        this.maxAlmacenamiento = maxAlmacenamiento;</span>
+<span class="fc" id="L26">        this.maxCategoriasProductos = maxCategoriasProductos;</span>
+<span class="fc" id="L27">        this.maxCategoriasActivos = maxCategoriasActivos;</span>
+<span class="fc" id="L28">        this.maxRelaciones = maxRelaciones;</span>
+<span class="fc" id="L29">        this.precio = precio;</span>
+<span class="fc" id="L30">    }</span>
+
+    public String getNombre() {
+<span class="fc" id="L33">        return this.nombre;</span>
+    }
+
+    public void setNombre(String nombre) {
+<span class="fc" id="L37">        this.nombre = nombre;</span>
+<span class="fc" id="L38">    }</span>
+
+    public Long getMaxProductos() {
+<span class="fc" id="L41">        return maxProductos;</span>
+    }
+
+    public void setMaxProductos(Long maxProductos) {
+<span class="nc" id="L45">        this.maxProductos = maxProductos;</span>
+<span class="nc" id="L46">    }</span>
+
+    public Long getMaxActivos() {
+<span class="fc" id="L49">        return maxActivos;</span>
+    }
+
+    public void setMaxActivos(Long maxActivos) {
+<span class="nc" id="L53">        this.maxActivos = maxActivos;</span>
+<span class="nc" id="L54">    }</span>
+
+    public Long getMaxAlmacenamiento() {
+<span class="fc" id="L57">        return maxAlmacenamiento;</span>
+    }
+
+    public void setMaxAlmacenamiento(Long maxAlmacenamiento) {
+<span class="nc" id="L61">        this.maxAlmacenamiento = maxAlmacenamiento;</span>
+<span class="nc" id="L62">    }</span>
+
+    public Long getMaxCategoriasProductos() {
+<span class="fc" id="L65">        return maxCategoriasProductos;</span>
+    }
+
+    public void setMaxCategoriasProductos(Long maxCategoriasProductos) {
+<span class="nc" id="L69">        this.maxCategoriasProductos = maxCategoriasProductos;</span>
+<span class="nc" id="L70">    }</span>
+
+    public Long getMaxCategoriasActivos() {
+<span class="fc" id="L73">        return maxCategoriasActivos;</span>
+    }
+
+    public void setMaxCategoriasActivos(Long maxCategoriasActivos) {
+<span class="nc" id="L77">        this.maxCategoriasActivos = maxCategoriasActivos;</span>
+<span class="nc" id="L78">    }</span>
+
+    public Long getMaxRelaciones() {
+<span class="fc" id="L81">        return maxRelaciones;</span>
+    }
+
+    public void setMaxRelaciones(Long maxRelaciones) {
+<span class="nc" id="L85">        this.maxRelaciones = maxRelaciones;</span>
+<span class="nc" id="L86">    }</span>
+
+    public Double getPrecio() {
+<span class="fc" id="L89">        return precio;</span>
+    }
+
+    public void setPrecio(Double precio) {
+<span class="nc" id="L93">        this.precio = precio;</span>
+<span class="nc" id="L94">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

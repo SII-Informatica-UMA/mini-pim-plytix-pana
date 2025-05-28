@@ -1,0 +1,6 @@
+-------------------------------------------------------------------------------
+Test set: es.uma.informatica.sii.plytix.pana.ApplicationTests$PlanConDatos$ObtenerPlan
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.168 s - in es.uma.informatica.sii.plytix.pana.ApplicationTests$PlanConDatos$ObtenerPlan
+es.uma.informatica.sii.plytix.pana.ApplicationTests$PlanConDatos$ObtenerPlan.existe  Time elapsed: 0.092 s
+es.uma.informatica.sii.plytix.pana.ApplicationTests$PlanConDatos$ObtenerPlan.noExiste  Time elapsed: 0.032 s

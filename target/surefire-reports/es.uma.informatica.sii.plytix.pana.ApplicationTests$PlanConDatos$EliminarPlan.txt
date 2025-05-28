@@ -1,0 +1,6 @@
+-------------------------------------------------------------------------------
+Test set: es.uma.informatica.sii.plytix.pana.ApplicationTests$PlanConDatos$EliminarPlan
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.666 s - in es.uma.informatica.sii.plytix.pana.ApplicationTests$PlanConDatos$EliminarPlan
+es.uma.informatica.sii.plytix.pana.ApplicationTests$PlanConDatos$EliminarPlan.eliminaExistente  Time elapsed: 0.404 s
+es.uma.informatica.sii.plytix.pana.ApplicationTests$PlanConDatos$EliminarPlan.eliminaNoExiste  Time elapsed: 0.041 s

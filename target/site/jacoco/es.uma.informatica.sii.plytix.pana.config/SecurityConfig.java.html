@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SecurityConfig.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">plytix.pana</a> &gt; <a href="index.source.html" class="el_package">es.uma.informatica.sii.plytix.pana.config</a> &gt; <span class="el_source">SecurityConfig.java</span></div><h1>SecurityConfig.java</h1><pre class="source lang-java linenums">package es.uma.informatica.sii.plytix.pana.config;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.logout.LogoutFilter;
+
+import java.util.Optional;
+
+@Configuration
+@EnableWebSecurity
+<span class="fc" id="L20">public class SecurityConfig {</span>
+    @Autowired
+    private JwtRequestFilter jwtRequestFilter;
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+<span class="fc" id="L26">        return new BCryptPasswordEncoder();</span>
+    }
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+<span class="fc" id="L31">        http</span>
+<span class="fc" id="L32">                .csrf(cs -&gt; cs.disable())</span>
+<span class="fc" id="L33">                .formLogin(formLogin -&gt;formLogin.disable())</span>
+<span class="fc" id="L34">                .httpBasic(httpBasic -&gt;httpBasic.disable())</span>
+<span class="fc" id="L35">                .authorizeHttpRequests(authorizeRequests -&gt;</span>
+                        authorizeRequests
+                                //.requestMatchers(&quot;/sin-auth&quot;).permitAll()
+                                //.anyRequest().authenticated()
+<span class="fc" id="L39">                                .anyRequest().permitAll()</span>
+                )
+
+<span class="fc" id="L42">                .sessionManagement(sessionManagement -&gt;</span>
+<span class="fc" id="L43">                        sessionManagement</span>
+<span class="fc" id="L44">                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)</span>
+                );
+<span class="fc" id="L46">        http.addFilterAfter(jwtRequestFilter, LogoutFilter.class);</span>
+<span class="fc" id="L47">        return http.build();</span>
+    }
+
+    public static Optional&lt;UserDetails&gt; getAuthenticatedUser() {
+<span class="nc" id="L51">        return Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication())</span>
+<span class="nc" id="L52">                .map(authentication -&gt; (UserDetails) authentication.getPrincipal());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

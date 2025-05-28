@@ -1,0 +1,1748 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="es.uma.informatica.sii.plytix.pana.ApplicationTests$ListaConDatos$EliminarCuenta" time="0.729" tests="7" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="20"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\target\test-classes;C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\target\classes;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot-starter-web\3.0.2\spring-boot-starter-web-3.0.2.jar;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot-starter\3.0.2\spring-boot-starter-3.0.2.jar;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot\3.0.2\spring-boot-3.0.2.jar;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\3.0.2\spring-boot-autoconfigure-3.0.2.jar;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot-starter-logging\3.0.2\spring-boot-starter-logging-3.0.2.jar;C:\Users\Usuario\.m2\repository\ch\qos\logback\logback-classic\1.4.5\logback-classic-1.4.5.jar;C:\Users\Usuario\.m2\repository\ch\qos\logback\logback-core\1.4.5\logback-core-1.4.5.jar;C:\Users\Usuario\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.19.0\log4j-to-slf4j-2.19.0.jar;C:\Users\Usuario\.m2\repository\org\apache\logging\log4j\log4j-api\2.19.0\log4j-api-2.19.0.jar;C:\Users\Usuario\.m2\repository\org\slf4j\jul-to-slf4j\2.0.6\jul-to-slf4j-2.0.6.jar;C:\Users\Usuario\.m2\repository\jakarta\annotation\jakarta.annotation-api\2.1.1\jakarta.annotation-api-2.1.1.jar;C:\Users\Usuario\.m2\repository\org\yaml\snakeyaml\1.33\snakeyaml-1.33.jar;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot-starter-json\3.0.2\spring-boot-starter-json-3.0.2.jar;C:\Users\Usuario\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.14.1\jackson-datatype-jdk8-2.14.1.jar;C:\Users\Usuario\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.14.1\jackson-datatype-jsr310-2.14.1.jar;C:\Users\Usuario\.m2\repository\com\fasterxml\jackson\module\jackson-module-parameter-names\2.14.1\jackson-module-parameter-names-2.14.1.jar;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat\3.0.2\spring-boot-starter-tomcat-3.0.2.jar;C:\Users\Usuario\.m2\repository\org\apache\tomcat\embed\tomcat-embed-core\10.1.5\tomcat-embed-core-10.1.5.jar;C:\Users\Usuario\.m2\repository\org\apache\tomcat\embed\tomcat-embed-el\10.1.5\tomcat-embed-el-10.1.5.jar;C:\Users\Usuario\.m2\repository\org\apache\tomcat\embed\tomcat-embed-websocket\10.1.5\tomcat-embed-websocket-10.1.5.jar;C:\Users\Usuario\.m2\repository\org\springframework\spring-web\6.0.4\spring-web-6.0.4.jar;C:\Users\Usuario\.m2\repository\io\micrometer\micrometer-observation\1.10.3\micrometer-observation-1.10.3.jar;C:\Users\Usuario\.m2\repository\io\micrometer\micrometer-commons\1.10.3\micrometer-commons-1.10.3.jar;C:\Users\Usuario\.m2\repository\org\springframework\spring-webmvc\6.0.4\spring-webmvc-6.0.4.jar;C:\Users\Usuario\.m2\repository\org\springframework\spring-expression\6.0.4\spring-expression-6.0.4.jar;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot-starter-data-jpa\3.0.2\spring-boot-starter-data-jpa-3.0.2.jar;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot-starter-aop\3.0.2\spring-boot-starter-aop-3.0.2.jar;C:\Users\Usuario\.m2\repository\org\aspectj\aspectjweaver\1.9.19\aspectjweaver-1.9.19.jar;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot-starter-jdbc\3.0.2\spring-boot-starter-jdbc-3.0.2.jar;C:\Users\Usuario\.m2\repository\com\zaxxer\HikariCP\5.0.1\HikariCP-5.0.1.jar;C:\Users\Usuario\.m2\repository\org\springframework\spring-jdbc\6.0.4\spring-jdbc-6.0.4.jar;C:\Users\Usuario\.m2\repository\org\hibernate\orm\hibernate-core\6.1.6.Final\hibernate-core-6.1.6.Final.jar;C:\Users\Usuario\.m2\repository\jakarta\persistence\jakarta.persistence-api\3.1.0\jakarta.persistence-api-3.1.0.jar;C:\Users\Usuario\.m2\repository\jakarta\transaction\jakarta.transaction-api\2.0.1\jakarta.transaction-api-2.0.1.jar;C:\Users\Usuario\.m2\repository\org\hibernate\common\hibernate-commons-annotations\6.0.2.Final\hibernate-commons-annotations-6.0.2.Final.jar;C:\Users\Usuario\.m2\repository\org\jboss\jandex\2.4.2.Final\jandex-2.4.2.Final.jar;C:\Users\Usuario\.m2\repository\net\bytebuddy\byte-buddy\1.12.22\byte-buddy-1.12.22.jar;C:\Users\Usuario\.m2\repository\org\glassfish\jaxb\jaxb-runtime\4.0.1\jaxb-runtime-4.0.1.jar;C:\Users\Usuario\.m2\repository\org\glassfish\jaxb\jaxb-core\4.0.1\jaxb-core-4.0.1.jar;C:\Users\Usuario\.m2\repository\org\eclipse\angus\angus-activation\1.0.0\angus-activation-1.0.0.jar;C:\Users\Usuario\.m2\repository\org\glassfish\jaxb\txw2\4.0.1\txw2-4.0.1.jar;C:\Users\Usuario\.m2\repository\com\sun\istack\istack-commons-runtime\4.1.1\istack-commons-runtime-4.1.1.jar;C:\Users\Usuario\.m2\repository\jakarta\inject\jakarta.inject-api\2.0.0\jakarta.inject-api-2.0.0.jar;C:\Users\Usuario\.m2\repository\org\antlr\antlr4-runtime\4.10.1\antlr4-runtime-4.10.1.jar;C:\Users\Usuario\.m2\repository\org\springframework\data\spring-data-jpa\3.0.1\spring-data-jpa-3.0.1.jar;C:\Users\Usuario\.m2\repository\org\springframework\data\spring-data-commons\3.0.1\spring-data-commons-3.0.1.jar;C:\Users\Usuario\.m2\repository\org\springframework\spring-orm\6.0.4\spring-orm-6.0.4.jar;C:\Users\Usuario\.m2\repository\org\springframework\spring-tx\6.0.4\spring-tx-6.0.4.jar;C:\Users\Usuario\.m2\repository\org\slf4j\slf4j-api\2.0.6\slf4j-api-2.0.6.jar;C:\Users\Usuario\.m2\repository\org\springframework\spring-aspects\6.0.4\spring-aspects-6.0.4.jar;C:\Users\Usuario\.m2\repository\com\h2database\h2\2.1.214\h2-2.1.214.jar;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot-starter-test\3.0.2\spring-boot-starter-test-3.0.2.jar;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot-test\3.0.2\spring-boot-test-3.0.2.jar;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot-test-autoconfigure\3.0.2\spring-boot-test-autoconfigure-3.0.2.jar;C:\Users\Usuario\.m2\repository\com\jayway\jsonpath\json-path\2.7.0\json-path-2.7.0.jar;C:\Users\Usuario\.m2\repository\net\minidev\json-smart\2.4.8\json-smart-2.4.8.jar;C:\Users\Usuario\.m2\repository\net\minidev\accessors-smart\2.4.8\accessors-smart-2.4.8.jar;C:\Users\Usuario\.m2\repository\org\ow2\asm\asm\9.1\asm-9.1.jar;C:\Users\Usuario\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\4.0.0\jakarta.xml.bind-api-4.0.0.jar;C:\Users\Usuario\.m2\repository\jakarta\activation\jakarta.activation-api\2.1.1\jakarta.activation-api-2.1.1.jar;C:\Users\Usuario\.m2\repository\org\assertj\assertj-core\3.23.1\assertj-core-3.23.1.jar;C:\Users\Usuario\.m2\repository\org\hamcrest\hamcrest\2.2\hamcrest-2.2.jar;C:\Users\Usuario\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.2\junit-jupiter-5.9.2.jar;C:\Users\Usuario\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.2\junit-jupiter-api-5.9.2.jar;C:\Users\Usuario\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Usuario\.m2\repository\org\junit\platform\junit-platform-commons\1.9.2\junit-platform-commons-1.9.2.jar;C:\Users\Usuario\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Usuario\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.2\junit-jupiter-params-5.9.2.jar;C:\Users\Usuario\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.2\junit-jupiter-engine-5.9.2.jar;C:\Users\Usuario\.m2\repository\org\junit\platform\junit-platform-engine\1.9.2\junit-platform-engine-1.9.2.jar;C:\Users\Usuario\.m2\repository\org\mockito\mockito-core\4.8.1\mockito-core-4.8.1.jar;C:\Users\Usuario\.m2\repository\net\bytebuddy\byte-buddy-agent\1.12.22\byte-buddy-agent-1.12.22.jar;C:\Users\Usuario\.m2\repository\org\objenesis\objenesis\3.2\objenesis-3.2.jar;C:\Users\Usuario\.m2\repository\org\mockito\mockito-junit-jupiter\4.8.1\mockito-junit-jupiter-4.8.1.jar;C:\Users\Usuario\.m2\repository\org\skyscreamer\jsonassert\1.5.1\jsonassert-1.5.1.jar;C:\Users\Usuario\.m2\repository\com\vaadin\external\google\android-json\0.0.20131108.vaadin1\android-json-0.0.20131108.vaadin1.jar;C:\Users\Usuario\.m2\repository\org\springframework\spring-core\6.0.4\spring-core-6.0.4.jar;C:\Users\Usuario\.m2\repository\org\springframework\spring-jcl\6.0.4\spring-jcl-6.0.4.jar;C:\Users\Usuario\.m2\repository\org\springframework\spring-test\6.0.4\spring-test-6.0.4.jar;C:\Users\Usuario\.m2\repository\org\xmlunit\xmlunit-core\2.9.1\xmlunit-core-2.9.1.jar;C:\Users\Usuario\.m2\repository\org\springframework\security\spring-security-test\6.0.1\spring-security-test-6.0.1.jar;C:\Users\Usuario\.m2\repository\org\springframework\security\spring-security-core\6.0.1\spring-security-core-6.0.1.jar;C:\Users\Usuario\.m2\repository\org\springframework\security\spring-security-crypto\6.0.1\spring-security-crypto-6.0.1.jar;C:\Users\Usuario\.m2\repository\org\springframework\security\spring-security-web\6.0.1\spring-security-web-6.0.1.jar;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot-starter-security\3.0.2\spring-boot-starter-security-3.0.2.jar;C:\Users\Usuario\.m2\repository\org\springframework\spring-aop\6.0.4\spring-aop-6.0.4.jar;C:\Users\Usuario\.m2\repository\io\jsonwebtoken\jjwt-impl\0.11.5\jjwt-impl-0.11.5.jar;C:\Users\Usuario\.m2\repository\io\jsonwebtoken\jjwt-api\0.11.5\jjwt-api-0.11.5.jar;C:\Users\Usuario\.m2\repository\io\jsonwebtoken\jjwt-jackson\0.11.5\jjwt-jackson-0.11.5.jar;C:\Users\Usuario\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.14.1\jackson-databind-2.14.1.jar;C:\Users\Usuario\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.14.1\jackson-annotations-2.14.1.jar;C:\Users\Usuario\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.14.1\jackson-core-2.14.1.jar;C:\Users\Usuario\.m2\repository\org\hibernate\validator\hibernate-validator\8.0.0.Final\hibernate-validator-8.0.0.Final.jar;C:\Users\Usuario\.m2\repository\jakarta\validation\jakarta.validation-api\3.0.2\jakarta.validation-api-3.0.2.jar;C:\Users\Usuario\.m2\repository\org\jboss\logging\jboss-logging\3.5.0.Final\jboss-logging-3.5.0.Final.jar;C:\Users\Usuario\.m2\repository\com\fasterxml\classmate\1.5.1\classmate-1.5.1.jar;C:\Users\Usuario\.m2\repository\org\glassfish\expressly\expressly\6.0.0-M1\expressly-6.0.0-M1.jar;C:\Users\Usuario\.m2\repository\jakarta\el\jakarta.el-api\6.0.0-M1\jakarta.el-api-6.0.0-M1.jar;C:\Users\Usuario\.m2\repository\org\projectlombok\lombok\1.18.32\lombok-1.18.32.jar;C:\Users\Usuario\.m2\repository\org\springdoc\springdoc-openapi-starter-webmvc-ui\2.0.2\springdoc-openapi-starter-webmvc-ui-2.0.2.jar;C:\Users\Usuario\.m2\repository\org\springdoc\springdoc-openapi-starter-webmvc-api\2.0.2\springdoc-openapi-starter-webmvc-api-2.0.2.jar;C:\Users\Usuario\.m2\repository\org\springdoc\springdoc-openapi-starter-common\2.0.2\springdoc-openapi-starter-common-2.0.2.jar;C:\Users\Usuario\.m2\repository\io\swagger\core\v3\swagger-core-jakarta\2.2.7\swagger-core-jakarta-2.2.7.jar;C:\Users\Usuario\.m2\repository\org\apache\commons\commons-lang3\3.12.0\commons-lang3-3.12.0.jar;C:\Users\Usuario\.m2\repository\io\swagger\core\v3\swagger-annotations-jakarta\2.2.7\swagger-annotations-jakarta-2.2.7.jar;C:\Users\Usuario\.m2\repository\io\swagger\core\v3\swagger-models-jakarta\2.2.7\swagger-models-jakarta-2.2.7.jar;C:\Users\Usuario\.m2\repository\com\fasterxml\jackson\dataformat\jackson-dataformat-yaml\2.14.1\jackson-dataformat-yaml-2.14.1.jar;C:\Users\Usuario\.m2\repository\org\webjars\swagger-ui\4.15.5\swagger-ui-4.15.5.jar;C:\Users\Usuario\.m2\repository\org\webjars\webjars-locator-core\0.52\webjars-locator-core-0.52.jar;C:\Users\Usuario\.m2\repository\io\github\classgraph\classgraph\4.8.149\classgraph-4.8.149.jar;C:\Users\Usuario\.m2\repository\org\springframework\security\spring-security-config\6.0.1\spring-security-config-6.0.1.jar;C:\Users\Usuario\.m2\repository\org\springframework\spring-beans\6.0.4\spring-beans-6.0.4.jar;C:\Users\Usuario\.m2\repository\org\springframework\spring-context\6.0.4\spring-context-6.0.4.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="catalina.useNaming" value="false"/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="Europe/Madrid"/>
+    <property name="org.jboss.logging.provider" value="slf4j"/>
+    <property name="os.name" value="Windows 11"/>
+    <property name="java.vm.specification.version" value="20"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="ES"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-20\bin"/>
+    <property name="sun.java.command" value="C:\Users\Usuario\AppData\Local\Temp\surefire6506968592457443627\surefirebooter-20250528173233796_3.jar C:\Users\Usuario\AppData\Local\Temp\surefire6506968592457443627 2025-05-28T17-32-33_385-jvmRun1 surefire-20250528173233796_1tmp surefire_0-20250528173233796_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\target\test-classes;C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\target\classes;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot-starter-web\3.0.2\spring-boot-starter-web-3.0.2.jar;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot-starter\3.0.2\spring-boot-starter-3.0.2.jar;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot\3.0.2\spring-boot-3.0.2.jar;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\3.0.2\spring-boot-autoconfigure-3.0.2.jar;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot-starter-logging\3.0.2\spring-boot-starter-logging-3.0.2.jar;C:\Users\Usuario\.m2\repository\ch\qos\logback\logback-classic\1.4.5\logback-classic-1.4.5.jar;C:\Users\Usuario\.m2\repository\ch\qos\logback\logback-core\1.4.5\logback-core-1.4.5.jar;C:\Users\Usuario\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.19.0\log4j-to-slf4j-2.19.0.jar;C:\Users\Usuario\.m2\repository\org\apache\logging\log4j\log4j-api\2.19.0\log4j-api-2.19.0.jar;C:\Users\Usuario\.m2\repository\org\slf4j\jul-to-slf4j\2.0.6\jul-to-slf4j-2.0.6.jar;C:\Users\Usuario\.m2\repository\jakarta\annotation\jakarta.annotation-api\2.1.1\jakarta.annotation-api-2.1.1.jar;C:\Users\Usuario\.m2\repository\org\yaml\snakeyaml\1.33\snakeyaml-1.33.jar;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot-starter-json\3.0.2\spring-boot-starter-json-3.0.2.jar;C:\Users\Usuario\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.14.1\jackson-datatype-jdk8-2.14.1.jar;C:\Users\Usuario\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.14.1\jackson-datatype-jsr310-2.14.1.jar;C:\Users\Usuario\.m2\repository\com\fasterxml\jackson\module\jackson-module-parameter-names\2.14.1\jackson-module-parameter-names-2.14.1.jar;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat\3.0.2\spring-boot-starter-tomcat-3.0.2.jar;C:\Users\Usuario\.m2\repository\org\apache\tomcat\embed\tomcat-embed-core\10.1.5\tomcat-embed-core-10.1.5.jar;C:\Users\Usuario\.m2\repository\org\apache\tomcat\embed\tomcat-embed-el\10.1.5\tomcat-embed-el-10.1.5.jar;C:\Users\Usuario\.m2\repository\org\apache\tomcat\embed\tomcat-embed-websocket\10.1.5\tomcat-embed-websocket-10.1.5.jar;C:\Users\Usuario\.m2\repository\org\springframework\spring-web\6.0.4\spring-web-6.0.4.jar;C:\Users\Usuario\.m2\repository\io\micrometer\micrometer-observation\1.10.3\micrometer-observation-1.10.3.jar;C:\Users\Usuario\.m2\repository\io\micrometer\micrometer-commons\1.10.3\micrometer-commons-1.10.3.jar;C:\Users\Usuario\.m2\repository\org\springframework\spring-webmvc\6.0.4\spring-webmvc-6.0.4.jar;C:\Users\Usuario\.m2\repository\org\springframework\spring-expression\6.0.4\spring-expression-6.0.4.jar;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot-starter-data-jpa\3.0.2\spring-boot-starter-data-jpa-3.0.2.jar;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot-starter-aop\3.0.2\spring-boot-starter-aop-3.0.2.jar;C:\Users\Usuario\.m2\repository\org\aspectj\aspectjweaver\1.9.19\aspectjweaver-1.9.19.jar;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot-starter-jdbc\3.0.2\spring-boot-starter-jdbc-3.0.2.jar;C:\Users\Usuario\.m2\repository\com\zaxxer\HikariCP\5.0.1\HikariCP-5.0.1.jar;C:\Users\Usuario\.m2\repository\org\springframework\spring-jdbc\6.0.4\spring-jdbc-6.0.4.jar;C:\Users\Usuario\.m2\repository\org\hibernate\orm\hibernate-core\6.1.6.Final\hibernate-core-6.1.6.Final.jar;C:\Users\Usuario\.m2\repository\jakarta\persistence\jakarta.persistence-api\3.1.0\jakarta.persistence-api-3.1.0.jar;C:\Users\Usuario\.m2\repository\jakarta\transaction\jakarta.transaction-api\2.0.1\jakarta.transaction-api-2.0.1.jar;C:\Users\Usuario\.m2\repository\org\hibernate\common\hibernate-commons-annotations\6.0.2.Final\hibernate-commons-annotations-6.0.2.Final.jar;C:\Users\Usuario\.m2\repository\org\jboss\jandex\2.4.2.Final\jandex-2.4.2.Final.jar;C:\Users\Usuario\.m2\repository\net\bytebuddy\byte-buddy\1.12.22\byte-buddy-1.12.22.jar;C:\Users\Usuario\.m2\repository\org\glassfish\jaxb\jaxb-runtime\4.0.1\jaxb-runtime-4.0.1.jar;C:\Users\Usuario\.m2\repository\org\glassfish\jaxb\jaxb-core\4.0.1\jaxb-core-4.0.1.jar;C:\Users\Usuario\.m2\repository\org\eclipse\angus\angus-activation\1.0.0\angus-activation-1.0.0.jar;C:\Users\Usuario\.m2\repository\org\glassfish\jaxb\txw2\4.0.1\txw2-4.0.1.jar;C:\Users\Usuario\.m2\repository\com\sun\istack\istack-commons-runtime\4.1.1\istack-commons-runtime-4.1.1.jar;C:\Users\Usuario\.m2\repository\jakarta\inject\jakarta.inject-api\2.0.0\jakarta.inject-api-2.0.0.jar;C:\Users\Usuario\.m2\repository\org\antlr\antlr4-runtime\4.10.1\antlr4-runtime-4.10.1.jar;C:\Users\Usuario\.m2\repository\org\springframework\data\spring-data-jpa\3.0.1\spring-data-jpa-3.0.1.jar;C:\Users\Usuario\.m2\repository\org\springframework\data\spring-data-commons\3.0.1\spring-data-commons-3.0.1.jar;C:\Users\Usuario\.m2\repository\org\springframework\spring-orm\6.0.4\spring-orm-6.0.4.jar;C:\Users\Usuario\.m2\repository\org\springframework\spring-tx\6.0.4\spring-tx-6.0.4.jar;C:\Users\Usuario\.m2\repository\org\slf4j\slf4j-api\2.0.6\slf4j-api-2.0.6.jar;C:\Users\Usuario\.m2\repository\org\springframework\spring-aspects\6.0.4\spring-aspects-6.0.4.jar;C:\Users\Usuario\.m2\repository\com\h2database\h2\2.1.214\h2-2.1.214.jar;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot-starter-test\3.0.2\spring-boot-starter-test-3.0.2.jar;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot-test\3.0.2\spring-boot-test-3.0.2.jar;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot-test-autoconfigure\3.0.2\spring-boot-test-autoconfigure-3.0.2.jar;C:\Users\Usuario\.m2\repository\com\jayway\jsonpath\json-path\2.7.0\json-path-2.7.0.jar;C:\Users\Usuario\.m2\repository\net\minidev\json-smart\2.4.8\json-smart-2.4.8.jar;C:\Users\Usuario\.m2\repository\net\minidev\accessors-smart\2.4.8\accessors-smart-2.4.8.jar;C:\Users\Usuario\.m2\repository\org\ow2\asm\asm\9.1\asm-9.1.jar;C:\Users\Usuario\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\4.0.0\jakarta.xml.bind-api-4.0.0.jar;C:\Users\Usuario\.m2\repository\jakarta\activation\jakarta.activation-api\2.1.1\jakarta.activation-api-2.1.1.jar;C:\Users\Usuario\.m2\repository\org\assertj\assertj-core\3.23.1\assertj-core-3.23.1.jar;C:\Users\Usuario\.m2\repository\org\hamcrest\hamcrest\2.2\hamcrest-2.2.jar;C:\Users\Usuario\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.2\junit-jupiter-5.9.2.jar;C:\Users\Usuario\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.2\junit-jupiter-api-5.9.2.jar;C:\Users\Usuario\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Usuario\.m2\repository\org\junit\platform\junit-platform-commons\1.9.2\junit-platform-commons-1.9.2.jar;C:\Users\Usuario\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Usuario\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.2\junit-jupiter-params-5.9.2.jar;C:\Users\Usuario\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.2\junit-jupiter-engine-5.9.2.jar;C:\Users\Usuario\.m2\repository\org\junit\platform\junit-platform-engine\1.9.2\junit-platform-engine-1.9.2.jar;C:\Users\Usuario\.m2\repository\org\mockito\mockito-core\4.8.1\mockito-core-4.8.1.jar;C:\Users\Usuario\.m2\repository\net\bytebuddy\byte-buddy-agent\1.12.22\byte-buddy-agent-1.12.22.jar;C:\Users\Usuario\.m2\repository\org\objenesis\objenesis\3.2\objenesis-3.2.jar;C:\Users\Usuario\.m2\repository\org\mockito\mockito-junit-jupiter\4.8.1\mockito-junit-jupiter-4.8.1.jar;C:\Users\Usuario\.m2\repository\org\skyscreamer\jsonassert\1.5.1\jsonassert-1.5.1.jar;C:\Users\Usuario\.m2\repository\com\vaadin\external\google\android-json\0.0.20131108.vaadin1\android-json-0.0.20131108.vaadin1.jar;C:\Users\Usuario\.m2\repository\org\springframework\spring-core\6.0.4\spring-core-6.0.4.jar;C:\Users\Usuario\.m2\repository\org\springframework\spring-jcl\6.0.4\spring-jcl-6.0.4.jar;C:\Users\Usuario\.m2\repository\org\springframework\spring-test\6.0.4\spring-test-6.0.4.jar;C:\Users\Usuario\.m2\repository\org\xmlunit\xmlunit-core\2.9.1\xmlunit-core-2.9.1.jar;C:\Users\Usuario\.m2\repository\org\springframework\security\spring-security-test\6.0.1\spring-security-test-6.0.1.jar;C:\Users\Usuario\.m2\repository\org\springframework\security\spring-security-core\6.0.1\spring-security-core-6.0.1.jar;C:\Users\Usuario\.m2\repository\org\springframework\security\spring-security-crypto\6.0.1\spring-security-crypto-6.0.1.jar;C:\Users\Usuario\.m2\repository\org\springframework\security\spring-security-web\6.0.1\spring-security-web-6.0.1.jar;C:\Users\Usuario\.m2\repository\org\springframework\boot\spring-boot-starter-security\3.0.2\spring-boot-starter-security-3.0.2.jar;C:\Users\Usuario\.m2\repository\org\springframework\spring-aop\6.0.4\spring-aop-6.0.4.jar;C:\Users\Usuario\.m2\repository\io\jsonwebtoken\jjwt-impl\0.11.5\jjwt-impl-0.11.5.jar;C:\Users\Usuario\.m2\repository\io\jsonwebtoken\jjwt-api\0.11.5\jjwt-api-0.11.5.jar;C:\Users\Usuario\.m2\repository\io\jsonwebtoken\jjwt-jackson\0.11.5\jjwt-jackson-0.11.5.jar;C:\Users\Usuario\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.14.1\jackson-databind-2.14.1.jar;C:\Users\Usuario\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.14.1\jackson-annotations-2.14.1.jar;C:\Users\Usuario\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.14.1\jackson-core-2.14.1.jar;C:\Users\Usuario\.m2\repository\org\hibernate\validator\hibernate-validator\8.0.0.Final\hibernate-validator-8.0.0.Final.jar;C:\Users\Usuario\.m2\repository\jakarta\validation\jakarta.validation-api\3.0.2\jakarta.validation-api-3.0.2.jar;C:\Users\Usuario\.m2\repository\org\jboss\logging\jboss-logging\3.5.0.Final\jboss-logging-3.5.0.Final.jar;C:\Users\Usuario\.m2\repository\com\fasterxml\classmate\1.5.1\classmate-1.5.1.jar;C:\Users\Usuario\.m2\repository\org\glassfish\expressly\expressly\6.0.0-M1\expressly-6.0.0-M1.jar;C:\Users\Usuario\.m2\repository\jakarta\el\jakarta.el-api\6.0.0-M1\jakarta.el-api-6.0.0-M1.jar;C:\Users\Usuario\.m2\repository\org\projectlombok\lombok\1.18.32\lombok-1.18.32.jar;C:\Users\Usuario\.m2\repository\org\springdoc\springdoc-openapi-starter-webmvc-ui\2.0.2\springdoc-openapi-starter-webmvc-ui-2.0.2.jar;C:\Users\Usuario\.m2\repository\org\springdoc\springdoc-openapi-starter-webmvc-api\2.0.2\springdoc-openapi-starter-webmvc-api-2.0.2.jar;C:\Users\Usuario\.m2\repository\org\springdoc\springdoc-openapi-starter-common\2.0.2\springdoc-openapi-starter-common-2.0.2.jar;C:\Users\Usuario\.m2\repository\io\swagger\core\v3\swagger-core-jakarta\2.2.7\swagger-core-jakarta-2.2.7.jar;C:\Users\Usuario\.m2\repository\org\apache\commons\commons-lang3\3.12.0\commons-lang3-3.12.0.jar;C:\Users\Usuario\.m2\repository\io\swagger\core\v3\swagger-annotations-jakarta\2.2.7\swagger-annotations-jakarta-2.2.7.jar;C:\Users\Usuario\.m2\repository\io\swagger\core\v3\swagger-models-jakarta\2.2.7\swagger-models-jakarta-2.2.7.jar;C:\Users\Usuario\.m2\repository\com\fasterxml\jackson\dataformat\jackson-dataformat-yaml\2.14.1\jackson-dataformat-yaml-2.14.1.jar;C:\Users\Usuario\.m2\repository\org\webjars\swagger-ui\4.15.5\swagger-ui-4.15.5.jar;C:\Users\Usuario\.m2\repository\org\webjars\webjars-locator-core\0.52\webjars-locator-core-0.52.jar;C:\Users\Usuario\.m2\repository\io\github\classgraph\classgraph\4.8.149\classgraph-4.8.149.jar;C:\Users\Usuario\.m2\repository\org\springframework\security\spring-security-config\6.0.1\spring-security-config-6.0.1.jar;C:\Users\Usuario\.m2\repository\org\springframework\spring-beans\6.0.4\spring-beans-6.0.4.jar;C:\Users\Usuario\.m2\repository\org\springframework\spring-context\6.0.4\spring-context-6.0.4.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\Usuario"/>
+    <property name="user.language" value="es"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2023-03-21"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-20"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="FILE_LOG_CHARSET" value="UTF-8"/>
+    <property name="java.awt.headless" value="true"/>
+    <property name="surefire.real.class.path" value="C:\Users\Usuario\AppData\Local\Temp\surefire6506968592457443627\surefirebooter-20250528173233796_3.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="20+36-2344"/>
+    <property name="user.name" value="Usuario"/>
+    <property name="stdout.encoding" value="Cp1252"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\Usuario\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\Usuario\AppData\Local\Temp\"/>
+    <property name="catalina.home" value="C:\Users\Usuario\AppData\Local\Temp\tomcat.0.14892517429754416390"/>
+    <property name="com.zaxxer.hikari.pool_number" value="21"/>
+    <property name="java.version" value="20"/>
+    <property name="user.dir" value="C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="PID" value="29256"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
+    <property name="catalina.base" value="C:\Users\Usuario\AppData\Local\Temp\tomcat.0.1207185093069552635"/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-20\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Rockwell Software\RSCommon;C:\Program Files\Haskell\bin;C:\Program Files\Haskell Platform\8.6.5\lib\extralibs\bin;C:\Program Files\Haskell Platform\8.6.5\bin;C:\mingw64\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Razer\ChromaBroadcast\bin;C:\Program Files\Razer\ChromaBroadcast\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Windows\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\dotnet\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Haskell Platform\8.6.5\mingw\bin;C:\Program Files\NVIDIA Corporation\NVIDIA app\NvDLISR;C:\Program Files (x86)\ZeroTier\One\;C:\Program Files\PuTTY\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;G:\WorldPainter\WorldPainter;C:\Program Files\Docker\Docker\resources\bin;C:\Users\Usuario\AppData\Roaming\cabal\bin;C:\Users\Usuario\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\Usuario\AppData\Local\Programs\Python\Python311\;C:\Users\Usuario\AppData\Local\Programs\Python\Launcher\;C:\mingw64\bin;C:\MinGW\bin;C:\Users\Usuario\AppData\Local\Microsoft\WindowsApps;C:\Users\Usuario\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Usuario\Desktop\Uni\Sistemas Internet\apache-maven-3.9.9-bin\apache-maven-3.9.9\bin;C:\Users\Usuario\AppData\Local\GitHubDesktop\bin;;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="Cp1252"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="20+36-2344"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="64.0"/>
+  </properties>
+  <testcase name="modificarPropietarioCuenta_cuentaNoExiste" classname="es.uma.informatica.sii.plytix.pana.ApplicationTests$ListaConDatos" time="0.034">
+    <system-out><![CDATA[2025-05-28T17:32:48.008+02:00  INFO 29256 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [es.uma.informatica.sii.plytix.pana.ApplicationTests$ListaConDatos]: ListaConDatos does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-05-28T17:32:48.009+02:00  INFO 29256 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration es.uma.informatica.sii.plytix.pana.Application for test class es.uma.informatica.sii.plytix.pana.ApplicationTests$ListaConDatos
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.0.2)
+
+2025-05-28T17:32:48.021+02:00  INFO 29256 --- [           main] e.u.i.sii.plytix.pana.ApplicationTests   : Starting ApplicationTests using Java 20 with PID 29256 (started by Usuario in C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3)
+2025-05-28T17:32:48.021+02:00  INFO 29256 --- [           main] e.u.i.sii.plytix.pana.ApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-05-28T17:32:48.072+02:00  INFO 29256 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-28T17:32:48.075+02:00  INFO 29256 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3 ms. Found 2 JPA repository interfaces.
+2025-05-28T17:32:48.095+02:00  INFO 29256 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2025-05-28T17:32:48.095+02:00  INFO 29256 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-28T17:32:48.095+02:00  INFO 29256 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2025-05-28T17:32:48.105+02:00  INFO 29256 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-28T17:32:48.105+02:00  INFO 29256 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 83 ms
+2025-05-28T17:32:48.108+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-15 - Starting...
+2025-05-28T17:32:48.110+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-15 - Added connection conn140: url=jdbc:h2:mem:testdb user=SA
+2025-05-28T17:32:48.110+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-15 - Start completed.
+2025-05-28T17:32:48.110+02:00  INFO 29256 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-05-28T17:32:48.120+02:00  INFO 29256 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-28T17:32:48.121+02:00  WARN 29256 --- [           main] org.hibernate.orm.deprecation            : HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
+2025-05-28T17:32:48.123+02:00  INFO 29256 --- [           main] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+Hibernate: 
+    
+    drop table if exists cuenta cascade 
+Hibernate: 
+    
+    drop table if exists cuenta_usuarios cascade 
+Hibernate: 
+    
+    drop table if exists plan cascade 
+Hibernate: 
+    
+    create table cuenta (
+       id bigint not null,
+        nif varchar(255),
+        dir_fiscal varchar(255),
+        dueno_id bigint,
+        fecha_alta date,
+        nombre varchar(255),
+        plan bigint,
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table cuenta_usuarios (
+       cuenta_id bigint not null,
+        usuarios bigint
+    )
+Hibernate: 
+    
+    create table plan (
+       id bigint generated by default as identity,
+        max_activos bigint,
+        max_almacenamiento bigint,
+        max_categorias_activos bigint,
+        max_categorias_productos bigint,
+        max_productos bigint,
+        max_relaciones bigint,
+        nombre varchar(255),
+        precio float(53),
+        primary key (id)
+    )
+Hibernate: 
+    
+    alter table if exists cuenta 
+       add constraint fk_cuenta_plan 
+       foreign key (plan) 
+       references plan
+Hibernate: 
+    
+    alter table if exists cuenta_usuarios 
+       add constraint FKn2m3nqhyu579qm9vjvrr3utxo 
+       foreign key (cuenta_id) 
+       references cuenta
+2025-05-28T17:32:48.149+02:00  INFO 29256 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-05-28T17:32:48.149+02:00  INFO 29256 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-28T17:32:48.174+02:00  WARN 29256 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-28T17:32:48.176+02:00  WARN 29256 --- [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 9d421bb5-01c6-4bbc-b90a-c7bcb282980e
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-28T17:32:48.178+02:00  INFO 29256 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2e5f9165, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@31a68cff, org.springframework.security.web.context.SecurityContextHolderFilter@49ee17b7, org.springframework.security.web.header.HeaderWriterFilter@49b46191, org.springframework.security.web.authentication.logout.LogoutFilter@2757062f, es.uma.informatica.sii.plytix.pana.config.JwtRequestFilter@52924adb, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2ae5b403, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@40b7e027, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3e676f1a, org.springframework.security.web.session.SessionManagementFilter@1978e594, org.springframework.security.web.access.ExceptionTranslationFilter@17be8adb, org.springframework.security.web.access.intercept.AuthorizationFilter@5fdc8197]
+2025-05-28T17:32:48.359+02:00  INFO 29256 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 61438 (http) with context path ''
+2025-05-28T17:32:48.360+02:00  INFO 29256 --- [           main] e.u.i.sii.plytix.pana.ApplicationTests   : Started ApplicationTests in 0.348 seconds (process running for 14.436)
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.max_activos,
+        p1_0.max_almacenamiento,
+        p1_0.max_categorias_activos,
+        p1_0.max_categorias_productos,
+        p1_0.max_productos,
+        p1_0.max_relaciones,
+        p1_0.nombre,
+        p1_0.precio 
+    from
+        plan p1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        c1_0.plan 
+    from
+        cuenta c1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        p1_0.id,
+        p1_0.max_activos,
+        p1_0.max_almacenamiento,
+        p1_0.max_categorias_activos,
+        p1_0.max_categorias_productos,
+        p1_0.max_productos,
+        p1_0.max_relaciones,
+        p1_0.nombre,
+        p1_0.precio 
+    from
+        cuenta c1_0 
+    left join
+        plan p1_0 
+            on p1_0.id=c1_0.plan 
+    where
+        c1_0.id=?
+Hibernate: 
+    insert 
+    into
+        cuenta
+        (nif, dir_fiscal, dueno_id, fecha_alta, nombre, plan, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        p1_0.id,
+        p1_0.max_activos,
+        p1_0.max_almacenamiento,
+        p1_0.max_categorias_activos,
+        p1_0.max_categorias_productos,
+        p1_0.max_productos,
+        p1_0.max_relaciones,
+        p1_0.nombre,
+        p1_0.precio 
+    from
+        cuenta c1_0 
+    left join
+        plan p1_0 
+            on p1_0.id=c1_0.plan 
+    where
+        c1_0.id=?
+Hibernate: 
+    insert 
+    into
+        cuenta
+        (nif, dir_fiscal, dueno_id, fecha_alta, nombre, plan, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2025-05-28T17:32:48.372+02:00  INFO 29256 --- [-auto-15-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-28T17:32:48.372+02:00  INFO 29256 --- [-auto-15-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-28T17:32:48.372+02:00  INFO 29256 --- [-auto-15-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-05-28T17:32:48.372+02:00  INFO 29256 --- [-auto-15-exec-1] e.u.i.s.p.pana.config.JwtRequestFilter   : El token no comienza con Bearer
+Llamada a cuentaService con email: null
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        c1_0.plan,
+        u1_0.cuenta_id,
+        u1_0.usuarios 
+    from
+        cuenta c1_0 
+    left join
+        cuenta_usuarios u1_0 
+            on c1_0.id=u1_0.cuenta_id 
+    where
+        c1_0.id=?
+2025-05-28T17:32:48.391+02:00  INFO 29256 --- [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-05-28T17:32:48.392+02:00  INFO 29256 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2025-05-28T17:32:48.394+02:00  INFO 29256 --- [           main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-28T17:32:48.394+02:00  INFO 29256 --- [           main] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+Hibernate: 
+    
+    drop table if exists cuenta cascade 
+Hibernate: 
+    
+    drop table if exists cuenta_usuarios cascade 
+Hibernate: 
+    
+    drop table if exists plan cascade 
+2025-05-28T17:32:48.395+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-15 - Shutdown initiated...
+2025-05-28T17:32:48.396+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-15 - Shutdown completed.
+]]></system-out>
+  </testcase>
+  <testcase name="modificarPropietarioCuentaconId" classname="es.uma.informatica.sii.plytix.pana.ApplicationTests$ListaConDatos" time="0.031">
+    <system-out><![CDATA[
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.0.2)
+
+2025-05-28T17:32:48.406+02:00  INFO 29256 --- [           main] e.u.i.sii.plytix.pana.ApplicationTests   : Starting ApplicationTests using Java 20 with PID 29256 (started by Usuario in C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3)
+2025-05-28T17:32:48.407+02:00  INFO 29256 --- [           main] e.u.i.sii.plytix.pana.ApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-05-28T17:32:48.465+02:00  INFO 29256 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-28T17:32:48.468+02:00  INFO 29256 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3 ms. Found 2 JPA repository interfaces.
+2025-05-28T17:32:48.489+02:00  INFO 29256 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2025-05-28T17:32:48.489+02:00  INFO 29256 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-28T17:32:48.489+02:00  INFO 29256 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2025-05-28T17:32:48.499+02:00  INFO 29256 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-28T17:32:48.499+02:00  INFO 29256 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 92 ms
+2025-05-28T17:32:48.503+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-16 - Starting...
+2025-05-28T17:32:48.505+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-16 - Added connection conn150: url=jdbc:h2:mem:testdb user=SA
+2025-05-28T17:32:48.505+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-16 - Start completed.
+2025-05-28T17:32:48.505+02:00  INFO 29256 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-05-28T17:32:48.513+02:00  INFO 29256 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-28T17:32:48.515+02:00  WARN 29256 --- [           main] org.hibernate.orm.deprecation            : HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
+2025-05-28T17:32:48.516+02:00  INFO 29256 --- [           main] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+Hibernate: 
+    
+    drop table if exists cuenta cascade 
+Hibernate: 
+    
+    drop table if exists cuenta_usuarios cascade 
+Hibernate: 
+    
+    drop table if exists plan cascade 
+Hibernate: 
+    
+    create table cuenta (
+       id bigint not null,
+        nif varchar(255),
+        dir_fiscal varchar(255),
+        dueno_id bigint,
+        fecha_alta date,
+        nombre varchar(255),
+        plan bigint,
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table cuenta_usuarios (
+       cuenta_id bigint not null,
+        usuarios bigint
+    )
+Hibernate: 
+    
+    create table plan (
+       id bigint generated by default as identity,
+        max_activos bigint,
+        max_almacenamiento bigint,
+        max_categorias_activos bigint,
+        max_categorias_productos bigint,
+        max_productos bigint,
+        max_relaciones bigint,
+        nombre varchar(255),
+        precio float(53),
+        primary key (id)
+    )
+Hibernate: 
+    
+    alter table if exists cuenta 
+       add constraint fk_cuenta_plan 
+       foreign key (plan) 
+       references plan
+Hibernate: 
+    
+    alter table if exists cuenta_usuarios 
+       add constraint FKn2m3nqhyu579qm9vjvrr3utxo 
+       foreign key (cuenta_id) 
+       references cuenta
+2025-05-28T17:32:48.538+02:00  INFO 29256 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-05-28T17:32:48.538+02:00  INFO 29256 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-28T17:32:48.570+02:00  WARN 29256 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-28T17:32:48.571+02:00  WARN 29256 --- [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 8195bbbd-fcd1-4c76-a0eb-0c1fc467b28d
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-28T17:32:48.573+02:00  INFO 29256 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@58f1f5cc, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@55e10db, org.springframework.security.web.context.SecurityContextHolderFilter@664b95ca, org.springframework.security.web.header.HeaderWriterFilter@12a29c2a, org.springframework.security.web.authentication.logout.LogoutFilter@6cd63495, es.uma.informatica.sii.plytix.pana.config.JwtRequestFilter@2cf5c6d4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5233ecdc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@54f6697c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@57c4d037, org.springframework.security.web.session.SessionManagementFilter@403848a9, org.springframework.security.web.access.ExceptionTranslationFilter@c071976, org.springframework.security.web.access.intercept.AuthorizationFilter@46944003]
+2025-05-28T17:32:48.748+02:00  INFO 29256 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 61441 (http) with context path ''
+2025-05-28T17:32:48.750+02:00  INFO 29256 --- [           main] e.u.i.sii.plytix.pana.ApplicationTests   : Started ApplicationTests in 0.351 seconds (process running for 14.826)
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.max_activos,
+        p1_0.max_almacenamiento,
+        p1_0.max_categorias_activos,
+        p1_0.max_categorias_productos,
+        p1_0.max_productos,
+        p1_0.max_relaciones,
+        p1_0.nombre,
+        p1_0.precio 
+    from
+        plan p1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        c1_0.plan 
+    from
+        cuenta c1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        p1_0.id,
+        p1_0.max_activos,
+        p1_0.max_almacenamiento,
+        p1_0.max_categorias_activos,
+        p1_0.max_categorias_productos,
+        p1_0.max_productos,
+        p1_0.max_relaciones,
+        p1_0.nombre,
+        p1_0.precio 
+    from
+        cuenta c1_0 
+    left join
+        plan p1_0 
+            on p1_0.id=c1_0.plan 
+    where
+        c1_0.id=?
+Hibernate: 
+    insert 
+    into
+        cuenta
+        (nif, dir_fiscal, dueno_id, fecha_alta, nombre, plan, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        p1_0.id,
+        p1_0.max_activos,
+        p1_0.max_almacenamiento,
+        p1_0.max_categorias_activos,
+        p1_0.max_categorias_productos,
+        p1_0.max_productos,
+        p1_0.max_relaciones,
+        p1_0.nombre,
+        p1_0.precio 
+    from
+        cuenta c1_0 
+    left join
+        plan p1_0 
+            on p1_0.id=c1_0.plan 
+    where
+        c1_0.id=?
+Hibernate: 
+    insert 
+    into
+        cuenta
+        (nif, dir_fiscal, dueno_id, fecha_alta, nombre, plan, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2025-05-28T17:32:48.760+02:00  INFO 29256 --- [-auto-16-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-28T17:32:48.760+02:00  INFO 29256 --- [-auto-16-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-28T17:32:48.760+02:00  INFO 29256 --- [-auto-16-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-05-28T17:32:48.761+02:00  INFO 29256 --- [-auto-16-exec-1] e.u.i.s.p.pana.config.JwtRequestFilter   : El token no comienza con Bearer
+Llamada a cuentaService con email: null
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        c1_0.plan,
+        u1_0.cuenta_id,
+        u1_0.usuarios 
+    from
+        cuenta c1_0 
+    left join
+        cuenta_usuarios u1_0 
+            on c1_0.id=u1_0.cuenta_id 
+    where
+        c1_0.id=?
+Hibernate: 
+    update
+        cuenta 
+    set
+        nif=?,
+        dir_fiscal=?,
+        dueno_id=?,
+        fecha_alta=?,
+        nombre=?,
+        plan=? 
+    where
+        id=?
+Hibernate: 
+    insert 
+    into
+        cuenta_usuarios
+        (cuenta_id, usuarios) 
+    values
+        (?, ?)
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        c1_0.plan,
+        u1_0.cuenta_id,
+        u1_0.usuarios 
+    from
+        cuenta c1_0 
+    left join
+        cuenta_usuarios u1_0 
+            on c1_0.id=u1_0.cuenta_id 
+    where
+        c1_0.id=?
+2025-05-28T17:32:48.777+02:00  INFO 29256 --- [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-05-28T17:32:48.778+02:00  INFO 29256 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2025-05-28T17:32:48.780+02:00  INFO 29256 --- [           main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-28T17:32:48.780+02:00  INFO 29256 --- [           main] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+Hibernate: 
+    
+    drop table if exists cuenta cascade 
+Hibernate: 
+    
+    drop table if exists cuenta_usuarios cascade 
+Hibernate: 
+    
+    drop table if exists plan cascade 
+2025-05-28T17:32:48.781+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-16 - Shutdown initiated...
+2025-05-28T17:32:48.782+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-16 - Shutdown completed.
+]]></system-out>
+  </testcase>
+  <testcase name="modificarUsuarios_CuentaNoExiste" classname="es.uma.informatica.sii.plytix.pana.ApplicationTests$ListaConDatos" time="0.034">
+    <system-out><![CDATA[
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.0.2)
+
+2025-05-28T17:32:48.790+02:00  INFO 29256 --- [           main] e.u.i.sii.plytix.pana.ApplicationTests   : Starting ApplicationTests using Java 20 with PID 29256 (started by Usuario in C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3)
+2025-05-28T17:32:48.790+02:00  INFO 29256 --- [           main] e.u.i.sii.plytix.pana.ApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-05-28T17:32:48.839+02:00  INFO 29256 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-28T17:32:48.843+02:00  INFO 29256 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3 ms. Found 2 JPA repository interfaces.
+2025-05-28T17:32:48.862+02:00  INFO 29256 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2025-05-28T17:32:48.862+02:00  INFO 29256 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-28T17:32:48.862+02:00  INFO 29256 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2025-05-28T17:32:48.871+02:00  INFO 29256 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-28T17:32:48.872+02:00  INFO 29256 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 82 ms
+2025-05-28T17:32:48.875+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-17 - Starting...
+2025-05-28T17:32:48.878+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-17 - Added connection conn160: url=jdbc:h2:mem:testdb user=SA
+2025-05-28T17:32:48.878+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-17 - Start completed.
+2025-05-28T17:32:48.878+02:00  INFO 29256 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-05-28T17:32:48.889+02:00  INFO 29256 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-28T17:32:48.890+02:00  WARN 29256 --- [           main] org.hibernate.orm.deprecation            : HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
+2025-05-28T17:32:48.892+02:00  INFO 29256 --- [           main] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+Hibernate: 
+    
+    drop table if exists cuenta cascade 
+Hibernate: 
+    
+    drop table if exists cuenta_usuarios cascade 
+Hibernate: 
+    
+    drop table if exists plan cascade 
+Hibernate: 
+    
+    create table cuenta (
+       id bigint not null,
+        nif varchar(255),
+        dir_fiscal varchar(255),
+        dueno_id bigint,
+        fecha_alta date,
+        nombre varchar(255),
+        plan bigint,
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table cuenta_usuarios (
+       cuenta_id bigint not null,
+        usuarios bigint
+    )
+Hibernate: 
+    
+    create table plan (
+       id bigint generated by default as identity,
+        max_activos bigint,
+        max_almacenamiento bigint,
+        max_categorias_activos bigint,
+        max_categorias_productos bigint,
+        max_productos bigint,
+        max_relaciones bigint,
+        nombre varchar(255),
+        precio float(53),
+        primary key (id)
+    )
+Hibernate: 
+    
+    alter table if exists cuenta 
+       add constraint fk_cuenta_plan 
+       foreign key (plan) 
+       references plan
+Hibernate: 
+    
+    alter table if exists cuenta_usuarios 
+       add constraint FKn2m3nqhyu579qm9vjvrr3utxo 
+       foreign key (cuenta_id) 
+       references cuenta
+2025-05-28T17:32:48.915+02:00  INFO 29256 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-05-28T17:32:48.915+02:00  INFO 29256 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-28T17:32:48.945+02:00  WARN 29256 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-28T17:32:48.947+02:00  WARN 29256 --- [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: a5d5a01e-4e7e-40ae-9b49-245dff190001
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-28T17:32:48.950+02:00  INFO 29256 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@63acd092, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@44d69b47, org.springframework.security.web.context.SecurityContextHolderFilter@63d62d4b, org.springframework.security.web.header.HeaderWriterFilter@413edfe9, org.springframework.security.web.authentication.logout.LogoutFilter@65885aaa, es.uma.informatica.sii.plytix.pana.config.JwtRequestFilter@360090f6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2a5f16eb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1d2955de, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@64c13463, org.springframework.security.web.session.SessionManagementFilter@2e909ea5, org.springframework.security.web.access.ExceptionTranslationFilter@21bd1fad, org.springframework.security.web.access.intercept.AuthorizationFilter@60e2d423]
+2025-05-28T17:32:49.146+02:00  INFO 29256 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 61444 (http) with context path ''
+2025-05-28T17:32:49.147+02:00  INFO 29256 --- [           main] e.u.i.sii.plytix.pana.ApplicationTests   : Started ApplicationTests in 0.364 seconds (process running for 15.223)
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.max_activos,
+        p1_0.max_almacenamiento,
+        p1_0.max_categorias_activos,
+        p1_0.max_categorias_productos,
+        p1_0.max_productos,
+        p1_0.max_relaciones,
+        p1_0.nombre,
+        p1_0.precio 
+    from
+        plan p1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        c1_0.plan 
+    from
+        cuenta c1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        p1_0.id,
+        p1_0.max_activos,
+        p1_0.max_almacenamiento,
+        p1_0.max_categorias_activos,
+        p1_0.max_categorias_productos,
+        p1_0.max_productos,
+        p1_0.max_relaciones,
+        p1_0.nombre,
+        p1_0.precio 
+    from
+        cuenta c1_0 
+    left join
+        plan p1_0 
+            on p1_0.id=c1_0.plan 
+    where
+        c1_0.id=?
+Hibernate: 
+    insert 
+    into
+        cuenta
+        (nif, dir_fiscal, dueno_id, fecha_alta, nombre, plan, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        p1_0.id,
+        p1_0.max_activos,
+        p1_0.max_almacenamiento,
+        p1_0.max_categorias_activos,
+        p1_0.max_categorias_productos,
+        p1_0.max_productos,
+        p1_0.max_relaciones,
+        p1_0.nombre,
+        p1_0.precio 
+    from
+        cuenta c1_0 
+    left join
+        plan p1_0 
+            on p1_0.id=c1_0.plan 
+    where
+        c1_0.id=?
+Hibernate: 
+    insert 
+    into
+        cuenta
+        (nif, dir_fiscal, dueno_id, fecha_alta, nombre, plan, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2025-05-28T17:32:49.161+02:00  INFO 29256 --- [-auto-17-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-28T17:32:49.161+02:00  INFO 29256 --- [-auto-17-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-28T17:32:49.161+02:00  INFO 29256 --- [-auto-17-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-05-28T17:32:49.161+02:00  INFO 29256 --- [-auto-17-exec-1] e.u.i.s.p.pana.config.JwtRequestFilter   : El token no comienza con Bearer
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        c1_0.plan,
+        u1_0.cuenta_id,
+        u1_0.usuarios 
+    from
+        cuenta c1_0 
+    left join
+        cuenta_usuarios u1_0 
+            on c1_0.id=u1_0.cuenta_id 
+    where
+        c1_0.id=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        c1_0.plan,
+        u1_0.cuenta_id,
+        u1_0.usuarios 
+    from
+        cuenta c1_0 
+    left join
+        cuenta_usuarios u1_0 
+            on c1_0.id=u1_0.cuenta_id 
+    where
+        c1_0.id=?
+2025-05-28T17:32:49.180+02:00  INFO 29256 --- [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-05-28T17:32:49.180+02:00  INFO 29256 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2025-05-28T17:32:49.182+02:00  INFO 29256 --- [           main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-28T17:32:49.182+02:00  INFO 29256 --- [           main] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+Hibernate: 
+    
+    drop table if exists cuenta cascade 
+Hibernate: 
+    
+    drop table if exists cuenta_usuarios cascade 
+Hibernate: 
+    
+    drop table if exists plan cascade 
+2025-05-28T17:32:49.183+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-17 - Shutdown initiated...
+2025-05-28T17:32:49.184+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-17 - Shutdown completed.
+]]></system-out>
+  </testcase>
+  <testcase name="modificarPropietarioCuentaconEmail" classname="es.uma.informatica.sii.plytix.pana.ApplicationTests$ListaConDatos" time="0.03">
+    <system-out><![CDATA[
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.0.2)
+
+2025-05-28T17:32:49.192+02:00  INFO 29256 --- [           main] e.u.i.sii.plytix.pana.ApplicationTests   : Starting ApplicationTests using Java 20 with PID 29256 (started by Usuario in C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3)
+2025-05-28T17:32:49.192+02:00  INFO 29256 --- [           main] e.u.i.sii.plytix.pana.ApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-05-28T17:32:49.242+02:00  INFO 29256 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-28T17:32:49.247+02:00  INFO 29256 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 2 JPA repository interfaces.
+2025-05-28T17:32:49.275+02:00  INFO 29256 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2025-05-28T17:32:49.276+02:00  INFO 29256 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-28T17:32:49.276+02:00  INFO 29256 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2025-05-28T17:32:49.286+02:00  INFO 29256 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-28T17:32:49.286+02:00  INFO 29256 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 94 ms
+2025-05-28T17:32:49.291+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-18 - Starting...
+2025-05-28T17:32:49.295+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-18 - Added connection conn170: url=jdbc:h2:mem:testdb user=SA
+2025-05-28T17:32:49.295+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-18 - Start completed.
+2025-05-28T17:32:49.295+02:00  INFO 29256 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-05-28T17:32:49.306+02:00  INFO 29256 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-28T17:32:49.307+02:00  WARN 29256 --- [           main] org.hibernate.orm.deprecation            : HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
+2025-05-28T17:32:49.308+02:00  INFO 29256 --- [           main] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+Hibernate: 
+    
+    drop table if exists cuenta cascade 
+Hibernate: 
+    
+    drop table if exists cuenta_usuarios cascade 
+Hibernate: 
+    
+    drop table if exists plan cascade 
+Hibernate: 
+    
+    create table cuenta (
+       id bigint not null,
+        nif varchar(255),
+        dir_fiscal varchar(255),
+        dueno_id bigint,
+        fecha_alta date,
+        nombre varchar(255),
+        plan bigint,
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table cuenta_usuarios (
+       cuenta_id bigint not null,
+        usuarios bigint
+    )
+Hibernate: 
+    
+    create table plan (
+       id bigint generated by default as identity,
+        max_activos bigint,
+        max_almacenamiento bigint,
+        max_categorias_activos bigint,
+        max_categorias_productos bigint,
+        max_productos bigint,
+        max_relaciones bigint,
+        nombre varchar(255),
+        precio float(53),
+        primary key (id)
+    )
+Hibernate: 
+    
+    alter table if exists cuenta 
+       add constraint fk_cuenta_plan 
+       foreign key (plan) 
+       references plan
+Hibernate: 
+    
+    alter table if exists cuenta_usuarios 
+       add constraint FKn2m3nqhyu579qm9vjvrr3utxo 
+       foreign key (cuenta_id) 
+       references cuenta
+2025-05-28T17:32:49.331+02:00  INFO 29256 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-05-28T17:32:49.331+02:00  INFO 29256 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-28T17:32:49.359+02:00  WARN 29256 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-28T17:32:49.362+02:00  WARN 29256 --- [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 89a1527b-a953-43f2-bc8d-227c86f88331
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-28T17:32:49.364+02:00  INFO 29256 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@d3a99a5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6034507a, org.springframework.security.web.context.SecurityContextHolderFilter@1b765ac2, org.springframework.security.web.header.HeaderWriterFilter@17e4b00a, org.springframework.security.web.authentication.logout.LogoutFilter@7da3c3, es.uma.informatica.sii.plytix.pana.config.JwtRequestFilter@5b2c5ce7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2cc84d0c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1e9ecc7f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@17075ec7, org.springframework.security.web.session.SessionManagementFilter@78e9e697, org.springframework.security.web.access.ExceptionTranslationFilter@3420753d, org.springframework.security.web.access.intercept.AuthorizationFilter@6a6ea70]
+2025-05-28T17:32:49.553+02:00  INFO 29256 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 61447 (http) with context path ''
+2025-05-28T17:32:49.554+02:00  INFO 29256 --- [           main] e.u.i.sii.plytix.pana.ApplicationTests   : Started ApplicationTests in 0.369 seconds (process running for 15.63)
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.max_activos,
+        p1_0.max_almacenamiento,
+        p1_0.max_categorias_activos,
+        p1_0.max_categorias_productos,
+        p1_0.max_productos,
+        p1_0.max_relaciones,
+        p1_0.nombre,
+        p1_0.precio 
+    from
+        plan p1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        c1_0.plan 
+    from
+        cuenta c1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        p1_0.id,
+        p1_0.max_activos,
+        p1_0.max_almacenamiento,
+        p1_0.max_categorias_activos,
+        p1_0.max_categorias_productos,
+        p1_0.max_productos,
+        p1_0.max_relaciones,
+        p1_0.nombre,
+        p1_0.precio 
+    from
+        cuenta c1_0 
+    left join
+        plan p1_0 
+            on p1_0.id=c1_0.plan 
+    where
+        c1_0.id=?
+Hibernate: 
+    insert 
+    into
+        cuenta
+        (nif, dir_fiscal, dueno_id, fecha_alta, nombre, plan, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        p1_0.id,
+        p1_0.max_activos,
+        p1_0.max_almacenamiento,
+        p1_0.max_categorias_activos,
+        p1_0.max_categorias_productos,
+        p1_0.max_productos,
+        p1_0.max_relaciones,
+        p1_0.nombre,
+        p1_0.precio 
+    from
+        cuenta c1_0 
+    left join
+        plan p1_0 
+            on p1_0.id=c1_0.plan 
+    where
+        c1_0.id=?
+Hibernate: 
+    insert 
+    into
+        cuenta
+        (nif, dir_fiscal, dueno_id, fecha_alta, nombre, plan, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2025-05-28T17:32:49.564+02:00  INFO 29256 --- [-auto-18-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-28T17:32:49.564+02:00  INFO 29256 --- [-auto-18-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-28T17:32:49.564+02:00  INFO 29256 --- [-auto-18-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-05-28T17:32:49.564+02:00  INFO 29256 --- [-auto-18-exec-1] e.u.i.s.p.pana.config.JwtRequestFilter   : El token no comienza con Bearer
+Llamada a cuentaService con email: jose@uma.es
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        c1_0.plan,
+        u1_0.cuenta_id,
+        u1_0.usuarios 
+    from
+        cuenta c1_0 
+    left join
+        cuenta_usuarios u1_0 
+            on c1_0.id=u1_0.cuenta_id 
+    where
+        c1_0.id=?
+Hibernate: 
+    update
+        cuenta 
+    set
+        nif=?,
+        dir_fiscal=?,
+        dueno_id=?,
+        fecha_alta=?,
+        nombre=?,
+        plan=? 
+    where
+        id=?
+Hibernate: 
+    insert 
+    into
+        cuenta_usuarios
+        (cuenta_id, usuarios) 
+    values
+        (?, ?)
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        c1_0.plan,
+        u1_0.cuenta_id,
+        u1_0.usuarios 
+    from
+        cuenta c1_0 
+    left join
+        cuenta_usuarios u1_0 
+            on c1_0.id=u1_0.cuenta_id 
+    where
+        c1_0.id=?
+2025-05-28T17:32:49.582+02:00  INFO 29256 --- [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-05-28T17:32:49.582+02:00  INFO 29256 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2025-05-28T17:32:49.584+02:00  INFO 29256 --- [           main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-28T17:32:49.584+02:00  INFO 29256 --- [           main] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+Hibernate: 
+    
+    drop table if exists cuenta cascade 
+Hibernate: 
+    
+    drop table if exists cuenta_usuarios cascade 
+Hibernate: 
+    
+    drop table if exists plan cascade 
+2025-05-28T17:32:49.585+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-18 - Shutdown initiated...
+2025-05-28T17:32:49.586+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-18 - Shutdown completed.
+]]></system-out>
+  </testcase>
+  <testcase name="modificarUsuarios" classname="es.uma.informatica.sii.plytix.pana.ApplicationTests$ListaConDatos" time="0.03">
+    <system-out><![CDATA[
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.0.2)
+
+2025-05-28T17:32:49.596+02:00  INFO 29256 --- [           main] e.u.i.sii.plytix.pana.ApplicationTests   : Starting ApplicationTests using Java 20 with PID 29256 (started by Usuario in C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3)
+2025-05-28T17:32:49.596+02:00  INFO 29256 --- [           main] e.u.i.sii.plytix.pana.ApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-05-28T17:32:49.647+02:00  INFO 29256 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-28T17:32:49.651+02:00  INFO 29256 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3 ms. Found 2 JPA repository interfaces.
+2025-05-28T17:32:49.669+02:00  INFO 29256 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2025-05-28T17:32:49.670+02:00  INFO 29256 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-28T17:32:49.670+02:00  INFO 29256 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2025-05-28T17:32:49.680+02:00  INFO 29256 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-28T17:32:49.680+02:00  INFO 29256 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 84 ms
+2025-05-28T17:32:49.683+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-19 - Starting...
+2025-05-28T17:32:49.685+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-19 - Added connection conn180: url=jdbc:h2:mem:testdb user=SA
+2025-05-28T17:32:49.685+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-19 - Start completed.
+2025-05-28T17:32:49.685+02:00  INFO 29256 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-05-28T17:32:49.695+02:00  INFO 29256 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-28T17:32:49.696+02:00  WARN 29256 --- [           main] org.hibernate.orm.deprecation            : HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
+2025-05-28T17:32:49.698+02:00  INFO 29256 --- [           main] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+Hibernate: 
+    
+    drop table if exists cuenta cascade 
+Hibernate: 
+    
+    drop table if exists cuenta_usuarios cascade 
+Hibernate: 
+    
+    drop table if exists plan cascade 
+Hibernate: 
+    
+    create table cuenta (
+       id bigint not null,
+        nif varchar(255),
+        dir_fiscal varchar(255),
+        dueno_id bigint,
+        fecha_alta date,
+        nombre varchar(255),
+        plan bigint,
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table cuenta_usuarios (
+       cuenta_id bigint not null,
+        usuarios bigint
+    )
+Hibernate: 
+    
+    create table plan (
+       id bigint generated by default as identity,
+        max_activos bigint,
+        max_almacenamiento bigint,
+        max_categorias_activos bigint,
+        max_categorias_productos bigint,
+        max_productos bigint,
+        max_relaciones bigint,
+        nombre varchar(255),
+        precio float(53),
+        primary key (id)
+    )
+Hibernate: 
+    
+    alter table if exists cuenta 
+       add constraint fk_cuenta_plan 
+       foreign key (plan) 
+       references plan
+Hibernate: 
+    
+    alter table if exists cuenta_usuarios 
+       add constraint FKn2m3nqhyu579qm9vjvrr3utxo 
+       foreign key (cuenta_id) 
+       references cuenta
+2025-05-28T17:32:49.718+02:00  INFO 29256 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-05-28T17:32:49.718+02:00  INFO 29256 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-28T17:32:49.742+02:00  WARN 29256 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-28T17:32:49.744+02:00  WARN 29256 --- [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 25f83d55-45f8-41a0-8950-7baf9bba7458
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-28T17:32:49.746+02:00  INFO 29256 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5a334c1c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@db5c7b2, org.springframework.security.web.context.SecurityContextHolderFilter@570b0fd4, org.springframework.security.web.header.HeaderWriterFilter@6b033e7f, org.springframework.security.web.authentication.logout.LogoutFilter@379c09a9, es.uma.informatica.sii.plytix.pana.config.JwtRequestFilter@1bc63bdd, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@354fd022, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@47cde032, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3915936d, org.springframework.security.web.session.SessionManagementFilter@67d300fd, org.springframework.security.web.access.ExceptionTranslationFilter@cbdc374, org.springframework.security.web.access.intercept.AuthorizationFilter@54fdb279]
+2025-05-28T17:32:49.932+02:00  INFO 29256 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 61450 (http) with context path ''
+2025-05-28T17:32:49.933+02:00  INFO 29256 --- [           main] e.u.i.sii.plytix.pana.ApplicationTests   : Started ApplicationTests in 0.346 seconds (process running for 16.009)
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.max_activos,
+        p1_0.max_almacenamiento,
+        p1_0.max_categorias_activos,
+        p1_0.max_categorias_productos,
+        p1_0.max_productos,
+        p1_0.max_relaciones,
+        p1_0.nombre,
+        p1_0.precio 
+    from
+        plan p1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        c1_0.plan 
+    from
+        cuenta c1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        p1_0.id,
+        p1_0.max_activos,
+        p1_0.max_almacenamiento,
+        p1_0.max_categorias_activos,
+        p1_0.max_categorias_productos,
+        p1_0.max_productos,
+        p1_0.max_relaciones,
+        p1_0.nombre,
+        p1_0.precio 
+    from
+        cuenta c1_0 
+    left join
+        plan p1_0 
+            on p1_0.id=c1_0.plan 
+    where
+        c1_0.id=?
+Hibernate: 
+    insert 
+    into
+        cuenta
+        (nif, dir_fiscal, dueno_id, fecha_alta, nombre, plan, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        p1_0.id,
+        p1_0.max_activos,
+        p1_0.max_almacenamiento,
+        p1_0.max_categorias_activos,
+        p1_0.max_categorias_productos,
+        p1_0.max_productos,
+        p1_0.max_relaciones,
+        p1_0.nombre,
+        p1_0.precio 
+    from
+        cuenta c1_0 
+    left join
+        plan p1_0 
+            on p1_0.id=c1_0.plan 
+    where
+        c1_0.id=?
+Hibernate: 
+    insert 
+    into
+        cuenta
+        (nif, dir_fiscal, dueno_id, fecha_alta, nombre, plan, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2025-05-28T17:32:49.943+02:00  INFO 29256 --- [-auto-19-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-28T17:32:49.943+02:00  INFO 29256 --- [-auto-19-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-28T17:32:49.943+02:00  INFO 29256 --- [-auto-19-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-05-28T17:32:49.944+02:00  INFO 29256 --- [-auto-19-exec-1] e.u.i.s.p.pana.config.JwtRequestFilter   : El token no comienza con Bearer
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        c1_0.plan,
+        u1_0.cuenta_id,
+        u1_0.usuarios 
+    from
+        cuenta c1_0 
+    left join
+        cuenta_usuarios u1_0 
+            on c1_0.id=u1_0.cuenta_id 
+    where
+        c1_0.id=?
+Hibernate: 
+    insert 
+    into
+        cuenta_usuarios
+        (cuenta_id, usuarios) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        cuenta_usuarios
+        (cuenta_id, usuarios) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        cuenta_usuarios
+        (cuenta_id, usuarios) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        cuenta_usuarios
+        (cuenta_id, usuarios) 
+    values
+        (?, ?)
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        c1_0.plan,
+        u1_0.cuenta_id,
+        u1_0.usuarios 
+    from
+        cuenta c1_0 
+    left join
+        cuenta_usuarios u1_0 
+            on c1_0.id=u1_0.cuenta_id 
+    where
+        c1_0.id=?
+2025-05-28T17:32:49.961+02:00  INFO 29256 --- [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-05-28T17:32:49.961+02:00  INFO 29256 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2025-05-28T17:32:49.963+02:00  INFO 29256 --- [           main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-28T17:32:49.963+02:00  INFO 29256 --- [           main] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+Hibernate: 
+    
+    drop table if exists cuenta cascade 
+Hibernate: 
+    
+    drop table if exists cuenta_usuarios cascade 
+Hibernate: 
+    
+    drop table if exists plan cascade 
+2025-05-28T17:32:49.964+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-19 - Shutdown initiated...
+2025-05-28T17:32:49.965+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-19 - Shutdown completed.
+]]></system-out>
+  </testcase>
+  <testcase name="eliminaExistente" classname="es.uma.informatica.sii.plytix.pana.ApplicationTests$ListaConDatos$EliminarCuenta" time="0.03">
+    <system-out><![CDATA[2025-05-28T17:32:49.966+02:00  INFO 29256 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [es.uma.informatica.sii.plytix.pana.ApplicationTests$ListaConDatos$EliminarCuenta]: EliminarCuenta does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-05-28T17:32:49.967+02:00  INFO 29256 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration es.uma.informatica.sii.plytix.pana.Application for test class es.uma.informatica.sii.plytix.pana.ApplicationTests$ListaConDatos$EliminarCuenta
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.0.2)
+
+2025-05-28T17:32:49.976+02:00  INFO 29256 --- [           main] e.u.i.sii.plytix.pana.ApplicationTests   : Starting ApplicationTests using Java 20 with PID 29256 (started by Usuario in C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3)
+2025-05-28T17:32:49.976+02:00  INFO 29256 --- [           main] e.u.i.sii.plytix.pana.ApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-05-28T17:32:50.026+02:00  INFO 29256 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-28T17:32:50.029+02:00  INFO 29256 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4 ms. Found 2 JPA repository interfaces.
+2025-05-28T17:32:50.049+02:00  INFO 29256 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2025-05-28T17:32:50.049+02:00  INFO 29256 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-28T17:32:50.049+02:00  INFO 29256 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2025-05-28T17:32:50.058+02:00  INFO 29256 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-28T17:32:50.058+02:00  INFO 29256 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 81 ms
+2025-05-28T17:32:50.061+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-20 - Starting...
+2025-05-28T17:32:50.063+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-20 - Added connection conn190: url=jdbc:h2:mem:testdb user=SA
+2025-05-28T17:32:50.063+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-20 - Start completed.
+2025-05-28T17:32:50.063+02:00  INFO 29256 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-05-28T17:32:50.072+02:00  INFO 29256 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-28T17:32:50.073+02:00  WARN 29256 --- [           main] org.hibernate.orm.deprecation            : HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
+2025-05-28T17:32:50.075+02:00  INFO 29256 --- [           main] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+Hibernate: 
+    
+    drop table if exists cuenta cascade 
+Hibernate: 
+    
+    drop table if exists cuenta_usuarios cascade 
+Hibernate: 
+    
+    drop table if exists plan cascade 
+Hibernate: 
+    
+    create table cuenta (
+       id bigint not null,
+        nif varchar(255),
+        dir_fiscal varchar(255),
+        dueno_id bigint,
+        fecha_alta date,
+        nombre varchar(255),
+        plan bigint,
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table cuenta_usuarios (
+       cuenta_id bigint not null,
+        usuarios bigint
+    )
+Hibernate: 
+    
+    create table plan (
+       id bigint generated by default as identity,
+        max_activos bigint,
+        max_almacenamiento bigint,
+        max_categorias_activos bigint,
+        max_categorias_productos bigint,
+        max_productos bigint,
+        max_relaciones bigint,
+        nombre varchar(255),
+        precio float(53),
+        primary key (id)
+    )
+Hibernate: 
+    
+    alter table if exists cuenta 
+       add constraint fk_cuenta_plan 
+       foreign key (plan) 
+       references plan
+Hibernate: 
+    
+    alter table if exists cuenta_usuarios 
+       add constraint FKn2m3nqhyu579qm9vjvrr3utxo 
+       foreign key (cuenta_id) 
+       references cuenta
+2025-05-28T17:32:50.094+02:00  INFO 29256 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-05-28T17:32:50.094+02:00  INFO 29256 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-28T17:32:50.118+02:00  WARN 29256 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-28T17:32:50.119+02:00  WARN 29256 --- [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: bc3d45a2-1459-4fdd-9c06-176329efa5b6
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-28T17:32:50.121+02:00  INFO 29256 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@48cd3ee3, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@27a2270b, org.springframework.security.web.context.SecurityContextHolderFilter@601fbcd4, org.springframework.security.web.header.HeaderWriterFilter@74acc03d, org.springframework.security.web.authentication.logout.LogoutFilter@73439861, es.uma.informatica.sii.plytix.pana.config.JwtRequestFilter@5b818b16, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@63ddd89, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1402485b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6a05b380, org.springframework.security.web.session.SessionManagementFilter@7531edd3, org.springframework.security.web.access.ExceptionTranslationFilter@1e4f0167, org.springframework.security.web.access.intercept.AuthorizationFilter@1dbc01a1]
+2025-05-28T17:32:50.297+02:00  INFO 29256 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 61453 (http) with context path ''
+2025-05-28T17:32:50.298+02:00  INFO 29256 --- [           main] e.u.i.sii.plytix.pana.ApplicationTests   : Started ApplicationTests in 0.328 seconds (process running for 16.373)
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.max_activos,
+        p1_0.max_almacenamiento,
+        p1_0.max_categorias_activos,
+        p1_0.max_categorias_productos,
+        p1_0.max_productos,
+        p1_0.max_relaciones,
+        p1_0.nombre,
+        p1_0.precio 
+    from
+        plan p1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        c1_0.plan 
+    from
+        cuenta c1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        p1_0.id,
+        p1_0.max_activos,
+        p1_0.max_almacenamiento,
+        p1_0.max_categorias_activos,
+        p1_0.max_categorias_productos,
+        p1_0.max_productos,
+        p1_0.max_relaciones,
+        p1_0.nombre,
+        p1_0.precio 
+    from
+        cuenta c1_0 
+    left join
+        plan p1_0 
+            on p1_0.id=c1_0.plan 
+    where
+        c1_0.id=?
+Hibernate: 
+    insert 
+    into
+        cuenta
+        (nif, dir_fiscal, dueno_id, fecha_alta, nombre, plan, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        p1_0.id,
+        p1_0.max_activos,
+        p1_0.max_almacenamiento,
+        p1_0.max_categorias_activos,
+        p1_0.max_categorias_productos,
+        p1_0.max_productos,
+        p1_0.max_relaciones,
+        p1_0.nombre,
+        p1_0.precio 
+    from
+        cuenta c1_0 
+    left join
+        plan p1_0 
+            on p1_0.id=c1_0.plan 
+    where
+        c1_0.id=?
+Hibernate: 
+    insert 
+    into
+        cuenta
+        (nif, dir_fiscal, dueno_id, fecha_alta, nombre, plan, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2025-05-28T17:32:50.308+02:00  INFO 29256 --- [-auto-20-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-28T17:32:50.308+02:00  INFO 29256 --- [-auto-20-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-28T17:32:50.308+02:00  INFO 29256 --- [-auto-20-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-05-28T17:32:50.308+02:00  INFO 29256 --- [-auto-20-exec-1] e.u.i.s.p.pana.config.JwtRequestFilter   : El token no comienza con Bearer
+Hibernate: 
+    select
+        count(*) 
+    from
+        cuenta c1_0 
+    where
+        c1_0.id=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        p1_0.id,
+        p1_0.max_activos,
+        p1_0.max_almacenamiento,
+        p1_0.max_categorias_activos,
+        p1_0.max_categorias_productos,
+        p1_0.max_productos,
+        p1_0.max_relaciones,
+        p1_0.nombre,
+        p1_0.precio 
+    from
+        cuenta c1_0 
+    left join
+        plan p1_0 
+            on p1_0.id=c1_0.plan 
+    where
+        c1_0.id=?
+Hibernate: 
+    delete 
+    from
+        cuenta_usuarios 
+    where
+        cuenta_id=?
+Hibernate: 
+    delete 
+    from
+        cuenta 
+    where
+        id=?
+Hibernate: 
+    select
+        count(*) 
+    from
+        cuenta c1_0 
+    where
+        c1_0.id=?
+2025-05-28T17:32:50.325+02:00  INFO 29256 --- [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-05-28T17:32:50.325+02:00  INFO 29256 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2025-05-28T17:32:50.327+02:00  INFO 29256 --- [           main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-28T17:32:50.328+02:00  INFO 29256 --- [           main] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+Hibernate: 
+    
+    drop table if exists cuenta cascade 
+Hibernate: 
+    
+    drop table if exists cuenta_usuarios cascade 
+Hibernate: 
+    
+    drop table if exists plan cascade 
+2025-05-28T17:32:50.328+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-20 - Shutdown initiated...
+2025-05-28T17:32:50.329+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-20 - Shutdown completed.
+]]></system-out>
+  </testcase>
+  <testcase name="eliminaNoExiste" classname="es.uma.informatica.sii.plytix.pana.ApplicationTests$ListaConDatos$EliminarCuenta" time="0.034">
+    <system-out><![CDATA[
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.0.2)
+
+2025-05-28T17:32:50.336+02:00  INFO 29256 --- [           main] e.u.i.sii.plytix.pana.ApplicationTests   : Starting ApplicationTests using Java 20 with PID 29256 (started by Usuario in C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3)
+2025-05-28T17:32:50.336+02:00  INFO 29256 --- [           main] e.u.i.sii.plytix.pana.ApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-05-28T17:32:50.383+02:00  INFO 29256 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-28T17:32:50.387+02:00  INFO 29256 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3 ms. Found 2 JPA repository interfaces.
+2025-05-28T17:32:50.404+02:00  INFO 29256 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2025-05-28T17:32:50.404+02:00  INFO 29256 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-28T17:32:50.404+02:00  INFO 29256 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2025-05-28T17:32:50.414+02:00  INFO 29256 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-28T17:32:50.414+02:00  INFO 29256 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 76 ms
+2025-05-28T17:32:50.417+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-21 - Starting...
+2025-05-28T17:32:50.418+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-21 - Added connection conn200: url=jdbc:h2:mem:testdb user=SA
+2025-05-28T17:32:50.418+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-21 - Start completed.
+2025-05-28T17:32:50.418+02:00  INFO 29256 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-05-28T17:32:50.431+02:00  INFO 29256 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-28T17:32:50.432+02:00  WARN 29256 --- [           main] org.hibernate.orm.deprecation            : HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
+2025-05-28T17:32:50.433+02:00  INFO 29256 --- [           main] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+Hibernate: 
+    
+    drop table if exists cuenta cascade 
+Hibernate: 
+    
+    drop table if exists cuenta_usuarios cascade 
+Hibernate: 
+    
+    drop table if exists plan cascade 
+Hibernate: 
+    
+    create table cuenta (
+       id bigint not null,
+        nif varchar(255),
+        dir_fiscal varchar(255),
+        dueno_id bigint,
+        fecha_alta date,
+        nombre varchar(255),
+        plan bigint,
+        primary key (id)
+    )
+Hibernate: 
+    
+    create table cuenta_usuarios (
+       cuenta_id bigint not null,
+        usuarios bigint
+    )
+Hibernate: 
+    
+    create table plan (
+       id bigint generated by default as identity,
+        max_activos bigint,
+        max_almacenamiento bigint,
+        max_categorias_activos bigint,
+        max_categorias_productos bigint,
+        max_productos bigint,
+        max_relaciones bigint,
+        nombre varchar(255),
+        precio float(53),
+        primary key (id)
+    )
+Hibernate: 
+    
+    alter table if exists cuenta 
+       add constraint fk_cuenta_plan 
+       foreign key (plan) 
+       references plan
+Hibernate: 
+    
+    alter table if exists cuenta_usuarios 
+       add constraint FKn2m3nqhyu579qm9vjvrr3utxo 
+       foreign key (cuenta_id) 
+       references cuenta
+2025-05-28T17:32:50.453+02:00  INFO 29256 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-05-28T17:32:50.453+02:00  INFO 29256 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-28T17:32:50.476+02:00  WARN 29256 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-28T17:32:50.478+02:00  WARN 29256 --- [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 99ebf279-a979-4d8c-9413-e13e9940bf38
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-28T17:32:50.480+02:00  INFO 29256 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@39ad4e29, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@35b7d8c3, org.springframework.security.web.context.SecurityContextHolderFilter@4b81770f, org.springframework.security.web.header.HeaderWriterFilter@4510a5b, org.springframework.security.web.authentication.logout.LogoutFilter@4e2857c8, es.uma.informatica.sii.plytix.pana.config.JwtRequestFilter@1c53624d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@201519eb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2c1adc60, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@25f0643f, org.springframework.security.web.session.SessionManagementFilter@60a85831, org.springframework.security.web.access.ExceptionTranslationFilter@30bb788c, org.springframework.security.web.access.intercept.AuthorizationFilter@3c79e8c4]
+2025-05-28T17:32:50.658+02:00  INFO 29256 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 61456 (http) with context path ''
+2025-05-28T17:32:50.658+02:00  INFO 29256 --- [           main] e.u.i.sii.plytix.pana.ApplicationTests   : Started ApplicationTests in 0.328 seconds (process running for 16.735)
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.max_activos,
+        p1_0.max_almacenamiento,
+        p1_0.max_categorias_activos,
+        p1_0.max_categorias_productos,
+        p1_0.max_productos,
+        p1_0.max_relaciones,
+        p1_0.nombre,
+        p1_0.precio 
+    from
+        plan p1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        c1_0.plan 
+    from
+        cuenta c1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        p1_0.id,
+        p1_0.max_activos,
+        p1_0.max_almacenamiento,
+        p1_0.max_categorias_activos,
+        p1_0.max_categorias_productos,
+        p1_0.max_productos,
+        p1_0.max_relaciones,
+        p1_0.nombre,
+        p1_0.precio 
+    from
+        cuenta c1_0 
+    left join
+        plan p1_0 
+            on p1_0.id=c1_0.plan 
+    where
+        c1_0.id=?
+Hibernate: 
+    insert 
+    into
+        cuenta
+        (nif, dir_fiscal, dueno_id, fecha_alta, nombre, plan, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nif,
+        c1_0.dir_fiscal,
+        c1_0.dueno_id,
+        c1_0.fecha_alta,
+        c1_0.nombre,
+        p1_0.id,
+        p1_0.max_activos,
+        p1_0.max_almacenamiento,
+        p1_0.max_categorias_activos,
+        p1_0.max_categorias_productos,
+        p1_0.max_productos,
+        p1_0.max_relaciones,
+        p1_0.nombre,
+        p1_0.precio 
+    from
+        cuenta c1_0 
+    left join
+        plan p1_0 
+            on p1_0.id=c1_0.plan 
+    where
+        c1_0.id=?
+Hibernate: 
+    insert 
+    into
+        cuenta
+        (nif, dir_fiscal, dueno_id, fecha_alta, nombre, plan, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2025-05-28T17:32:50.672+02:00  INFO 29256 --- [-auto-21-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-28T17:32:50.672+02:00  INFO 29256 --- [-auto-21-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-28T17:32:50.672+02:00  INFO 29256 --- [-auto-21-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-05-28T17:32:50.672+02:00  INFO 29256 --- [-auto-21-exec-1] e.u.i.s.p.pana.config.JwtRequestFilter   : El token no comienza con Bearer
+Hibernate: 
+    select
+        count(*) 
+    from
+        cuenta c1_0 
+    where
+        c1_0.id=?
+2025-05-28T17:32:50.689+02:00  INFO 29256 --- [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-05-28T17:32:50.689+02:00  INFO 29256 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2025-05-28T17:32:50.692+02:00  INFO 29256 --- [           main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-28T17:32:50.692+02:00  INFO 29256 --- [           main] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+Hibernate: 
+    
+    drop table if exists cuenta cascade 
+Hibernate: 
+    
+    drop table if exists cuenta_usuarios cascade 
+Hibernate: 
+    
+    drop table if exists plan cascade 
+2025-05-28T17:32:50.693+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-21 - Shutdown initiated...
+2025-05-28T17:32:50.695+02:00  INFO 29256 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-21 - Shutdown completed.
+]]></system-out>
+  </testcase>
+</testsuite>

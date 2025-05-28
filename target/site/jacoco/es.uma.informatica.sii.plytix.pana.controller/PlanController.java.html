@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlanController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">plytix.pana</a> &gt; <a href="index.source.html" class="el_package">es.uma.informatica.sii.plytix.pana.controller</a> &gt; <span class="el_source">PlanController.java</span></div><h1>PlanController.java</h1><pre class="source lang-java linenums">package es.uma.informatica.sii.plytix.pana.controller;
+
+import es.uma.informatica.sii.plytix.pana.dto.PlanDTO;
+import es.uma.informatica.sii.plytix.pana.entities.Cuenta;
+import es.uma.informatica.sii.plytix.pana.excepciones.PermisosInsuficientesException;
+import es.uma.informatica.sii.plytix.pana.excepciones.CredencialesInvalidasException;
+import es.uma.informatica.sii.plytix.pana.excepciones.PlanNoEncontrado;
+import es.uma.informatica.sii.plytix.pana.excepciones.CuentasAsociadasException;
+import es.uma.informatica.sii.plytix.pana.entities.Plan;
+import es.uma.informatica.sii.plytix.pana.service.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
+import java.util.*;
+
+import java.net.URI;
+
+@RequestMapping (&quot;/plan&quot;)
+@RestController
+public class PlanController {
+
+    private PlanService servicio;
+
+<span class="fc" id="L26">    public PlanController(PlanService servicio) {</span>
+<span class="fc" id="L27">        this.servicio = servicio;</span>
+<span class="fc" id="L28">    }</span>
+
+
+    @GetMapping(&quot;/{idPlan}&quot;)
+    public ResponseEntity&lt;List&lt;Plan&gt;&gt; listarPlanes(
+            @PathVariable(name = &quot;idPlan&quot;, required = false) Long idPlan,
+            @PathVariable(name = &quot;nombre&quot;, required = false) String nombre) {
+
+
+<span class="fc" id="L37">        List&lt;Plan&gt; planes = servicio.buscarPlanes(idPlan, nombre);</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if (planes.isEmpty()) {</span>
+<span class="fc" id="L39">            return ResponseEntity.notFound().build();</span>
+        }
+
+<span class="fc" id="L42">        return ResponseEntity.ok(planes);</span>
+    }
+
+
+    @DeleteMapping(&quot;/{idPlan}&quot;)
+    public ResponseEntity&lt;String&gt; eliminarPlan(@PathVariable(&quot;idPlan&quot;) Long idPlan) {
+
+        try {
+<span class="fc" id="L50">            servicio.eliminarPlan(idPlan);</span>
+<span class="fc" id="L51">            return ResponseEntity.ok(&quot;Plan eliminado correctamente (200).&quot;);</span>
+<span class="fc" id="L52">        } catch (PlanNoEncontrado e) {</span>
+
+<span class="fc" id="L54">            return ResponseEntity.notFound().build();</span>
+        }
+
+    }
+
+    @PostMapping
+    public ResponseEntity&lt;?&gt; anadirProyecto(@RequestBody PlanDTO plan, UriComponentsBuilder builder) {
+<span class="fc" id="L61">        Plan pl = new Plan();</span>
+
+<span class="fc" id="L63">        pl.setNombre(plan.getNombre());</span>
+<span class="fc" id="L64">        pl.setMaxActivos(plan.getMaxActivos());</span>
+<span class="fc" id="L65">        pl.setPrecio(plan.getPrecio());</span>
+<span class="fc" id="L66">        pl.setMaxAlmacenamiento(plan.getMaxAlmacenamiento());</span>
+<span class="fc" id="L67">        pl.setMaxCategoriasActivos(plan.getMaxCategoriasActivos());</span>
+<span class="fc" id="L68">        pl.setMaxCategoriasProductos(plan.getMaxCategoriasProductos());</span>
+<span class="fc" id="L69">        pl.setMaxRelaciones(plan.getMaxRelaciones());</span>
+<span class="fc" id="L70">        pl.setMaxProductos(plan.getMaxProductos());</span>
+<span class="fc" id="L71">        List&lt;Cuenta&gt; c = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L72">        pl.setCuentas(c);</span>
+
+<span class="fc" id="L74">        Plan p = servicio.aniadirPlan(pl);</span>
+<span class="fc" id="L75">        URI uri = builder</span>
+<span class="fc" id="L76">                .path(&quot;/plan&quot;)</span>
+<span class="fc" id="L77">                .path(String.format(&quot;/%d&quot;, p.getId()))</span>
+<span class="fc" id="L78">                .build()</span>
+<span class="fc" id="L79">                .toUri();</span>
+<span class="fc" id="L80">        return ResponseEntity.created(uri).build();</span>
+    }
+
+
+    @PutMapping(&quot;/{idPlan}&quot;)
+    public ResponseEntity&lt;?&gt; modificarPlan(@PathVariable(name = &quot;idPlan&quot;)Long id, @RequestBody PlanDTO plan) {
+
+<span class="fc" id="L87">        servicio.modificarPlan(plan, id);</span>
+<span class="fc" id="L88">        return ResponseEntity.ok(plan);</span>
+    }
+
+    @ExceptionHandler(PlanNoEncontrado.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+<span class="nc" id="L93">    public void noEncontrado(){}</span>
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

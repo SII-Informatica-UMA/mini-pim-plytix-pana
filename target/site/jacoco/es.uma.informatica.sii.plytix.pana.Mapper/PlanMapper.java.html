@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlanMapper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">plytix.pana</a> &gt; <a href="index.source.html" class="el_package">es.uma.informatica.sii.plytix.pana.Mapper</a> &gt; <span class="el_source">PlanMapper.java</span></div><h1>PlanMapper.java</h1><pre class="source lang-java linenums">package es.uma.informatica.sii.plytix.pana.Mapper;
+
+import es.uma.informatica.sii.plytix.pana.dto.CuentaDTO;
+import es.uma.informatica.sii.plytix.pana.dto.PlanDTO;
+import es.uma.informatica.sii.plytix.pana.entities.Cuenta;
+import es.uma.informatica.sii.plytix.pana.entities.Plan;
+
+<span class="nc" id="L8">public class PlanMapper {</span>
+
+    public static PlanDTO toDTO(Plan entity) {
+<span class="fc" id="L11">        PlanDTO dto = new PlanDTO(entity.getNombre(), entity.getMaxProductos(),entity.getMaxActivos(),entity.getMaxAlmacenamiento(),entity.getMaxCategoriasProductos(),entity.getMaxCategoriasActivos(),entity.getMaxRelaciones(),entity.getPrecio());</span>
+        /*dto.setNombre(entity.getNombre());
+        dto.setMaxCategoriasActivos(entity.getMaxCategoriasActivos());
+        dto.setMaxCategoriasProductos(entity.getMaxCategoriasProductos());
+        dto.setMaxActivos(entity.getMaxActivos());
+        dto.setPrecio(entity.getPrecio());
+        dto.setMaxAlmacenamiento(entity.getMaxAlmacenamiento());
+        dto.setMaxProductos(entity.getMaxProductos());
+        dto.setMaxRelaciones(entity.getMaxRelaciones());*/
+
+<span class="fc" id="L21">        return dto;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Plan.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">plytix.pana</a> &gt; <a href="index.source.html" class="el_package">es.uma.informatica.sii.plytix.pana.entities</a> &gt; <span class="el_source">Plan.java</span></div><h1>Plan.java</h1><pre class="source lang-java linenums">package es.uma.informatica.sii.plytix.pana.entities;
+
+import jakarta.persistence.*;
+import java.util.List;
+
+/**
+ * Entidad que representa un plan de suscripción en el sistema.
+ * Contiene información sobre los límites y características del plan.
+ */
+@Entity
+public class Plan {
+    @Id  // Indica que este campo es la clave primaria de la entidad
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String nombre;  // Nombre del plan
+
+    // Los @Column personalizan el nombre de la columna en la base de datos
+    @Column(name = &quot;MAX_PRODUCTOS&quot;)
+    private Long maxProductos;  // Máximo número de productos permitidos
+
+    @Column(name = &quot;MAX_ACTIVOS&quot;)
+    private Long maxActivos;  // Máximo número de activos permitidos
+
+    @Column(name = &quot;MAX_ALMACENAMIENTO&quot;)
+    private Long maxAlmacenamiento;  // Límite de almacenamiento que ofrece el plan para una cuenta
+
+    @Column(name = &quot;MAX_CATEGORIAS_PRODUCTOS&quot;)
+    private Long maxCategoriasProductos;  // Máximo categorías de productos
+
+    @Column(name = &quot;MAX_CATEGORIAS_ACTIVOS&quot;)
+    private Long maxCategoriasActivos;  // Máximo categorías de activos
+
+    @Column(name = &quot;MAX_RELACIONES&quot;)
+    private Long maxRelaciones;  // Máximo relaciones entre entidades
+
+    private Double precio;  // Precio del plan
+
+    // Relación uno-a-muchos con Cuenta. Un plan puede tener múltiples cuentas asociadas
+    @OneToMany(mappedBy = &quot;plan&quot;)  // El dueño de la relación es Cuenta a través del campo 'plan'
+    private List&lt;Cuenta&gt; cuentas;
+
+<span class="fc" id="L43">    public Plan() {}</span>
+
+<span class="fc" id="L45">    public Plan(Long id){</span>
+<span class="fc" id="L46">        this.id = id;</span>
+<span class="fc" id="L47">    }</span>
+
+<span class="fc" id="L49">    public Plan(Long id, String nombre, Long maxProductos, Long maxActivos, Long maxAlmacenamiento, Long maxCategoriasProductos, Long maxCategoriasActivos, Long maxRelaciones, Double precio, List&lt;Cuenta&gt; cuentas) {</span>
+<span class="fc" id="L50">        this.id = id;</span>
+<span class="fc" id="L51">        this.nombre = nombre;</span>
+<span class="fc" id="L52">        this.maxProductos = maxProductos;</span>
+<span class="fc" id="L53">        this.maxActivos = maxActivos;</span>
+<span class="fc" id="L54">        this.maxAlmacenamiento = maxAlmacenamiento;</span>
+<span class="fc" id="L55">        this.maxCategoriasProductos = maxCategoriasProductos;</span>
+<span class="fc" id="L56">        this.maxCategoriasActivos = maxCategoriasActivos;</span>
+<span class="fc" id="L57">        this.maxRelaciones = maxRelaciones;</span>
+<span class="fc" id="L58">        this.precio = precio;</span>
+<span class="fc" id="L59">        this.cuentas = cuentas;</span>
+<span class="fc" id="L60">    }</span>
+
+    // === GETTERS Y SETTERS ===
+
+<span class="fc" id="L64">    public void setCuentas(List&lt;Cuenta&gt; cuentas){this.cuentas = cuentas;}</span>
+
+    public Long getId() {
+<span class="fc" id="L67">        return id;</span>
+    }
+
+    public void setId(Long id) {
+<span class="fc" id="L71">        this.id = id;</span>
+<span class="fc" id="L72">    }</span>
+
+    public String getNombre() {
+<span class="fc" id="L75">        return this.nombre;</span>
+    }
+
+    public void setNombre(String nombre) {
+<span class="fc" id="L79">        this.nombre = nombre;</span>
+<span class="fc" id="L80">    }</span>
+
+    public Long getMaxProductos() {
+<span class="fc" id="L83">        return maxProductos;</span>
+    }
+
+    public void setMaxProductos(Long maxProductos) {
+<span class="fc" id="L87">        this.maxProductos = maxProductos;</span>
+<span class="fc" id="L88">    }</span>
+
+    public Long getMaxActivos() {
+<span class="fc" id="L91">        return maxActivos;</span>
+    }
+
+    public void setMaxActivos(Long maxActivos) {
+<span class="fc" id="L95">        this.maxActivos = maxActivos;</span>
+<span class="fc" id="L96">    }</span>
+
+    public Long getMaxAlmacenamiento() {
+<span class="fc" id="L99">        return maxAlmacenamiento;</span>
+    }
+
+    public void setMaxAlmacenamiento(Long maxAlmacenamiento) {
+<span class="fc" id="L103">        this.maxAlmacenamiento = maxAlmacenamiento;</span>
+<span class="fc" id="L104">    }</span>
+
+    public Long getMaxCategoriasProductos() {
+<span class="fc" id="L107">        return maxCategoriasProductos;</span>
+    }
+
+    public void setMaxCategoriasProductos(Long maxCategoriasProductos) {
+<span class="fc" id="L111">        this.maxCategoriasProductos = maxCategoriasProductos;</span>
+<span class="fc" id="L112">    }</span>
+
+    public Long getMaxCategoriasActivos() {
+<span class="fc" id="L115">        return maxCategoriasActivos;</span>
+    }
+
+    public void setMaxCategoriasActivos(Long maxCategoriasActivos) {
+<span class="fc" id="L119">        this.maxCategoriasActivos = maxCategoriasActivos;</span>
+<span class="fc" id="L120">    }</span>
+
+    public Long getMaxRelaciones() {
+<span class="fc" id="L123">        return maxRelaciones;</span>
+    }
+
+    public void setMaxRelaciones(Long maxRelaciones) {
+<span class="fc" id="L127">        this.maxRelaciones = maxRelaciones;</span>
+<span class="fc" id="L128">    }</span>
+
+    public Double getPrecio() {
+<span class="fc" id="L131">        return precio;</span>
+    }
+
+    public void setPrecio(Double precio) {
+<span class="fc" id="L135">        this.precio = precio;</span>
+<span class="fc" id="L136">    }</span>
+
+    // Método equals que compara por ID
+    @Override
+    public boolean equals(Object o) {
+<span class="nc bnc" id="L141" title="All 2 branches missed.">        if (this == o) return true;</span>
+<span class="nc bnc" id="L142" title="All 2 branches missed.">        if (!(o instanceof Plan)) return false;</span>
+<span class="nc" id="L143">        Plan plan = (Plan) o;</span>
+<span class="nc bnc" id="L144" title="All 4 branches missed.">        return id != null &amp;&amp; id.equals(plan.id);</span>
+    }
+
+    // Método hashCode basado en el ID
+    @Override
+    public int hashCode() {
+<span class="nc bnc" id="L150" title="All 2 branches missed.">        return (id == null) ? 0 : id.hashCode();</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L155">    return &quot;Plan{&quot; +</span>
+            &quot;id=&quot; + id +
+            &quot;, nombre='&quot; + nombre + '\'' +
+            &quot;, maxProductos=&quot; + maxProductos +
+            &quot;, maxActivos=&quot; + maxActivos +
+            &quot;, maxAlmacenamiento=&quot; + maxAlmacenamiento +
+            &quot;, maxCategoriasProductos=&quot; + maxCategoriasProductos +
+            &quot;, maxCategoriasActivos=&quot; + maxCategoriasActivos +
+            &quot;, maxRelaciones=&quot; + maxRelaciones +
+            &quot;, precio=&quot; + precio +
+            '}';
+}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JwtRequestFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">plytix.pana</a> &gt; <a href="index.source.html" class="el_package">es.uma.informatica.sii.plytix.pana.config</a> &gt; <span class="el_source">JwtRequestFilter.java</span></div><h1>JwtRequestFilter.java</h1><pre class="source lang-java linenums">package es.uma.informatica.sii.plytix.pana.config;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import java.io.IOException;
+import io.jsonwebtoken.ExpiredJwtException;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Component
+<span class="fc" id="L26">public class JwtRequestFilter extends OncePerRequestFilter {</span>
+
+    @Autowired
+    private JwtUtil jwtTokenUtil;
+
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+            throws ServletException, IOException {
+
+<span class="fc" id="L35">        final String requestTokenHeader = request.getHeader(&quot;Authorization&quot;);</span>
+
+<span class="fc" id="L37">        String username = null;</span>
+<span class="fc" id="L38">        String jwtToken = null;</span>
+        // JWT Token viene en la forma de &quot;Bearer token&quot;. Eliminamos el término Bearer del inicio
+        // para obtener solo el token
+<span class="pc bpc" id="L41" title="3 of 4 branches missed.">        if (requestTokenHeader != null &amp;&amp; requestTokenHeader.startsWith(&quot;Bearer &quot;)) {</span>
+<span class="nc" id="L42">            jwtToken = requestTokenHeader.substring(7);</span>
+            try {
+<span class="nc" id="L44">                username = jwtTokenUtil.getUsernameFromToken(jwtToken);</span>
+<span class="nc" id="L45">            } catch (IllegalArgumentException e) {</span>
+<span class="nc" id="L46">                logger.info(&quot;No puedo obtener el JWT&quot;);</span>
+<span class="nc" id="L47">            } catch (ExpiredJwtException e) {</span>
+<span class="nc" id="L48">                logger.info(&quot;El token ha expirado&quot;);</span>
+<span class="nc" id="L49">            }</span>
+<span class="nc" id="L50">            logger.info(&quot;usuario = &quot; + username);</span>
+        } else {
+<span class="fc" id="L52">            logger.info(&quot;El token no comienza con Bearer&quot;);</span>
+        }
+
+<span class="pc bpc" id="L55" title="3 of 4 branches missed.">        if (username != null &amp;&amp; SecurityContextHolder.getContext().getAuthentication() == null) {</span>
+
+<span class="nc" id="L57">            var role = jwtTokenUtil.getRoleFromToken(jwtToken).orElse(&quot;INVITADO&quot;);</span>
+
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            String prefixedRole = switch (role.toUpperCase()) {</span>
+<span class="nc" id="L60">                case &quot;ADMINISTRADOR&quot; -&gt; &quot;ROLE_ADMIN&quot;;</span>
+<span class="nc" id="L61">                default -&gt; &quot;ROLE_&quot; + role.toUpperCase();</span>
+            };
+
+<span class="nc" id="L64">            var authority = new SimpleGrantedAuthority(prefixedRole);</span>
+
+<span class="nc" id="L66">            Collection&lt;GrantedAuthority&gt; authorities = List.of(authority);</span>
+
+<span class="nc" id="L68">            UserDetails userDetails = new User(username, &quot;&quot;, authorities);</span>
+
+
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            if (!jwtTokenUtil.isTokenExpired(jwtToken)) {</span>
+<span class="nc" id="L72">                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(</span>
+<span class="nc" id="L73">                        userDetails, userDetails.getPassword(), userDetails.getAuthorities());</span>
+<span class="nc" id="L74">                usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));</span>
+
+<span class="nc" id="L76">                logger.debug(&quot;usernamePasswordAuthenticationToken = &quot; + usernamePasswordAuthenticationToken);</span>
+<span class="nc" id="L77">                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);</span>
+<span class="nc" id="L78">            } else {</span>
+<span class="nc" id="L79">                logger.debug(&quot;Token no válido&quot;);</span>
+            }
+
+        }
+        // A la ida
+
+<span class="fc" id="L85">        chain.doFilter(request, response);</span>
+
+        // A la vuelta
+<span class="fc" id="L88">    }</span>
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

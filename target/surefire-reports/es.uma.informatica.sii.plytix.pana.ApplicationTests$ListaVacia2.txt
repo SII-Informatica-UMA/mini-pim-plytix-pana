@@ -1,0 +1,5 @@
+-------------------------------------------------------------------------------
+Test set: es.uma.informatica.sii.plytix.pana.ApplicationTests$ListaVacia2
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.589 s - in es.uma.informatica.sii.plytix.pana.ApplicationTests$ListaVacia2
+es.uma.informatica.sii.plytix.pana.ApplicationTests$ListaVacia2.insertaPlan  Time elapsed: 0.048 s

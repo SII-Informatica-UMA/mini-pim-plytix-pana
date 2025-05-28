@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UsuarioServiceClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">plytix.pana</a> &gt; <a href="index.source.html" class="el_package">es.uma.informatica.sii.plytix.pana.service</a> &gt; <span class="el_source">UsuarioServiceClient.java</span></div><h1>UsuarioServiceClient.java</h1><pre class="source lang-java linenums">package es.uma.informatica.sii.plytix.pana.service;
+
+import es.uma.informatica.sii.plytix.pana.dto.UsuarioDTO;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
+
+@Service
+public class UsuarioServiceClient {
+    private final RestTemplate restTemplate;
+
+    @Value(&quot;${usuario.service.url}&quot;)
+    private String usuarioServiceUrl;
+
+<span class="nc" id="L18">    public UsuarioServiceClient(RestTemplateBuilder restTemplateBuilder) {</span>
+<span class="nc" id="L19">        this.restTemplate = restTemplateBuilder.build();</span>
+<span class="nc" id="L20">    }</span>
+
+    public boolean isAdmin(Long usuarioId) {
+<span class="nc" id="L23">        String url = UriComponentsBuilder.fromHttpUrl(usuarioServiceUrl)</span>
+<span class="nc" id="L24">                .path(&quot;/usuarios/{id}/isAdmin&quot;)</span>
+<span class="nc" id="L25">                .buildAndExpand(usuarioId)</span>
+<span class="nc" id="L26">                .toUriString();</span>
+
+<span class="nc" id="L28">        ResponseEntity&lt;Boolean&gt; response = restTemplate.getForEntity(</span>
+                url,
+                Boolean.class
+        );
+
+<span class="nc bnc" id="L33" title="All 4 branches missed.">        return response.getStatusCode().is2xxSuccessful() &amp;&amp; Boolean.TRUE.equals(response.getBody());</span>
+    }
+    public UsuarioDTO obtenerUsuarioPorId(Long usuarioId) {
+<span class="nc" id="L36">        String url = UriComponentsBuilder.fromHttpUrl(usuarioServiceUrl)</span>
+<span class="nc" id="L37">                .path(&quot;/usuarios/{id}&quot;)</span>
+<span class="nc" id="L38">                .buildAndExpand(usuarioId)</span>
+<span class="nc" id="L39">                .toUriString();</span>
+
+<span class="nc" id="L41">        ResponseEntity&lt;UsuarioDTO&gt; response = restTemplate.getForEntity(</span>
+                url,
+                UsuarioDTO.class
+        );
+
+<span class="nc bnc" id="L46" title="All 4 branches missed.">        if (response.getStatusCode().is2xxSuccessful() &amp;&amp; response.getBody() != null) {</span>
+<span class="nc" id="L47">            return response.getBody();</span>
+        } else {
+<span class="nc" id="L49">            throw new RuntimeException(&quot;Error al obtener usuario del servicio&quot;);</span>
+        }
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

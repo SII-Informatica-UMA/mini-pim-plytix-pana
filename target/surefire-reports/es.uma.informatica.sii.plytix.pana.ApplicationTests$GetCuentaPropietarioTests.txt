@@ -1,0 +1,6 @@
+-------------------------------------------------------------------------------
+Test set: es.uma.informatica.sii.plytix.pana.ApplicationTests$GetCuentaPropietarioTests
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.871 s - in es.uma.informatica.sii.plytix.pana.ApplicationTests$GetCuentaPropietarioTests
+es.uma.informatica.sii.plytix.pana.ApplicationTests$GetCuentaPropietarioTests.obtenerPropietarioCuentaExistente  Time elapsed: 0.048 s
+es.uma.informatica.sii.plytix.pana.ApplicationTests$GetCuentaPropietarioTests.obtenerPropietarioCuentaNoExistente  Time elapsed: 0.034 s

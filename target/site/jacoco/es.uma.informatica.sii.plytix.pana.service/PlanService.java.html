@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlanService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">plytix.pana</a> &gt; <a href="index.source.html" class="el_package">es.uma.informatica.sii.plytix.pana.service</a> &gt; <span class="el_source">PlanService.java</span></div><h1>PlanService.java</h1><pre class="source lang-java linenums">package es.uma.informatica.sii.plytix.pana.service;
+
+import es.uma.informatica.sii.plytix.pana.dto.PlanDTO;
+import es.uma.informatica.sii.plytix.pana.entities.Plan;
+import es.uma.informatica.sii.plytix.pana.excepciones.CuentaNotFoundException;
+import es.uma.informatica.sii.plytix.pana.excepciones.CuentasAsociadasException;
+import es.uma.informatica.sii.plytix.pana.excepciones.PlanNoEncontrado;
+import es.uma.informatica.sii.plytix.pana.excepciones.PlanNoExisteException;
+import es.uma.informatica.sii.plytix.pana.repositories.CuentaRepository;
+import es.uma.informatica.sii.plytix.pana.repositories.PlanRepository;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Service;
+import java.util.*;
+
+import java.util.Optional;
+
+@Service
+@Transactional
+public class PlanService {
+    private final PlanRepository repo;
+    private final CuentaRepository Cuentarepo;
+
+    @Autowired
+<span class="fc" id="L26">    public PlanService (PlanRepository repo, CuentaRepository cuentarepo){</span>
+<span class="fc" id="L27">        this.repo = repo;</span>
+<span class="fc" id="L28">        Cuentarepo = cuentarepo;</span>
+<span class="fc" id="L29">    }</span>
+
+    //Post
+    public Plan aniadirPlan (Plan p){
+<span class="fc" id="L33">        p.setId(null);</span>
+<span class="fc" id="L34">        repo.save(p);</span>
+<span class="fc" id="L35">        return p;</span>
+    }
+
+    //Put
+    public void modificarPlan(PlanDTO plan, Long id){
+<span class="fc" id="L40">        Optional&lt;Plan&gt; p = repo.findById(id);</span>
+<span class="pc bpc" id="L41" title="1 of 2 branches missed.">        if(!p.isPresent()){</span>
+<span class="nc" id="L42">            throw new PlanNoEncontrado(&quot;Plan no encontrado&quot;);</span>
+        }
+<span class="fc" id="L44">        Plan pl = p.get();</span>
+<span class="fc" id="L45">        pl.setNombre(plan.getNombre());</span>
+
+<span class="fc" id="L47">        repo.save(pl);</span>
+<span class="fc" id="L48">    }</span>
+
+    public void eliminarPlan(Long planId) {
+
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        if (repo.existsById(planId)) {</span>
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">            if (Cuentarepo.existsByPlan_Id(planId)) {</span>
+<span class="nc" id="L54">                throw new CuentasAsociadasException(&quot;No se puede eliminar el plan, tiene cuentas asociadas.&quot;);</span>
+            }
+<span class="fc" id="L56">            repo.deleteById(planId);</span>
+        } else {
+<span class="fc" id="L58">            throw new PlanNoEncontrado(&quot;&quot;);</span>
+        }
+
+<span class="fc" id="L61">    }</span>
+
+
+    public List&lt;Plan&gt; buscarPlanes(Long idPlan, String nombre) {
+
+<span class="pc bpc" id="L66" title="3 of 4 branches missed.">        if (idPlan == null &amp;&amp; nombre == null) {</span>
+<span class="nc" id="L67">            List&lt;Plan&gt; planes = repo.findAll();</span>
+<span class="nc" id="L68">            return planes;</span>
+<span class="pc bpc" id="L69" title="2 of 4 branches missed.">        } else if (idPlan != null &amp;&amp; nombre == null) {</span>
+<span class="fc" id="L70">            List&lt;Plan&gt; planes = repo.findById(idPlan)</span>
+<span class="fc" id="L71">                    .map(List::of)</span>
+<span class="fc" id="L72">                    .orElseGet(List::of);</span>
+<span class="fc" id="L73">            return planes;</span>
+<span class="nc bnc" id="L74" title="All 4 branches missed.">        } else if (idPlan == null &amp;&amp; nombre != null) {</span>
+<span class="nc" id="L75">            List&lt;Plan&gt; planes = repo.findByNombre(nombre);</span>
+<span class="nc" id="L76">            return planes;</span>
+        } else {
+<span class="nc" id="L78">            List&lt;Plan&gt; planes = repo.findById(idPlan)</span>
+<span class="nc" id="L79">                    .filter(p -&gt; nombre.equals(p.getNombre()))</span>
+<span class="nc" id="L80">                    .map(List::of)</span>
+<span class="nc" id="L81">                    .orElseGet(List::of);</span>
+<span class="nc" id="L82">            return planes;</span>
+        }
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

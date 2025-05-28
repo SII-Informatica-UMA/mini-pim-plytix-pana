@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CuentaService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">plytix.pana</a> &gt; <a href="index.source.html" class="el_package">es.uma.informatica.sii.plytix.pana.service</a> &gt; <span class="el_source">CuentaService.java</span></div><h1>CuentaService.java</h1><pre class="source lang-java linenums">package es.uma.informatica.sii.plytix.pana.service;
+
+import es.uma.informatica.sii.plytix.pana.UsuarioServiceClient;
+import es.uma.informatica.sii.plytix.pana.dto.CuentaDTO;
+import es.uma.informatica.sii.plytix.pana.dto.UsuarioDTO;
+import es.uma.informatica.sii.plytix.pana.entities.Cuenta;
+import es.uma.informatica.sii.plytix.pana.entities.Plan;
+import es.uma.informatica.sii.plytix.pana.excepciones.AccesoDenegadoException;
+import es.uma.informatica.sii.plytix.pana.excepciones.CuentaNotFoundException;
+import es.uma.informatica.sii.plytix.pana.excepciones.PlanNoExisteException;
+import es.uma.informatica.sii.plytix.pana.repositories.CuentaRepository;
+import es.uma.informatica.sii.plytix.pana.repositories.PlanRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+@Service
+@Transactional
+public class CuentaService {
+
+    @Autowired
+    private CuentaRepository cuentaRepository;
+    @Autowired
+    private PlanRepository planRepository;
+
+    private final UsuarioServiceClient usuarioServiceClient;
+
+
+   
+    //POST /cuenta
+    public Cuenta anadirCuenta(Cuenta cuenta, Long idAdmin){
+
+
+        // Obtener la lista actual
+<span class="fc" id="L41">        List&lt;Long&gt; usuariosActuales = cuenta.getUsuarios();</span>
+
+        // Crear una nueva lista combinando valores existentes + nuevo
+<span class="fc" id="L44">        List&lt;Long&gt; nuevaLista = new ArrayList&lt;&gt;(usuariosActuales);</span>
+<span class="fc" id="L45">        nuevaLista.add(idAdmin); // Añadir el nuevo ID</span>
+
+        // Llamar al setter
+<span class="fc" id="L48">        cuenta.setUsuarios(nuevaLista); // Reemplaza toda la lista</span>
+
+<span class="fc" id="L50">        cuenta.setDuenoId(idAdmin);</span>
+
+
+<span class="fc" id="L53">        return cuentaRepository.save(cuenta);</span>
+    }
+
+    // POST /cuenta/{idCuenta}/propietario
+    public void actualizarPropietario(Long idCuenta, Long nuevoPropietarioId, String email) {
+
+<span class="pc bpc" id="L59" title="3 of 8 branches missed.">        if (idCuenta == null || (nuevoPropietarioId == null &amp;&amp; (email == null || email.isBlank()))) {</span>
+<span class="nc" id="L60">            throw new IllegalArgumentException(&quot;Parámetros inválidos&quot;);</span>
+        }
+
+<span class="fc" id="L63">        System.out.println(&quot;Llamada a cuentaService con email: &quot;+email);</span>
+
+
+        // Buscar cuenta; lanza 404 si no se encuentra
+<span class="fc" id="L67">        Cuenta cuenta = cuentaRepository.findById(idCuenta)</span>
+<span class="fc" id="L68">                .orElseThrow(() -&gt; new ResponseStatusException(HttpStatus.NOT_FOUND, &quot;Cuenta no encontrada con ID: &quot; + idCuenta));</span>
+
+<span class="fc" id="L70">        List&lt;Long&gt; usuarios = cuenta.getUsuarios();</span>
+
+<span class="pc bpc" id="L72" title="1 of 2 branches missed.">        if (usuarios == null) {</span>
+<span class="nc" id="L73">            usuarios = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L74">            cuenta.setUsuarios(usuarios);</span>
+        }
+
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        if(nuevoPropietarioId==null){</span>
+            UsuarioDTO user;
+            do {
+<span class="fc" id="L80">                user = new UsuarioDTO(email);</span>
+<span class="pc bpc" id="L81" title="1 of 2 branches missed.">            } while (usuarios.contains(user.getId()));</span>
+
+<span class="fc" id="L83">            nuevoPropietarioId = user.getId();</span>
+        }
+
+
+<span class="pc bpc" id="L87" title="1 of 2 branches missed.">        if (!usuarios.contains(nuevoPropietarioId)) {</span>
+<span class="fc" id="L88">            usuarios.add(nuevoPropietarioId);</span>
+        }
+
+<span class="fc" id="L91">        cuenta.setDuenoId(nuevoPropietarioId);</span>
+
+<span class="fc" id="L93">        cuentaRepository.save(cuenta);</span>
+<span class="fc" id="L94">    }</span>
+
+    // POST /cuenta/{idCuenta}/usuarios
+    public void actualizarUsuariosCuenta(Long idCuenta, List&lt;UsuarioDTO&gt; nuevosUsuariosIds) {
+
+<span class="fc" id="L99">        Cuenta cuenta = cuentaRepository.findById(idCuenta)</span>
+<span class="fc" id="L100">                .orElseThrow(() -&gt; new ResponseStatusException(HttpStatus.NOT_FOUND, &quot;Cuenta no encontrada con ID: &quot; + idCuenta));</span>
+
+<span class="fc" id="L102">        List&lt;Long&gt; nuevosIds = nuevosUsuariosIds.stream()</span>
+<span class="fc" id="L103">                .map(UsuarioDTO::getId)</span>
+<span class="fc" id="L104">                .collect(Collectors.toList());</span>
+
+<span class="fc" id="L106">        cuenta.setUsuarios(nuevosIds);</span>
+
+        // Guardar la cuenta actualizada
+<span class="fc" id="L109">        cuentaRepository.save(cuenta);</span>
+<span class="fc" id="L110">    }</span>
+
+
+
+    @Autowired
+<span class="fc" id="L115">    public CuentaService (CuentaRepository cuentaRepository, UsuarioServiceClient usuarioServiceClient){</span>
+<span class="fc" id="L116">        this.cuentaRepository = cuentaRepository;</span>
+<span class="fc" id="L117">        this.usuarioServiceClient = usuarioServiceClient;</span>
+<span class="fc" id="L118">    }</span>
+
+    @Transactional(readOnly = true)
+    @PreAuthorize(&quot;hasRole('ADMIN') or @cuentaService.tieneAcceso(#cuentaId, authentication.principal.id)&quot;)
+    public UsuarioDTO obtenerPropietarioCuenta(Long cuentaId) {
+<span class="fc" id="L123">        Cuenta cuenta = cuentaRepository.findById(cuentaId)</span>
+<span class="fc" id="L124">                .orElseThrow(() -&gt; new CuentaNotFoundException(cuentaId));</span>
+
+<span class="fc" id="L126">        return usuarioServiceClient.obtenerUsuarioPorId(cuenta.getDuenoId());</span>
+    }
+
+    public boolean tieneAcceso(Long cuentaId, Long usuarioId) {
+<span class="nc" id="L130">        return cuentaRepository.existsByIdAndDuenoIdOrUsuariosContaining(cuentaId, usuarioId);</span>
+    }
+
+    @Transactional(readOnly = true)
+    public List&lt;Cuenta&gt; obtenerCuentaPorId(Long idCuenta, Long userId) {
+<span class="nc bnc" id="L135" title="All 2 branches missed.">        if (!cuentaRepository.existsByIdAndDuenoIdOrUsuariosContaining(idCuenta, userId)</span>
+<span class="nc bnc" id="L136" title="All 2 branches missed.">                &amp;&amp; !usuarioServiceClient.isAdmin(userId)) {</span>
+<span class="nc" id="L137">            throw new AccesoDenegadoException(&quot;No tienes acceso a esta cuenta&quot;);</span>
+        }
+<span class="nc" id="L139">        return cuentaRepository.findById(idCuenta)</span>
+<span class="nc" id="L140">                .map(List::of)</span>
+<span class="nc" id="L141">                .orElseThrow(() -&gt; new CuentaNotFoundException(idCuenta));</span>
+    }
+
+    @Transactional(readOnly = true)
+    @PreAuthorize(&quot;hasRole('ADMIN')&quot;)
+    public List&lt;Cuenta&gt; obtenerCuentasPorNombre(String nombre, Long userId) {
+<span class="fc" id="L147">        return cuentaRepository.findByNombre(nombre);</span>
+    }
+
+    @Transactional(readOnly = true)
+    @PreAuthorize(&quot;hasRole('ADMIN')&quot;)
+    public List&lt;Cuenta&gt; obtenerCuentasPorPlan(Long idPlan, Long userId) {
+<span class="fc" id="L153">        return cuentaRepository.findByPlanId(idPlan);</span>
+    }
+
+    @Transactional(readOnly = true)
+    public List&lt;Cuenta&gt; obtenerCuentasPorUsuario(Long idUsuario, Long requestingUserId) {
+<span class="nc bnc" id="L158" title="All 4 branches missed.">        if (!idUsuario.equals(requestingUserId) &amp;&amp; !usuarioServiceClient.isAdmin(requestingUserId)) {</span>
+<span class="nc" id="L159">            throw new AccesoDenegadoException(&quot;Solo puedes consultar tus propias cuentas&quot;);</span>
+        }
+<span class="nc" id="L161">        List&lt;Cuenta&gt; cuentas = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L162">        cuentas.addAll(cuentaRepository.findByDuenoId(idUsuario));</span>
+<span class="nc" id="L163">        cuentas.addAll(cuentaRepository.findByUsuariosContaining(idUsuario));</span>
+<span class="nc" id="L164">        return cuentas;</span>
+    }
+
+
+    //put
+    public void modificarCuenta (CuentaDTO cuenta, Long id){
+
+<span class="fc" id="L171">        Optional&lt;Cuenta&gt; c = cuentaRepository.findById(id);</span>
+<span class="pc bpc" id="L172" title="1 of 2 branches missed.">        if(!c.isPresent()){</span>
+<span class="nc" id="L173">            throw new CuentaNotFoundException(id);</span>
+        }
+<span class="fc" id="L175">        Cuenta cu = c.get();</span>
+<span class="fc" id="L176">        cu.setNombre(cuenta.getNombre());</span>
+<span class="fc" id="L177">        cu.setDireccionFiscal(cuenta.getDireccion());</span>
+<span class="fc" id="L178">        cu.setNIF(cuenta.getNif());</span>
+<span class="fc" id="L179">        cu.setFechaAlta(cuenta.getFechaAlta());</span>
+
+<span class="fc" id="L181">        Optional&lt;Plan&gt; pl = planRepository.findById(cuenta.getPlanId());</span>
+<span class="pc bpc" id="L182" title="1 of 2 branches missed.">        if(!pl.isPresent()){</span>
+<span class="nc" id="L183">            throw new PlanNoExisteException();</span>
+        }
+<span class="fc" id="L185">        cu.setPlan(pl.get());</span>
+<span class="fc" id="L186">        cuentaRepository.save(cu);</span>
+<span class="fc" id="L187">    }</span>
+
+    public void eliminarCuenta(Long cuentaId) {
+
+
+<span class="fc bfc" id="L192" title="All 2 branches covered.">        if (cuentaRepository.existsById(cuentaId)) {</span>
+<span class="fc" id="L193">            cuentaRepository.deleteById(cuentaId);</span>
+        } else {
+<span class="fc" id="L195">            throw new CuentaNotFoundException(cuentaId);</span>
+        }
+
+<span class="fc" id="L198">    }</span>
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

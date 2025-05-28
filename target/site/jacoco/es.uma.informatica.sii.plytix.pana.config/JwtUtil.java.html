@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JwtUtil.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">plytix.pana</a> &gt; <a href="index.source.html" class="el_package">es.uma.informatica.sii.plytix.pana.config</a> &gt; <span class="el_source">JwtUtil.java</span></div><h1>JwtUtil.java</h1><pre class="source lang-java linenums">package es.uma.informatica.sii.plytix.pana.config;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import java.security.Key;
+import java.util.Date;
+import java.util.*;
+import java.util.function.Function;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+
+@Component
+<span class="fc" id="L20">public class JwtUtil {</span>
+
+    @Value(&quot;${jwt.secret}&quot;)
+    private String secret;
+
+    @Value(&quot;${jwt.token.validity}&quot;)
+    private long tokenValidity;
+
+    //retrieve username from jwt token
+    public String getUsernameFromToken(String token) {
+<span class="nc" id="L30">        return getClaimFromToken(token, Claims::getSubject);</span>
+    }
+
+    public Optional&lt;String&gt; getRoleFromToken(String token) {
+        try {
+<span class="nc" id="L35">            return Optional.ofNullable(getAllClaimsFromToken(token).get(&quot;ROLE&quot;))</span>
+<span class="nc" id="L36">                    .map(Object::toString);</span>
+<span class="nc" id="L37">        } catch (IllegalArgumentException e) {</span>
+<span class="nc" id="L38">            return Optional.empty();</span>
+        }
+    }
+
+    //retrieve expiration date from jwt token
+    public Date getExpirationDateFromToken(String token) {
+<span class="nc" id="L44">        return getClaimFromToken(token, Claims::getExpiration);</span>
+    }
+
+    public &lt;T&gt; T getClaimFromToken(String token, Function&lt;Claims, T&gt; claimsResolver) {
+<span class="nc" id="L48">        final Claims claims = getAllClaimsFromToken(token);</span>
+<span class="nc" id="L49">        return claimsResolver.apply(claims);</span>
+    }
+
+    private Claims getAllClaimsFromToken(String token) {
+<span class="nc" id="L53">        byte[] keyBytes = secret.getBytes();</span>
+<span class="nc" id="L54">        Key key = Keys.hmacShaKeyFor(keyBytes);</span>
+<span class="nc" id="L55">        return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();</span>
+    }
+
+    //check if the token has expired
+    public Boolean isTokenExpired(String token) {
+<span class="nc" id="L60">        final Date expiration = getExpirationDateFromToken(token);</span>
+<span class="nc" id="L61">        return expiration.before(new Date());</span>
+    }
+    private String doGenerateToken(Map&lt;String, Object&gt; claims, String subject) {
+<span class="nc" id="L64">        byte[] keyBytes = secret.getBytes();</span>
+<span class="nc" id="L65">        Key key = Keys.hmacShaKeyFor(keyBytes);</span>
+
+<span class="nc" id="L67">        return Jwts.builder()</span>
+<span class="nc" id="L68">                .setClaims(claims)</span>
+<span class="nc" id="L69">                .setSubject(subject)</span>
+<span class="nc" id="L70">                .setIssuedAt(new Date(System.currentTimeMillis()))</span>
+<span class="nc" id="L71">                .setExpiration(new Date(System.currentTimeMillis() + tokenValidity * 1000))</span>
+<span class="nc" id="L72">                .signWith(key, SignatureAlgorithm.HS512).compact();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
