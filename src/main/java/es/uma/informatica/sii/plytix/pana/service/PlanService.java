@@ -46,60 +46,39 @@ public class PlanService {
         repo.save(pl);
     }
 
-    /*
-    Elimina el plan indicado solo si:
-     existe,
-     no hay ninguna cuenta asociada a él.
-     planId ID del plan a eliminar.
-     CuentasAsociadasException si hay cuentas que dependen de este plan.
-     */
-    @PreAuthorize("hasRole('ADMIN')")
     public void eliminarPlan(Long planId) {
-        // 1) Comprobar existencia
         if (!repo.existsById(planId)) {
             throw new PlanNoExisteException();
         }
 
-        // 2) Comprobar cuentas asociadas
-        // opción A: si CuentaRepository tiene método existsByPlanId:
         if (Cuentarepo.existsByPlan_Id(planId)) {
             throw new CuentasAsociadasException("No se puede eliminar el plan, tiene cuentas asociadas.");
         }
 
-        // 3) Si pasa todas las validaciones, eliminar
         repo.deleteById(planId);
     }
 
 
-    /*
-      Busca planes según idPlan y/o nombre.
-     */
     public List<Plan> buscarPlanes(Long idPlan, String nombre) {
-        // Ejemplo simplificado:
-        // - Si ambos parámetros son nulos, devuelve todos los planes.
-        // - Si sólo uno está presente, busca por ese campo.
-        // - Si ambos están presentes, filtra por ambos.
-        // Podrías usar métodos de JPA, Criteria, QueryDSL, etc.
 
-        // 1) Sin filtros => todos
         if (idPlan == null && nombre == null) {
-            return repo.findAll();
-        }
-        // 2) Solo idPlan => buscado por PK
-        if (idPlan != null && nombre == null) {
-            return repo.findById(idPlan)
+            List<Plan> planes = repo.findAll();
+            return planes;
+        } else if (idPlan != null && nombre == null) {
+            List<Plan> planes = repo.findById(idPlan)
                     .map(List::of)
                     .orElseGet(List::of);
+            return planes;
+        } else if (idPlan == null && nombre != null) {
+            List<Plan> planes = repo.findByNombre(nombre);
+            return planes;
+        } else {
+            List<Plan> planes = repo.findById(idPlan)
+                    .filter(p -> nombre.equals(p.getNombre()))
+                    .map(List::of)
+                    .orElseGet(List::of);
+            return planes;
         }
-        // 3) Solo nombre => findByNombre
-        if (idPlan == null && nombre != null) {
-            return repo.findByNombre(nombre);
-        }
-        // 4) Ambos filtros: por ID y que el nombre coincida
-        return repo.findById(idPlan)
-                .filter(p -> nombre.equals(p.getNombre()))
-                .map(List::of)
-                .orElseGet(List::of);
     }
 
 
