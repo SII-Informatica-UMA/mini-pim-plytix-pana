@@ -196,32 +196,15 @@ public class CuentaService {
         cuentaRepository.save(cu);
     }
 
-    /**
-     * Elimina la cuenta solo si:
-     *  - existe,
-     *  - y ninguno de sus planes tiene productos, relaciones, activos o categorías.
-     */
-    @PreAuthorize("hasRole('ADMIN')")
     public void eliminarCuenta(Long cuentaId) {
 
-        Optional<Cuenta> cuenta = cuentaRepository.findById(cuentaId);
-        // 1) Comprobar existencia de la cuenta
-        if (!cuentaRepository.existsById(cuentaId)) {
+
+        if (cuentaRepository.existsById(cuentaId)) {
+            cuentaRepository.deleteById(cuentaId);
+        } else {
             throw new CuentaNotFoundException(cuentaId);
         }
 
-        // 2) Recuperar todos los planes de esta cuenta
-        Plan plan = cuenta.get().getPlan();
-        if (plan == null
-                || plan.getMaxProductos()    > 0
-                || plan.getMaxRelaciones()   > 0
-                || plan.getMaxActivos()      > 0
-                || plan.getMaxCategoriasActivos() > 0) {
-            throw new RelacionesAsociadasException("error en las relaciones asociadas");
-        }
-
-        // 4) si todo es correcto, eliminar la cuenta
-        cuentaRepository.deleteById(cuentaId);
     }
 
 
