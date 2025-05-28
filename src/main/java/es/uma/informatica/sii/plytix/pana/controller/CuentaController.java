@@ -63,7 +63,6 @@ public class CuentaController {
     }
 
     @GetMapping("/{idCuenta}/usuarios")
-    @PreAuthorize("hasRole('ADMIN') or #idUsuario == authentication.principal.id")
     public ResponseEntity<Boolean> usuarioTieneAccesoACuenta(
             @PathVariable Long idCuenta,
             @PathVariable Long idUsuario) {
@@ -72,7 +71,6 @@ public class CuentaController {
     }
 
     @GetMapping("/{idCuenta}/propietario")
-    @PreAuthorize("hasRole('ADMIN') or @cuentaService.esPropietarioOUsuario(#idCuenta, authentication.principal.id)")
     public ResponseEntity<UsuarioDTO> obtenerPropietario(
             @PathVariable Long idCuenta) {
         UsuarioDTO propietario = cuentaService.obtenerPropietarioCuenta(idCuenta);
@@ -86,17 +84,12 @@ public class CuentaController {
     }
 
     @DeleteMapping("/{idCuenta}")
-    public ResponseEntity<Void> eliminarCuenta(
-            @PathVariable("idCuenta") Long idCuenta,
-            @RequestHeader("Authorization") String authHeader
-    ) {
+    public ResponseEntity<Void> eliminarCuenta(@PathVariable("idCuenta") Long idCuenta) {
         try {
             cuentaService.eliminarCuenta(idCuenta);
             return ResponseEntity.ok().build();
-        } catch (PermisosInsuficientesException | RecursosAsociadosException e) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        } catch (CredencialesInvalidasException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        } catch (Exception e){
+            return ResponseEntity.notFound().build();
         }
     }
 
