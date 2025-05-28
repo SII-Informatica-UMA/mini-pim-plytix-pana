@@ -35,4 +35,13 @@ public class CuentaDTO {
     }
 
 
+    public String getNombre() { return this.nombre; }
+
+    public String getDireccion() { return this.direccion; }
+
+    public String getNif() { return this.nif; }
+
+    public Date getFechaAlta() { return this.fechaAlta; }
+
+    public Long getPlanId() { return this.planId; }
 }

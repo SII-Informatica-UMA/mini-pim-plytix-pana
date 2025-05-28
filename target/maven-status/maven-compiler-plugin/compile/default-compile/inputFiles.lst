@@ -1,8 +1,28 @@
-C:\Users\Usuario\OneDrive\Escritorio\Uni\3ºAño\Sistemas Informacion\Practicas\Ejemplos\mini-pim-plytix-pana\src\main\java\es\uma\informatica\sii\plytix\pana\entities\Role.java
-C:\Users\Usuario\OneDrive\Escritorio\Uni\3ºAño\Sistemas Informacion\Practicas\Ejemplos\mini-pim-plytix-pana\src\main\java\es\uma\informatica\sii\plytix\pana\entities\Plan.java
-C:\Users\Usuario\OneDrive\Escritorio\Uni\3ºAño\Sistemas Informacion\Practicas\Ejemplos\mini-pim-plytix-pana\src\main\java\es\uma\informatica\sii\plytix\pana\repositories\CuentaRepository.java
-C:\Users\Usuario\OneDrive\Escritorio\Uni\3ºAño\Sistemas Informacion\Practicas\Ejemplos\mini-pim-plytix-pana\src\main\java\es\uma\informatica\sii\plytix\pana\CommandLineRunner.java
-C:\Users\Usuario\OneDrive\Escritorio\Uni\3ºAño\Sistemas Informacion\Practicas\Ejemplos\mini-pim-plytix-pana\src\main\java\es\uma\informatica\sii\plytix\pana\entities\Cuenta.java
-C:\Users\Usuario\OneDrive\Escritorio\Uni\3ºAño\Sistemas Informacion\Practicas\Ejemplos\mini-pim-plytix-pana\src\main\java\es\uma\informatica\sii\plytix\pana\entities\Usuario.java
-C:\Users\Usuario\OneDrive\Escritorio\Uni\3ºAño\Sistemas Informacion\Practicas\Ejemplos\mini-pim-plytix-pana\src\main\java\es\uma\informatica\sii\plytix\pana\Application.java
-C:\Users\Usuario\OneDrive\Escritorio\Uni\3ºAño\Sistemas Informacion\Practicas\Ejemplos\mini-pim-plytix-pana\src\main\java\es\uma\informatica\sii\plytix\pana\repositories\UsuarioRepository.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\service\PlanService.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\excepciones\CuentaNotFoundException.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\excepciones\RecursosAsociadosException.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\Application.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\controller\PlanController.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\CommandLineRunner.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\Mapper\PlanMapper.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\repositories\CuentaRepository.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\dto\UsuarioDTO.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\entities\Cuenta.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\excepciones\RelacionesAsociadasException.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\entities\Plan.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\excepciones\PermisosInsuficientesException.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\repositories\PlanRepository.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\excepciones\CuentasAsociadasException.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\controller\CuentaController.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\dto\CuentaDTO.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\UsuarioServiceClient.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\config\JwtRequestFilter.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\Mapper\CuentaMapper.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\service\CuentaService.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\dto\PlanDTO.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\excepciones\AccesoDenegadoException.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\config\SecurityConfig.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\excepciones\PlanNoExisteException.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\excepciones\PlanNoEncontrado.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\config\JwtUtil.java
+C:\Users\Usuario\IdeaProjects\mini-pim-plytix-pana3\src\main\java\es\uma\informatica\sii\plytix\pana\excepciones\CredencialesInvalidasException.java

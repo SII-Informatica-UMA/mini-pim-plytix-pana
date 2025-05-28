@@ -1,6 +1,11 @@
 package es.uma.informatica.sii.plytix.pana.dto;
 
 
+import es.uma.informatica.sii.plytix.pana.entities.Cuenta;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class PlanDTO {
 
 
@@ -12,6 +17,17 @@ public class PlanDTO {
     private Long maxCategoriasActivos;  // Máximo categorías de activos
     private Long maxRelaciones;  // Máximo relaciones entre entidades
     private Double precio;  // Precio del plan
+
+    public PlanDTO(String nombre, Long maxProductos, Long maxActivos, Long maxAlmacenamiento, Long maxCategoriasProductos, Long maxCategoriasActivos, Long maxRelaciones, Double precio) {
+        this.nombre = nombre;
+        this.maxProductos = maxProductos;
+        this.maxActivos = maxActivos;
+        this.maxAlmacenamiento = maxAlmacenamiento;
+        this.maxCategoriasProductos = maxCategoriasProductos;
+        this.maxCategoriasActivos = maxCategoriasActivos;
+        this.maxRelaciones = maxRelaciones;
+        this.precio = precio;
+    }
 
     public String getNombre() {
         return this.nombre;
@@ -30,7 +46,7 @@ public class PlanDTO {
     }
 
     public Long getMaxActivos() {
-        return maxProductos;
+        return maxActivos;
     }
 
     public void setMaxActivos(Long maxActivos) {

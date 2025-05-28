@@ -2,7 +2,9 @@ package es.uma.informatica.sii.plytix.pana.service;
 
 import es.uma.informatica.sii.plytix.pana.dto.PlanDTO;
 import es.uma.informatica.sii.plytix.pana.entities.Plan;
+import es.uma.informatica.sii.plytix.pana.excepciones.CuentaNotFoundException;
 import es.uma.informatica.sii.plytix.pana.excepciones.CuentasAsociadasException;
+import es.uma.informatica.sii.plytix.pana.excepciones.PlanNoEncontrado;
 import es.uma.informatica.sii.plytix.pana.excepciones.PlanNoExisteException;
 import es.uma.informatica.sii.plytix.pana.repositories.CuentaRepository;
 import es.uma.informatica.sii.plytix.pana.repositories.PlanRepository;
@@ -27,76 +29,58 @@ public class PlanService {
     }
 
     //Post
-    public Long aniadirPlan (Plan p){
+    public Plan aniadirPlan (Plan p){
         p.setId(null);
         repo.save(p);
-        return p.getId();
+        return p;
     }
 
     //Put
     public void modificarPlan(PlanDTO plan, Long id){
         Optional<Plan> p = repo.findById(id);
         if(!p.isPresent()){
-            throw new PlanNoExisteException();
+            throw new PlanNoEncontrado("Plan no encontrado");
         }
         Plan pl = p.get();
         pl.setNombre(plan.getNombre());
+
+        repo.save(pl);
     }
 
-    /*
-    Elimina el plan indicado solo si:
-     existe,
-     no hay ninguna cuenta asociada a él.
-     planId ID del plan a eliminar.
-     CuentasAsociadasException si hay cuentas que dependen de este plan.
-     */
-    @PreAuthorize("hasRole('ADMIN')")
     public void eliminarPlan(Long planId) {
-        // 1) Comprobar existencia
-        if (!repo.existsById(planId)) {
-            throw new PlanNoExisteException();
+
+        if (repo.existsById(planId)) {
+            if (Cuentarepo.existsByPlan_Id(planId)) {
+                throw new CuentasAsociadasException("No se puede eliminar el plan, tiene cuentas asociadas.");
+            }
+            repo.deleteById(planId);
+        } else {
+            throw new PlanNoEncontrado("");
         }
 
-        // 2) Comprobar cuentas asociadas
-        // opción A: si CuentaRepository tiene método existsByPlanId:
-        if (Cuentarepo.existsByPlan_Id(planId)) {
-            throw new CuentasAsociadasException("No se puede eliminar el plan, tiene cuentas asociadas.");
-        }
-
-        // 3) Si pasa todas las validaciones, eliminar
-        repo.deleteById(planId);
     }
 
 
-    /*
-      Busca planes según idPlan y/o nombre.
-     */
     public List<Plan> buscarPlanes(Long idPlan, String nombre) {
-        // Ejemplo simplificado:
-        // - Si ambos parámetros son nulos, devuelve todos los planes.
-        // - Si sólo uno está presente, busca por ese campo.
-        // - Si ambos están presentes, filtra por ambos.
-        // Podrías usar métodos de JPA, Criteria, QueryDSL, etc.
 
-        // 1) Sin filtros => todos
         if (idPlan == null && nombre == null) {
-            return repo.findAll();
-        }
-        // 2) Solo idPlan => buscado por PK
-        if (idPlan != null && nombre == null) {
-            return repo.findById(idPlan)
+            List<Plan> planes = repo.findAll();
+            return planes;
+        } else if (idPlan != null && nombre == null) {
+            List<Plan> planes = repo.findById(idPlan)
                     .map(List::of)
                     .orElseGet(List::of);
+            return planes;
+        } else if (idPlan == null && nombre != null) {
+            List<Plan> planes = repo.findByNombre(nombre);
+            return planes;
+        } else {
+            List<Plan> planes = repo.findById(idPlan)
+                    .filter(p -> nombre.equals(p.getNombre()))
+                    .map(List::of)
+                    .orElseGet(List::of);
+            return planes;
         }
-        // 3) Solo nombre => findByNombre
-        if (idPlan == null && nombre != null) {
-            return repo.findByNombre(nombre);
-        }
-        // 4) Ambos filtros: por ID y que el nombre coincida
-        return repo.findById(idPlan)
-                .filter(p -> nombre.equals(p.getNombre()))
-                .map(List::of)
-                .orElseGet(List::of);
     }
 
 

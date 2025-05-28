@@ -32,7 +32,7 @@ public class JwtUtil {
 
     public Optional<String> getRoleFromToken(String token) {
         try {
-            return Optional.ofNullable(getAllClaimsFromToken(token).get("role"))
+            return Optional.ofNullable(getAllClaimsFromToken(token).get("ROLE"))
                     .map(Object::toString);
         } catch (IllegalArgumentException e) {
             return Optional.empty();
@@ -60,8 +60,6 @@ public class JwtUtil {
         final Date expiration = getExpirationDateFromToken(token);
         return expiration.before(new Date());
     }
-
-
     private String doGenerateToken(Map<String, Object> claims, String subject) {
         byte[] keyBytes = secret.getBytes();
         Key key = Keys.hmacShaKeyFor(keyBytes);

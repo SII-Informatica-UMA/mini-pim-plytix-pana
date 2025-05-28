@@ -3,10 +3,7 @@ package es.uma.informatica.sii.plytix.pana.entities;
 import java.util.*;
 import jakarta.persistence.*;
 
-/**
- * Entidad que representa una cuenta de usuario en el sistema.
- * Contiene información fiscal y de suscripción del cliente.
- */
+
 @Entity
 public class Cuenta {
 	@Id  // Clave primaria de la entidad
