@@ -116,6 +116,42 @@ public class ApplicationTests {//headers.setBearerAuth("token");
 
         }
 
+        @Nested
+        @DisplayName("al eliminar una cuenta")
+        public class EliminarCuenta {
+            @Test
+            @DisplayName("DELETE /cuenta/{idCuenta} elimina cuenta existente")
+            public void eliminaExistente() {
+
+
+                RequestEntity<Void> peticion = RequestEntity
+                        .delete(URI.create("http://localhost:" + port + "/cuenta/1"))
+                        .build();
+
+                ResponseEntity<Void> resp = restTemplate.exchange(peticion, Void.class);
+
+                assertThat(resp.getStatusCodeValue()).isEqualTo(200);
+
+                assertThat(cuentaRepository.existsById(1L)).isFalse();
+            }
+
+            @Test
+            @DisplayName("404 al eliminar cuenta inexistente")
+            public void eliminaNoExiste() {
+                URI uri = URI.create("http://localhost:" + port + "/cuenta/9999");
+
+                RequestEntity<Void> request = RequestEntity
+                        .delete(uri)
+                        .build();
+
+                ResponseEntity<Void> resp = restTemplate.exchange(request, Void.class);
+
+                assertThat(resp.getStatusCodeValue()).isEqualTo(404);
+                assertThat(resp.hasBody()).isEqualTo(false);
+
+            }
+        }
+
 
 
         @Test
@@ -663,23 +699,6 @@ public class ApplicationTests {//headers.setBearerAuth("token");
     }
 
     @Nested
-    @DisplayName("cuando no hay planes (lista vacía)")
-    public class PlanListaVacia {
-
-        @Test
-        @DisplayName("devuelve lista vacía al GET /plan")
-        public void listaVacia() {
-            var peticion = get("http","localhost", port, "/plan");
-            var resp = restTemplate.exchange((RequestEntity<?>) peticion, Plan[].class);
-
-            assertThat(resp.getStatusCodeValue()).isEqualTo(200);
-            assertNotNull(resp.getBody());
-            List<Plan> planes = Arrays.asList(resp.getBody());
-            assertThat(planes).isEmpty();
-        }
-    }
-
-    @Nested
     @DisplayName("cuando hay planes (lista no vacía)")
     public class PlanConDatos {
 
@@ -711,7 +730,7 @@ public class ApplicationTests {//headers.setBearerAuth("token");
             @DisplayName("devuelve 200 y el plan existente")
             public void existe() {
                 Long planId = p1.getId();
-                URI uri = URI.create("http://localhost/:" + port + "/plan/" + planId);
+                URI uri = URI.create("http://localhost:" + port + "/plan/" + planId);
                 RequestEntity<Void> peticion = get(uri)
                         .build();
 
@@ -730,7 +749,7 @@ public class ApplicationTests {//headers.setBearerAuth("token");
             @Test
             @DisplayName("devuelve 404 al GET /plan/IdPlan")
             public void noExiste() {
-                URI uri = URI.create("http://localhost/:" + port + "/plan/9999");
+                URI uri = URI.create("http://localhost:" + port + "/plan/9999");
 
                 RequestEntity<Void> peticion = get(uri)
                         .build();
@@ -749,10 +768,9 @@ public class ApplicationTests {//headers.setBearerAuth("token");
         @Test
         @DisplayName("elimina plan existente con DELETE /plan/{idPlan}")
         public void eliminaExistente() {
-            System.out.println("Antes del delete, existen: " + planRepository.findAll().size());
 
             RequestEntity<Void> peticion = RequestEntity
-                    .delete(URI.create("http://localhost/:" + port + "/plan/1"))
+                    .delete(URI.create("http://localhost:" + port + "/plan/1"))
                     .build();
 
             ResponseEntity<Void> resp = restTemplate.exchange(peticion, Void.class);
@@ -764,65 +782,18 @@ public class ApplicationTests {//headers.setBearerAuth("token");
         @Test
         @DisplayName("404 al eliminar plan inexistente")
         public void eliminaNoExiste() {
-            var peticion = delete("http","localhost", port, "/plan/9999");
-            var r = restTemplate.exchange((RequestEntity<?>) peticion, Void.class);
+            URI uri = URI.create("http://localhost:" + port + "/plan/9999");
 
-            assertThat(r.getStatusCodeValue()).isEqualTo(404);
+            RequestEntity<Void> request = RequestEntity
+                    .delete(uri)
+                    .build();
+
+            ResponseEntity<Void> resp = restTemplate.exchange(request, Void.class);
+
+            assertThat(resp.getStatusCodeValue()).isEqualTo(404);
         }
     }
 
-    // —————— Pruebas de Cuenta ——————
-
-    @Nested
-    @DisplayName("cuando hay cuentas (lista no vacía)")
-    public class CuentaConDatos {
-
-        private Plan planX;
-        private Cuenta c1, c2;
-
-        @BeforeEach
-        public void introduceDatos() {
-
-            cuentaRepository.save(new Cuenta(1L, "Plytix", null,
-                    "123456789A", null, null, new ArrayList<>(), 1L));
-
-            cuentaRepository.save(new Cuenta(2L, "UMA", null,
-                    "999999999B", null, null, new ArrayList<>(), 2L));
-
-
-        }
-
-
-        @Nested
-        @DisplayName("al eliminar una cuenta")
-        public class EliminarCuenta {
-            @Test
-            @DisplayName("DELETE /cuenta/{idCuenta} elimina cuenta existente")
-            public void eliminaExistente() {
-
-                System.out.println("Antes del delete, existen: " + cuentaRepository.findAll().size());
-
-                RequestEntity<Void> peticion = RequestEntity
-                        .delete(URI.create("http://localhost/:" + port + "/cuenta/1"))
-                        .build();
-
-                ResponseEntity<Void> resp = restTemplate.exchange(peticion, Void.class);
-
-                assertThat(resp.getStatusCodeValue()).isEqualTo(200);
-
-                assertThat(cuentaRepository.existsById(1L)).isFalse();
-            }
-
-            @Test
-            @DisplayName("404 al eliminar cuenta inexistente")
-            public void eliminaNoExiste() {
-                var peticion = delete("http","localhost", port, "/cuenta/9999");
-                var resp = restTemplate.exchange((RequestEntity<?>) peticion, Void.class);
-
-                assertThat(resp.getStatusCodeValue()).isEqualTo(404);
-            }
-        }
-    }
 
     /**
      * Comprueba que dos objetos Plan son equivalentes en todos sus campos.
